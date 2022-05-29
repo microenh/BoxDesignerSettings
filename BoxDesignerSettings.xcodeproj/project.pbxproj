@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		4D7F55E42842E01300B79127 /* BoxDesignerSettingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55E32842E01300B79127 /* BoxDesignerSettingsApp.swift */; };
-		4D7F55E62842E01300B79127 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55E52842E01300B79127 /* ContentView.swift */; };
+		4D7F55E62842E01300B79127 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55E52842E01300B79127 /* PreferencesView.swift */; };
 		4D7F55E82842E01500B79127 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D7F55E72842E01500B79127 /* Assets.xcassets */; };
 		4D7F55EB2842E01500B79127 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D7F55EA2842E01500B79127 /* Preview Assets.xcassets */; };
 		4D7F55F62842E01500B79127 /* BoxDesignerSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55F52842E01500B79127 /* BoxDesignerSettingsTests.swift */; };
 		4D7F56002842E01500B79127 /* BoxDesignerSettingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55FF2842E01500B79127 /* BoxDesignerSettingsUITests.swift */; };
 		4D7F56022842E01500B79127 /* BoxDesignerSettingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56012842E01500B79127 /* BoxDesignerSettingsUITestsLaunchTests.swift */; };
+		4D7F56112842E12100B79127 /* Machine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56102842E12100B79127 /* Machine.swift */; };
+		4D7F56132842E20800B79127 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56122842E20800B79127 /* Materials.swift */; };
+		4D7F56152842E24900B79127 /* Drills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56142842E24900B79127 /* Drills.swift */; };
+		4D7F56172842E75200B79127 /* MachinePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56162842E75200B79127 /* MachinePreferencesView.swift */; };
+		4D7F561D2842E93F00B79127 /* MaterialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F561C2842E93F00B79127 /* MaterialsView.swift */; };
+		4D7F561F2842E98200B79127 /* MaterialsSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F561E2842E98200B79127 /* MaterialsSidebar.swift */; };
+		4D7F56212842EF8D00B79127 /* MaterialDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56202842EF8D00B79127 /* MaterialDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,7 @@
 /* Begin PBXFileReference section */
 		4D7F55E02842E01300B79127 /* BoxDesignerSettings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxDesignerSettings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7F55E32842E01300B79127 /* BoxDesignerSettingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxDesignerSettingsApp.swift; sourceTree = "<group>"; };
-		4D7F55E52842E01300B79127 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4D7F55E52842E01300B79127 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		4D7F55E72842E01500B79127 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D7F55EA2842E01500B79127 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4D7F55EC2842E01500B79127 /* BoxDesignerSettings.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoxDesignerSettings.entitlements; sourceTree = "<group>"; };
@@ -45,6 +52,13 @@
 		4D7F55FB2842E01500B79127 /* BoxDesignerSettingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxDesignerSettingsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7F55FF2842E01500B79127 /* BoxDesignerSettingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxDesignerSettingsUITests.swift; sourceTree = "<group>"; };
 		4D7F56012842E01500B79127 /* BoxDesignerSettingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxDesignerSettingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4D7F56102842E12100B79127 /* Machine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Machine.swift; sourceTree = "<group>"; };
+		4D7F56122842E20800B79127 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
+		4D7F56142842E24900B79127 /* Drills.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drills.swift; sourceTree = "<group>"; };
+		4D7F56162842E75200B79127 /* MachinePreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachinePreferencesView.swift; sourceTree = "<group>"; };
+		4D7F561C2842E93F00B79127 /* MaterialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsView.swift; sourceTree = "<group>"; };
+		4D7F561E2842E98200B79127 /* MaterialsSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsSidebar.swift; sourceTree = "<group>"; };
+		4D7F56202842EF8D00B79127 /* MaterialDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				4D7F55E32842E01300B79127 /* BoxDesignerSettingsApp.swift */,
-				4D7F55E52842E01300B79127 /* ContentView.swift */,
+				4D7F560F2842E10600B79127 /* Models */,
+				4D7F560E2842E0EE00B79127 /* Views */,
 				4D7F55E72842E01500B79127 /* Assets.xcassets */,
 				4D7F55EC2842E01500B79127 /* BoxDesignerSettings.entitlements */,
 				4D7F55E92842E01500B79127 /* Preview Content */,
@@ -127,6 +142,60 @@
 				4D7F56012842E01500B79127 /* BoxDesignerSettingsUITestsLaunchTests.swift */,
 			);
 			path = BoxDesignerSettingsUITests;
+			sourceTree = "<group>";
+		};
+		4D7F560E2842E0EE00B79127 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D7F56182842E86700B79127 /* Preferences */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4D7F560F2842E10600B79127 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4D7F56142842E24900B79127 /* Drills.swift */,
+				4D7F56102842E12100B79127 /* Machine.swift */,
+				4D7F56122842E20800B79127 /* Materials.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4D7F56182842E86700B79127 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				4D7F55E52842E01300B79127 /* PreferencesView.swift */,
+				4D7F561A2842E8D100B79127 /* Materials */,
+				4D7F56192842E8C300B79127 /* Machine */,
+				4D7F561B2842E8E300B79127 /* Openings */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		4D7F56192842E8C300B79127 /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				4D7F56162842E75200B79127 /* MachinePreferencesView.swift */,
+			);
+			path = Machine;
+			sourceTree = "<group>";
+		};
+		4D7F561A2842E8D100B79127 /* Materials */ = {
+			isa = PBXGroup;
+			children = (
+				4D7F561C2842E93F00B79127 /* MaterialsView.swift */,
+				4D7F561E2842E98200B79127 /* MaterialsSidebar.swift */,
+				4D7F56202842EF8D00B79127 /* MaterialDetail.swift */,
+			);
+			path = Materials;
+			sourceTree = "<group>";
+		};
+		4D7F561B2842E8E300B79127 /* Openings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Openings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +328,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D7F55E62842E01300B79127 /* ContentView.swift in Sources */,
+				4D7F56212842EF8D00B79127 /* MaterialDetail.swift in Sources */,
+				4D7F56132842E20800B79127 /* Materials.swift in Sources */,
+				4D7F56172842E75200B79127 /* MachinePreferencesView.swift in Sources */,
+				4D7F55E62842E01300B79127 /* PreferencesView.swift in Sources */,
 				4D7F55E42842E01300B79127 /* BoxDesignerSettingsApp.swift in Sources */,
+				4D7F561D2842E93F00B79127 /* MaterialsView.swift in Sources */,
+				4D7F561F2842E98200B79127 /* MaterialsSidebar.swift in Sources */,
+				4D7F56152842E24900B79127 /* Drills.swift in Sources */,
+				4D7F56112842E12100B79127 /* Machine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

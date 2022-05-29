@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct BoxDesignerSettingsApp: App {
+    
+    @StateObject private var machine = Machine()
+    @StateObject private var materials = Materials()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EmptyView()
+        }
+        Settings {
+            PreferencesView()
+                .environmentObject(machine)
+                .environmentObject(materials)
         }
     }
 }
