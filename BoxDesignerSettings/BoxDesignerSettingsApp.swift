@@ -10,6 +10,7 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var machine: Machine?
     var materials: Materials?
+    var openings: Openings?
     
     // close app when last window closed
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -19,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillTerminate(_ notification: Notification) {
         machine?.save()
         materials?.save()
+        openings?.save()
     }
 }
 
@@ -29,6 +31,7 @@ struct BoxDesignerSettingsApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State private var machine = Machine()
     @State private var materials = Materials()
+    @State private var openings = Openings()
 
     var body: some Scene {
         WindowGroup {
@@ -38,11 +41,13 @@ struct BoxDesignerSettingsApp: App {
             PreferencesView()
                 .environmentObject(machine)
                 .environmentObject(materials)
+                .environmentObject(openings)
          }
     }
     
     init() {
         appDelegate.machine = machine
         appDelegate.materials = materials
+        appDelegate.openings = openings
     }
 }

@@ -20,17 +20,19 @@ struct DrillDetail: View {
            let drillSelection = drillSelection,
            material!.drills[drillSelection] != nil {
             VStack {
-                Group {
-                    TextField("Type", text: drill.type)
-                    TextField("Diameter", value: drill.diameter, format: .number)
-                    TextField("Flutes", value: drill.flutes, format: .number)
-                    TextField("min Load", value: drill.minChipLoad, format: .number)
-                    TextField("max Load", value: drill.maxChipLoad, format: .number)
-                    TextField("Flutes", value: drill.flutes, format: .number)
-                    TextField("V Speed", value: drill.verticalSpeed, format: .number)
-                    TextField("Pass Depth", value: drill.depthPerPass, format: .number)
-                    Toggle(isOn: drill.conventional) {
-                        Text("Conventional")
+                ScrollView(.vertical) {
+                    Form {
+                        TextField("Type", text: drill.type)
+                        TextField("Diameter", value: drill.diameter, format: .number)
+                        TextField("Flutes", value: drill.flutes, format: .number)
+                        TextField("min Load", value: drill.minChipLoad, format: .number)
+                        TextField("max Load", value: drill.maxChipLoad, format: .number)
+                        TextField("Flutes", value: drill.flutes, format: .number)
+                        TextField("V Speed", value: drill.verticalSpeed, format: .number)
+                        TextField("Pass Depth", value: drill.depthPerPass, format: .number)
+                        Toggle(isOn: drill.conventional) {
+                            Text("Conventional")
+                        }
                     }
                 }
                 Spacer()
@@ -46,6 +48,7 @@ struct DrillDetail: View {
                 if delete {
                     materials.removeDrill(materialID: material!.id, drillID: drillSelection)
                 }
+                
             } content: {
                 DeletePrompt(message: "Delete \(material!.drills[drillSelection]!.type)?", delete: $delete)
             }

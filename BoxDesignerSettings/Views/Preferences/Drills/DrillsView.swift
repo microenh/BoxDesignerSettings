@@ -9,9 +9,9 @@ import SwiftUI
 
 struct DrillsView: View {
     @EnvironmentObject var materials: Materials
-    @State private var selectedMaterialID: Material.ID?
-    @State private var selectedDrillID: Drill.ID?
-    
+    @AppStorage("selectedMaterial") private var selectedMaterialID: Material.ID?
+    @AppStorage("selectedDrill") private var selectedDrillID: Drill.ID?
+
     var body: some View {
         NavigationView {
             DrillsSidebar(selection: materialSelection)

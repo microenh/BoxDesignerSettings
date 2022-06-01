@@ -12,17 +12,24 @@ struct PreferencesView: View {
         TabView {
             MachinePreferencesView()
                 .tabItem {
-                    Label("Machine", systemImage: "person.crop.circle")
+                    Label("Machine", systemImage: "gearshape")
                 }
             MaterialsView()
                 .tabItem {
-                    Label("Materials", systemImage: "paintpalette")
+                    Label("Materials", systemImage: "square.3.layers.3d.down.right")
                 }
             DrillsView()
                 .tabItem {
-                    Label("Drills", systemImage: "paintpalette")
+                    Label("Drills", systemImage: "hurricane")
                 }
-
+            OpeningsView()
+                .tabItem {
+                    Label("Openings", systemImage: "square.grid.3x3")
+                }
+            HolesView()
+                .tabItem {
+                    Label("Holes", systemImage: "square.grid.3x3.topleft.filled")
+                }
         }
         .frame(width: 800, height: 400)
     }

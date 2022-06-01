@@ -18,7 +18,7 @@ struct DrillList: View {
            let material = materials.materials[materialSelection!] {
             List(selection: $drillSelection) {
                 ForEach([Drill](material.drills.values).sorted { $0.type < $1.type }) { drill in
-                    Text(drill.type)
+                    Text(drill.name)
                 }
             }
             Button {

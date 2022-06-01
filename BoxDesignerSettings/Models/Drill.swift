@@ -18,15 +18,8 @@ struct Drill: Codable, Identifiable, Hashable {
     var depthPerPass: Double
     var conventional: Bool
     
-    static func == (lhs: Drill, rhs: Drill) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    init(type: String = "",
+    init(id: String = UUID().uuidString,
+         type: String = "",
          diameter: Double = 0.0,
          flutes: Int = 0,
          minChipLoad: Double = 0.0,
@@ -34,7 +27,7 @@ struct Drill: Codable, Identifiable, Hashable {
          verticalSpeed: Double = 0.0,
          depthPerPass: Double = 0.0,
          conventional: Bool = true) {
-        self.id = UUID().uuidString
+        self.id = id
         self.type = type
         self.diameter = diameter
         self.flutes = flutes
@@ -43,5 +36,9 @@ struct Drill: Codable, Identifiable, Hashable {
         self.verticalSpeed = verticalSpeed
         self.depthPerPass = depthPerPass
         self.conventional = conventional
+    }
+    
+    var name: String {
+        "\(diameter) mm \(type)"
     }
 }

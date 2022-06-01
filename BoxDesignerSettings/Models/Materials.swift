@@ -9,10 +9,6 @@ import Foundation
 
 struct Material: Identifiable, Codable {
     
-    static func == (lhs: Material, rhs: Material) -> Bool {
-        lhs.id == rhs.id
-    }
-    
     let id: String
     var name: String
     var drills: [String: Drill]
@@ -108,7 +104,7 @@ class Materials: ObservableObject {
     }
     
     func addNew() -> Material.ID {
-        let x = Material()
+        let x = Material(name: "NEW MATERIAL")
         materials[x.id] = x
         return x.id
     }
@@ -118,7 +114,7 @@ class Materials: ObservableObject {
     }
     
     func addNewDrill(materialID: Material.ID?) -> Drill.ID {
-        let x = Drill(type: "end mill")
+        let x = Drill(type: "NEW DRILL")
         if let materialID = materialID,
            materials[materialID] != nil {
             materials[materialID]!.drills[x.id] = x

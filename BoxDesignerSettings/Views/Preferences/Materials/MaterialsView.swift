@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MaterialsView: View {
     @EnvironmentObject var materials: Materials
-    @State private var selectedMaterialID: Material.ID?
+    @AppStorage("materialsMaterialID") private var selectedMaterialID: Material.ID?
     
     var body: some View {
         NavigationView {
