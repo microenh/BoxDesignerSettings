@@ -11,7 +11,7 @@ struct MachinePreferencesView: View {
     @EnvironmentObject private var machine: Machine
 
     var body: some View {
-        Form {
+        VStack {
             TextField("Max RPM",
                       value: $machine.maxRPM,
                       format: .number)
@@ -32,9 +32,6 @@ struct MachinePreferencesView: View {
                       format: .number)
         }
         .frame(maxWidth: 200)
-        .onSubmit {
-            machine.save()
-        }
     }
 }
 

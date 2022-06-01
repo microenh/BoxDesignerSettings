@@ -1,13 +1,13 @@
 //
-//  MaterialsSidebar.swift
+//  DrillsSidebar.swift
 //  BoxDesignerSettings
 //
-//  Created by Mark Erbaugh on 5/28/22.
+//  Created by Mark Erbaugh on 5/31/22.
 //
 
 import SwiftUI
 
-struct MaterialsSidebar: View {
+struct DrillsSidebar: View {
     
     @EnvironmentObject var materials: Materials
     @Binding var selection: Material.ID?
@@ -18,21 +18,15 @@ struct MaterialsSidebar: View {
                 ForEach([Material](materials.materials.values).sorted { $0.name < $1.name }) { material in
                     Text(material.name)
                 }
-            }
-            Button {
-                selection = materials.addNew()
-            } label: {
-                Image(systemName: "plus")
-            }
-            .padding(.bottom)
-        }
-        .listStyle(.sidebar)
+             }
+         }
     }
 }
 
-struct MaterialsSidebar_Previews: PreviewProvider {
+
+struct DrillsSidebar_Previews: PreviewProvider {
     static var previews: some View {
-        MaterialsSidebar(selection: .constant(nil))
+        DrillsSidebar(selection: .constant(nil))
             .environmentObject(Materials())
     }
 }

@@ -18,8 +18,13 @@ struct PreferencesView: View {
                 .tabItem {
                     Label("Materials", systemImage: "paintpalette")
                 }
+            DrillsView()
+                .tabItem {
+                    Label("Drills", systemImage: "paintpalette")
+                }
+
         }
-        .frame(width: 480, height: 320)
+        .frame(width: 800, height: 400)
     }
 }
 

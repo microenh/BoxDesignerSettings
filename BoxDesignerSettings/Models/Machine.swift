@@ -82,7 +82,7 @@ class Machine: ObservableObject {
             }
         }
     }
-    
+        
     func save() {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
