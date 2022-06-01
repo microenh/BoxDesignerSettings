@@ -11,7 +11,7 @@ struct MachinePreferencesView: View {
     @EnvironmentObject private var machine: Machine
 
     var body: some View {
-        VStack {
+        Form {
             TextField("Max RPM",
                       value: $machine.maxRPM,
                       format: .number)

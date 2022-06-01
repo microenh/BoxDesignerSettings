@@ -16,7 +16,7 @@ struct MaterialDetail: View {
 
     var body: some View {
         if material != nil {
-            VStack {
+            Form {
                 TextField("Name",
                           text: Binding(get: {material!.name}, set: {material!.name = $0}))
                 Spacer()

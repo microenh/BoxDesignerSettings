@@ -20,9 +20,19 @@ struct DrillDetail: View {
            let drillSelection = drillSelection,
            material!.drills[drillSelection] != nil {
             VStack {
-                TextField("Type",
-                          text: Binding(get: { material!.drills[drillSelection]!.type },
-                                        set: { material!.drills[drillSelection]!.type = $0 }))
+                Group {
+                    TextField("Type", text: drill.type)
+                    TextField("Diameter", value: drill.diameter, format: .number)
+                    TextField("Flutes", value: drill.flutes, format: .number)
+                    TextField("min Load", value: drill.minChipLoad, format: .number)
+                    TextField("max Load", value: drill.maxChipLoad, format: .number)
+                    TextField("Flutes", value: drill.flutes, format: .number)
+                    TextField("V Speed", value: drill.verticalSpeed, format: .number)
+                    TextField("Pass Depth", value: drill.depthPerPass, format: .number)
+                    Toggle(isOn: drill.conventional) {
+                        Text("Conventional")
+                    }
+                }
                 Spacer()
                 Button {
                     showModal = true
@@ -42,6 +52,13 @@ struct DrillDetail: View {
             
         }
     }
+    
+    private var drill: Binding<Drill> {
+        Binding(get: { material!.drills[drillSelection!]! },
+                set: { material!.drills[drillSelection!]! = $0 })
+    }
+    
+
 }
 
 struct DrillDetail_Previews: PreviewProvider {
