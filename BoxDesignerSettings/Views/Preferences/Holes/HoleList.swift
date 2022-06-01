@@ -12,13 +12,13 @@ struct HoleList: View {
     @EnvironmentObject var openings: Openings
     let openingSelection: Opening.ID?
     @Binding var holeSelection: Hole.ID?
-
+    
     var body: some View {
         if openingSelection != nil,
            let opening = openings.openings[openingSelection!] {
             List(selection: $holeSelection) {
-                ForEach([Hole](opening.holes.values)) { hole in
-                    Text(hole.description)
+                ForEach([Hole](opening.holes.values).sorted { $0.type.description < $1.type.description }) { hole in
+                    Text(hole.type.description)
                 }
             }
             Button {
@@ -27,8 +27,9 @@ struct HoleList: View {
                 Image(systemName: "plus")
             }
             .padding(.bottom)
-
-        }    }
+            
+        }
+    }
 }
 
 struct HoleList_Previews: PreviewProvider {
