@@ -36,6 +36,8 @@
 		4D7F561D2842E93F00B79127 /* MaterialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F561C2842E93F00B79127 /* MaterialsView.swift */; };
 		4D7F561F2842E98200B79127 /* MaterialsSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F561E2842E98200B79127 /* MaterialsSidebar.swift */; };
 		4D7F56212842EF8D00B79127 /* MaterialDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56202842EF8D00B79127 /* MaterialDetail.swift */; };
+		4DC04BEA28494B8A00670C83 /* DrillsDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC04BE928494B8A00670C83 /* DrillsDisclosureView.swift */; };
+		4DC04BEC28494BC900670C83 /* DrillsDisclosureSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC04BEB28494BC900670C83 /* DrillsDisclosureSidebar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		4D7F561C2842E93F00B79127 /* MaterialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsView.swift; sourceTree = "<group>"; };
 		4D7F561E2842E98200B79127 /* MaterialsSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsSidebar.swift; sourceTree = "<group>"; };
 		4D7F56202842EF8D00B79127 /* MaterialDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialDetail.swift; sourceTree = "<group>"; };
+		4DC04BE928494B8A00670C83 /* DrillsDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillsDisclosureView.swift; sourceTree = "<group>"; };
+		4DC04BEB28494BC900670C83 /* DrillsDisclosureSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillsDisclosureSidebar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,7 +220,7 @@
 		4D7F560E2842E0EE00B79127 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4D2E07472846BF620031D825 /* Support */,
+				4D7F55E52842E01300B79127 /* PreferencesView.swift */,
 				4D7F56182842E86700B79127 /* Preferences */,
 			);
 			path = Views;
@@ -237,12 +241,13 @@
 		4D7F56182842E86700B79127 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				4D7F55E52842E01300B79127 /* PreferencesView.swift */,
+				4DC04BE828494B6900670C83 /* DrillsDisclosure */,
 				4D2E074C2846D8310031D825 /* Drills */,
 				4D5605322848049A00F8EEAC /* Holes */,
 				4D7F56192842E8C300B79127 /* Machine */,
 				4D7F561A2842E8D100B79127 /* Materials */,
 				4D7F561B2842E8E300B79127 /* Openings */,
+				4D2E07472846BF620031D825 /* Support */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -273,6 +278,15 @@
 				4D56053B2848106700F8EEAC /* OpeningsDetail.swift */,
 			);
 			path = Openings;
+			sourceTree = "<group>";
+		};
+		4DC04BE828494B6900670C83 /* DrillsDisclosure */ = {
+			isa = PBXGroup;
+			children = (
+				4DC04BE928494B8A00670C83 /* DrillsDisclosureView.swift */,
+				4DC04BEB28494BC900670C83 /* DrillsDisclosureSidebar.swift */,
+			);
+			path = DrillsDisclosure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,7 +430,9 @@
 				4D560538284805E900F8EEAC /* Openings.swift in Sources */,
 				4D560534284804AB00F8EEAC /* HolesView.swift in Sources */,
 				4D56053C2848106700F8EEAC /* OpeningsDetail.swift in Sources */,
+				4DC04BEC28494BC900670C83 /* DrillsDisclosureSidebar.swift in Sources */,
 				4D2E074E2846D85E0031D825 /* DrillsView.swift in Sources */,
+				4DC04BEA28494B8A00670C83 /* DrillsDisclosureView.swift in Sources */,
 				4D560536284805D900F8EEAC /* Hole.swift in Sources */,
 				4D2E07502846D9760031D825 /* DrillsSidebar.swift in Sources */,
 				4D7F561D2842E93F00B79127 /* MaterialsView.swift in Sources */,

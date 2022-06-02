@@ -13,7 +13,7 @@ struct Material: Identifiable, Codable {
     var name: String
     var drills: [String: Drill]
     
-    init(id: String = UUID().uuidString,
+    init(id: String = "M" + UUID().uuidString,
          name: String = "",
          drills: [String: Drill] = [String: Drill]()) {
         self.id = id
@@ -130,5 +130,20 @@ class Materials: ObservableObject {
         }
     }
     
-
+    func getMaterialID(id: String?) -> String? {
+        var materialId: String? = nil
+        if let id = id {
+            if id.starts(with: "M") {
+                return id
+            } else {
+                for material in materials.values {
+                    if material.drills[id] != nil {
+                        materialId = material.id
+                        break
+                    }
+                }
+            }
+        }
+        return materialId
+    }
 }

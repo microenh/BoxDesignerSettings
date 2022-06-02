@@ -30,6 +30,10 @@ struct PreferencesView: View {
                 .tabItem {
                     Label("Holes", systemImage: "square.grid.3x3.topleft.filled")
                 }
+            DrillsDisclosureView()
+                .tabItem {
+                    Label("Disclosure", systemImage: "hurricane")
+                }
         }
         .frame(width: 800, height: 400)
     }
