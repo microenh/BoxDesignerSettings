@@ -44,7 +44,6 @@ struct DrillDetail: View {
                 }
             }
             .padding()
-            .navigationTitle(material!.drills[drillSelection]!.type)
             .sheet(isPresented: $showModal) {
                 if delete {
                     materials.removeDrill(materialID: material!.id, drillID: drillSelection)

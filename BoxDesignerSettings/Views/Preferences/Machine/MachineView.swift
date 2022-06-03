@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MachinePreferencesView: View {
+struct MachineView: View {
     @EnvironmentObject private var machine: Machine
 
     var body: some View {
@@ -37,7 +37,7 @@ struct MachinePreferencesView: View {
 
 struct MachinePreferencesView_Previews: PreviewProvider {
     static var previews: some View {
-        MachinePreferencesView()
+        MachineView()
             .environmentObject(Machine())
 
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OpeningsDetail: View {
+struct OpeningDetail: View {
     
     @EnvironmentObject var openings: Openings
     @Binding var opening: Opening?
@@ -24,6 +24,7 @@ struct OpeningsDetail: View {
                     showModal = true
                 } label: {
                     Image(systemName: "minus")
+                    Image(systemName: "square.grid.3x3")
                 }
             }
             .padding()
@@ -41,7 +42,7 @@ struct OpeningsDetail: View {
 
 struct OpeningsDetail_Previews: PreviewProvider {
     static var previews: some View {
-        OpeningsDetail(opening: .constant(Opening()))
+        OpeningDetail(opening: .constant(Opening()))
             .environmentObject(Openings())
     }
 }

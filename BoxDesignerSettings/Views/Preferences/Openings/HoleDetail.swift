@@ -65,6 +65,7 @@ struct HoleDetail: View {
                     showModal = true
                 } label: {
                     Image(systemName: "minus")
+                    Image(systemName: "square.grid.3x3.topleft.filled")
                 }
             }
             .padding()
@@ -80,13 +81,11 @@ struct HoleDetail: View {
             
         }
     }
-
-private var hole: Binding<Hole> {
-    Binding(get: { opening!.holes[holeSelection!]! },
-            set: { opening!.holes[holeSelection!]! = $0 })
-}
-
-
+    
+    private var hole: Binding<Hole> {
+        Binding(get: { opening!.holes[holeSelection!]! },
+                set: { opening!.holes[holeSelection!]! = $0 })
+    }
 }
 
 struct HoleDetail_Previews: PreviewProvider {

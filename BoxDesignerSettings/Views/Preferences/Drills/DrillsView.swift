@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DrillsView: View {
     @EnvironmentObject var materials: Materials
-    @AppStorage("disclosureSelection") private var selection: String?
+    @AppStorage("drillSelection") private var selection: String?
     @State private var materialSelection: String?
 
     var body: some View {

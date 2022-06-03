@@ -9,22 +9,27 @@ import SwiftUI
 
 struct OpeningsView: View {
     @EnvironmentObject var openings: Openings
-    @AppStorage("openingsOpeningID") private var selectedOpeningID: Opening.ID?
+    @AppStorage("openingsSelection") private var selection: String?
+    @State private var openingSelection: String?
     
     var body: some View {
         NavigationView {
-            OpeningsSidebar(selection: selection)
-            OpeningsDetail(opening: selectedOpening)
+            OpeningsSidebar(selection: $selection, openingSelection: $openingSelection)
+            if let selection = selection {
+                if selection.starts(with: "M") {
+                    OpeningDetail(opening: selectedOpening)
+                } else {
+                    HoleDetail(opening: selectedOpening, holeSelection: selection)
+                }
+            }
         }
     }
     
-    private var selection: Binding<Opening.ID?> {
-        Binding(get: { selectedOpeningID },
-                set: { selectedOpeningID = $0 })
-    }
-    
     private var selectedOpening: Binding<Opening?> {
-        $openings[selection.wrappedValue]
+        if openingSelection == nil {
+            return $openings[openings.getOpeningID(id: selection)]
+        }
+        return $openings[openingSelection]
     }
 }
 

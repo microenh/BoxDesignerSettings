@@ -10,7 +10,7 @@ import SwiftUI
 struct PreferencesView: View {
     var body: some View {
         TabView {
-            MachinePreferencesView()
+            MachineView()
                 .tabItem {
                     Label("Machine", systemImage: "gearshape")
                 }
@@ -18,21 +18,9 @@ struct PreferencesView: View {
                 .tabItem {
                     Label("Drills", systemImage: "hurricane")
                 }
-//            MaterialsView()
-//                .tabItem {
-//                    Label("Materials", systemImage: "square.3.layers.3d.down.right")
-//                }
-//            DrillsView()
-//                .tabItem {
-//                    Label("Drills", systemImage: "hurricane")
-//                }
             OpeningsView()
                 .tabItem {
                     Label("Openings", systemImage: "square.grid.3x3")
-                }
-            HolesView()
-                .tabItem {
-                    Label("Holes", systemImage: "square.grid.3x3.topleft.filled")
                 }
         }
         .frame(width: 800, height: 400)
@@ -44,5 +32,6 @@ struct Preferences_Previews: PreviewProvider {
         PreferencesView()
             .environmentObject(Machine())
             .environmentObject(Materials())
+            .environmentObject(Openings())
     }
 }

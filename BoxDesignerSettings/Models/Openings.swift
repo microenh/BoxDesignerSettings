@@ -13,7 +13,7 @@ struct Opening: Identifiable, Codable {
     var name: String
     var holes: [String: Hole]
     
-    init(id: String = UUID().uuidString,
+    init(id: String = "M" + UUID().uuidString,
          name: String = "",
          holes: [String: Hole] = [String: Hole]()) {
         self.id = id
@@ -128,4 +128,22 @@ class Openings: ObservableObject {
             openings[openingID]!.holes[holeID] = nil
         }
     }
+    
+    func getOpeningID(id: String?) -> String? {
+        var openingId: String? = nil
+        if let id = id {
+            if id.starts(with: "M") {
+                return id
+            } else {
+                for opening in openings.values {
+                    if opening.holes[id] != nil {
+                        openingId = opening.id
+                        break
+                    }
+                }
+            }
+        }
+        return openingId
+    }
+
 }

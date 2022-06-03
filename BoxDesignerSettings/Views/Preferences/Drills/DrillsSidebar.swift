@@ -55,11 +55,6 @@ struct DrillsSidebar: View {
         .frame(width: 200)
     }
     
-//    init(selection: Binding<String?>, materialSelection: Binding<String?>) {
-//        self._selection = selection
-//        self._materialSelection = materialSelection
-//    }
-    
     struct Line: Identifiable {
         let id: String
         let master: Bool

@@ -16,23 +16,22 @@ struct MaterialDetail: View {
 
     var body: some View {
         if material != nil {
-            Form {
-                TextField("Name",
-                          text: Binding(get: {material!.name}, set: {material!.name = $0}))
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button {
-                        showModal = true
-                    } label: {
-                        Image(systemName: "minus")
-                        Image(systemName: "square.3.layers.3d.down.right")
+            VStack {
+                ScrollView(.vertical) {
+                    Form {
+                        TextField("Name",
+                                  text: Binding(get: {material!.name}, set: {material!.name = $0}))
                     }
-                    Spacer()
+                }
+                Spacer()
+                Button {
+                    showModal = true
+                } label: {
+                    Image(systemName: "minus")
+                    Image(systemName: "square.3.layers.3d.down.right")
                 }
             }
             .padding()
-            .navigationTitle(material!.name)
             .sheet(isPresented: $showModal) {
                 if delete {
                     materials.remove(material: material!)
