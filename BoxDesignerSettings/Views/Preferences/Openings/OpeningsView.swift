@@ -12,33 +12,37 @@ struct OpeningsView: View {
     
     @EnvironmentObject var items: Items
     @AppStorage("openingsSelection") private var selection: String?
-    @State private var masterSelection: String?
     
     var body: some View {
         NavigationView {
-            OpeningsSidebar(selection: $selection, masterSelection: $masterSelection)
+            OpeningsSidebar(selection: $selection)
             if let selection = selection {
-                if selection.starts(with: "M") {
-                    OpeningDetail(item: selectedItem)
+                if items.items[selection] == nil {
+                    HoleDetail(item: selectedDetailItem)
                 } else {
-                    HoleDetail(opening: selectedItem, holeSelection: selection)
+                    OpeningDetail(item: selectedItem)
                 }
-            }
+             }
         }
     }
     
     private var selectedItem: Binding<Items.Item?> {
-        if masterSelection == nil {
-            return $items[items.getMasterId(id: selection)]
+        return $items[items.getMasterId(id: selection)]
+    }
+    
+    private var selectedDetailItem: Binding<Items.Item.DetailItem?> {
+        if let selection = selection,
+           let masterId = items.getMasterId(id: selection) {
+            return Binding(get: { items[masterId]![selection]},
+                           set: { items[masterId]![selection] = $0 })
         }
-        return $items[masterSelection]
+        return .constant(nil)
     }
 }
 
 struct OpeningsView_Previews: PreviewProvider {
-    typealias Items = Openings
     static var previews: some View {
         OpeningsView()
-            .environmentObject(Items())
+            .environmentObject(OpeningsView.Items())
     }
 }

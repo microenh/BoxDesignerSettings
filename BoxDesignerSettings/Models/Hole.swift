@@ -79,8 +79,8 @@ struct Hole: Identifiable, Codable {
     var yCenter: Double
     
     init(type: HoleType = .circle(diameter: 0.0), xCenter: Double = 0.0, yCenter: Double = 0.0) {
-        self.type = type
         self.id = UUID().uuidString
+        self.type = type
         self.xCenter = xCenter
         self.yCenter = yCenter
     }

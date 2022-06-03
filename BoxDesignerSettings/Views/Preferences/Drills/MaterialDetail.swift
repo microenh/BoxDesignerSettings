@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct MaterialDetail: View {
+    typealias Items = MaterialsView.Items
 
-    @EnvironmentObject var model: Materials
-    @Binding var item: Material?
+    @EnvironmentObject var items: Items
+    @Binding var item: Items.Item?
     @State private var showModal = false
     @State private var delete = false
 
@@ -27,14 +28,14 @@ struct MaterialDetail: View {
                 Button {
                     showModal = true
                 } label: {
-                    Image(systemName: "minus")
-                    Image(systemName: "square.3.layers.3d.down.right")
+                    Image(systemName: SystemImageNames.deleteItem)
+                    Image(systemName: SystemImageNames.materials)
                 }
             }
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {
-                    model.remove(material: item!)
+                    items.remove(item: item!)
                 }
             } content: {
                 DeletePrompt(message: "Delete \(item!.name)?", delete: $delete)
@@ -46,7 +47,7 @@ struct MaterialDetail: View {
 
 struct MaterialDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MaterialDetail(item: .constant(Material()))
-            .environmentObject(Materials())
+        MaterialDetail(item: .constant(DrillDetail.Items.Item()))
+            .environmentObject(DrillDetail.Items())
     }
 }

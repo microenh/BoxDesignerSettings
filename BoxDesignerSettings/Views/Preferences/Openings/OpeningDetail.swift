@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OpeningDetail: View {
-    typealias Items = Openings
+    typealias Items = OpeningsView.Items
 
     @EnvironmentObject var items: Items
     @Binding var item: Items.Item?
@@ -28,8 +28,8 @@ struct OpeningDetail: View {
                 Button {
                     showModal = true
                 } label: {
-                    Image(systemName: "minus")
-                    Image(systemName: "square.grid.3x3")
+                    Image(systemName: SystemImageNames.deleteItem)
+                    Image(systemName: SystemImageNames.openings)
                 }
             }
             .padding()
@@ -45,11 +45,9 @@ struct OpeningDetail: View {
     }
 }
 
-struct OpeningsDetail_Previews: PreviewProvider {
-    typealias Items = Openings
-    
+struct OpeningDetail_Previews: PreviewProvider {
     static var previews: some View {
-        OpeningDetail(item: .constant(Items.Item()))
-            .environmentObject(Items())
+        OpeningDetail(item: .constant(OpeningDetail.Items.Item()))
+            .environmentObject(OpeningDetail.Items())
     }
 }

@@ -18,7 +18,7 @@ struct Drill: Codable, Identifiable, Hashable {
     var depthPerPass: Double
     var conventional: Bool
     
-    init(id: String = "D" + UUID().uuidString,
+    init(id: String = UUID().uuidString,
          type: String = "",
          diameter: Double = 0.0,
          flutes: Int = 0,

@@ -12,15 +12,15 @@ struct PreferencesView: View {
         TabView {
             MachineView()
                 .tabItem {
-                    Label("Machine", systemImage: "gearshape")
+                    Label("Machine", systemImage: SystemImageNames.machine)
                 }
-            DrillsView()
+            MaterialsView()
                 .tabItem {
-                    Label("Drills", systemImage: "hurricane")
+                    Label("Drills", systemImage: SystemImageNames.drills)
                 }
             OpeningsView()
                 .tabItem {
-                    Label("Openings", systemImage: "square.grid.3x3")
+                    Label("Openings", systemImage: SystemImageNames.openings)
                 }
         }
         .frame(width: 800, height: 400)
@@ -32,6 +32,6 @@ struct Preferences_Previews: PreviewProvider {
         PreferencesView()
             .environmentObject(Machine())
             .environmentObject(Materials())
-            .environmentObject(Openings())
+            .environmentObject(OpeningsView.Items())
     }
 }

@@ -8,30 +8,31 @@
 import Foundation
 
 struct Material: Identifiable, Codable {
+    typealias DetailItem = Drill
     
     let id: String
     var name: String
-    var drills: [String: Drill]
+    var detailItems: [String: DetailItem]
     
-    init(id: String = "M" + UUID().uuidString,
+    init(id: String = UUID().uuidString,
          name: String = "",
-         drills: [String: Drill] = [String: Drill]()) {
+         detailItems: [String: DetailItem] = [String: DetailItem]()) {
         self.id = id
         self.name = name
-        self.drills = drills
+        self.detailItems = detailItems
     }
     
-    subscript(drillID: Drill.ID?) -> Drill? {
+    subscript(id: String?) -> DetailItem? {
         get {
-            if let id = drillID {
-                return drills[id]
+            if let id = id {
+                return detailItems[id]
             }
             return nil
         }
 
         set(newValue) {
-            if let id = drillID {
-                drills[id] = newValue
+            if let id = id {
+                detailItems[id] = newValue
             }
         }
     }
@@ -39,7 +40,8 @@ struct Material: Identifiable, Codable {
 }
 
 class Materials: ObservableObject {
-    @Published var materials = [String: Material]()
+    typealias Item = Material
+    @Published var items = [String: Item]()
     
     static let fileName = "materials"
     static let fileExtension = "json"
@@ -62,13 +64,13 @@ class Materials: ObservableObject {
         }
         
         if let data = FileManager.default.contents(atPath: Self.databaseFileUrl.path) {
-            materials = loadData(from: data)
+            items = loadData(from: data)
         } else {
             if let bundledDatabaseUrl = Bundle.main.url(forResource: Self.fileName, withExtension: Self.fileExtension) {
                 if let data = FileManager.default.contents(atPath: bundledDatabaseUrl.path) {
-                    materials = loadData(from: data)
+                    items = loadData(from: data)
                 } else {
-                    materials = [String: Material]()
+                    items = [String: Material]()
                 }
             }
         }
@@ -78,7 +80,7 @@ class Materials: ObservableObject {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         do {
-            let data = try encoder.encode(materials)
+            let data = try encoder.encode(items)
             if FileManager.default.fileExists(atPath: Self.databaseFileUrl.path) {
                 try FileManager.default.removeItem(at: Self.databaseFileUrl)
             }
@@ -88,62 +90,61 @@ class Materials: ObservableObject {
         }
     }
 
-    subscript(materialID: Material.ID?) -> Material? {
+    subscript(id: String?) -> Item? {
         get {
-            if let id = materialID {
-                return materials[id]
+            if let id = id {
+                return items[id]
             }
             return nil
         }
 
         set(newValue) {
-            if let id = materialID {
-                materials[id] = newValue
+            if let id = id {
+                items[id] = newValue
             }
         }
     }
     
-    func addNew() -> Material.ID {
-        let x = Material(name: "NEW MATERIAL")
-        materials[x.id] = x
+    func addNew() -> String {
+        let x = Item(name: "NEW MATERIAL")
+        items[x.id] = x
         return x.id
     }
     
-    func remove(material: Material) {
-        materials[material.id] = nil
+    func remove(item: Item) {
+        items[item.id] = nil
     }
     
-    func addNewDrill(materialID: Material.ID?) -> Drill.ID {
-        let x = Drill(type: "NEW DRILL")
-        if let materialID = materialID,
-           materials[materialID] != nil {
-            materials[materialID]!.drills[x.id] = x
+    func addNewDetail(id: String?) -> String {
+        let item = Item.DetailItem(type: "NEW DRILL")
+        if let id = id,
+           items[id] != nil {
+            items[id]!.detailItems[item.id] = item
         }
-        return x.id
+        return item.id
     }
     
-    func removeDrill(materialID: Material.ID?, drillID: Drill.ID?) {
-        if let materialID = materialID,
-           let drillID = drillID,
-           materials[materialID] != nil {
-            materials[materialID]!.drills[drillID] = nil
+    func removeDetail(id: String?) {
+        if let id = id,
+           let masterId = getMasterId(id: id) {
+            items[masterId]!.detailItems[id] = nil
         }
     }
     
-    func getMaterialID(id: String?) -> String? {
-        var materialId: String? = nil
+    func getMasterId(id: String?) -> String? {
+        var masterId: String? = nil
         if let id = id {
-            if id.starts(with: "M") {
-                return id
-            } else {
-                for material in materials.values {
-                    if material.drills[id] != nil {
-                        materialId = material.id
+            if items[id] == nil {
+                for material in items.values {
+                    if material.detailItems[id] != nil {
+                        masterId = material.id
                         break
                     }
                 }
+            } else {
+                return id
             }
         }
-        return materialId
+        return masterId
     }
 }

@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct HoleDetail: View {
-    @EnvironmentObject var openings: Openings
-    @Binding var opening: Opening?
-    let holeSelection: Hole.ID?
+    typealias Items = OpeningsView.Items
+    
+    @EnvironmentObject var items: Items
+    @Binding var item: Items.Item.DetailItem?
     @State private var showModal = false
     @State private var delete = false
 
-    
     var body: some View {
-        if opening != nil,
-           let holeSelection = holeSelection,
-           opening!.detailItems[holeSelection] != nil {
+        if item != nil {
             VStack {
-                Picker("Hole Type", selection: hole.type.rawValue) {
+                Picker("Hole Type", selection: item.type.rawValue) {
                     HStack {
                         Text("Circle")
                     }.tag(0)
@@ -39,58 +37,51 @@ struct HoleDetail: View {
                 }
                 ScrollView(.vertical) {
                     Form {
-                        switch hole.type.rawValue.wrappedValue {
+                        switch item.type.rawValue.wrappedValue {
                         case 0:
-                            TextField("Diameter", value: hole.xCenter, format: .number)
+                            TextField("Diameter", value: item.xCenter, format: .number)
                         case 1:
-                            TextField("Size (X)", value: hole.xCenter, format: .number)
-                            TextField("Size (Y)", value: hole.xCenter, format: .number)
+                            TextField("Size (X)", value: item.xCenter, format: .number)
+                            TextField("Size (Y)", value: item.xCenter, format: .number)
                         case 2:
-                            TextField("Side", value: hole.xCenter, format: .number)
+                            TextField("Side", value: item.xCenter, format: .number)
                         case 3:
-                            TextField("Size (X)", value: hole.xCenter, format: .number)
-                            TextField("Size (Y)", value: hole.xCenter, format: .number)
+                            TextField("Size (X)", value: item.xCenter, format: .number)
+                            TextField("Size (Y)", value: item.xCenter, format: .number)
                         case 4:
-                            TextField("Size (X)", value: hole.xCenter, format: .number)
-                            TextField("Size (Y)", value: hole.xCenter, format: .number)
+                            TextField("Size (X)", value: item.xCenter, format: .number)
+                            TextField("Size (Y)", value: item.xCenter, format: .number)
                         default:
                             EmptyView()
                         }
-                        TextField("Center (X)", value: hole.xCenter, format: .number)
-                        TextField("Center (Y)", value: hole.yCenter, format: .number)
+                        TextField("Center (X)", value: item.xCenter, format: .number)
+                        TextField("Center (Y)", value: item.yCenter, format: .number)
                     }
                 }
                 Spacer()
                 Button {
                     showModal = true
                 } label: {
-                    Image(systemName: "minus")
-                    Image(systemName: "square.grid.3x3.topleft.filled")
+                    Image(systemName: SystemImageNames.deleteItem)
+                    Image(systemName: SystemImageNames.holes)
                 }
             }
             .padding()
-            .navigationTitle(opening!.detailItems[holeSelection]!.type.description)
             .sheet(isPresented: $showModal) {
                 if delete {
-                    openings.removeDetail(id: opening!.id, detailId: holeSelection)
+                    items.removeDetail(id: item!.id, detailId: selection)
                 }
-                
             } content: {
-                DeletePrompt(message: "Delete \(opening!.detailItems[holeSelection]!.type.description)?", delete: $delete)
+                DeletePrompt(message: "Delete \(item.type.description)?", delete: $delete)
             }
             
         }
-    }
-    
-    private var hole: Binding<Hole> {
-        Binding(get: { opening!.detailItems[holeSelection!]! },
-                set: { opening!.detailItems[holeSelection!]! = $0 })
     }
 }
 
 struct HoleDetail_Previews: PreviewProvider {
     static var previews: some View {
-        HoleDetail(opening: .constant(Opening()), holeSelection: nil)
-            .environmentObject(Openings())
+        HoleDetail(item: .constant(HoleDetail.Items.Item.DetailItem()))
+            .environmentObject(HoleDetail.Items())
     }
 }

@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct DrillDetail: View {
-    @EnvironmentObject var materials: Materials
-    @Binding var material: Material?
-    let drillSelection: Drill.ID?
+    typealias Items = MaterialsView.Items
+    
+    @EnvironmentObject var items: Items
+    @Binding var item: Items.Item?
+    let selection: String?
     @State private var showModal = false
     @State private var delete = false
 
-    
     var body: some View {
-        if material != nil,
-           let drillSelection = drillSelection,
-           material!.drills[drillSelection] != nil {
+        if item != nil,
+           let selection = selection,
+           item!.detailItems[selection] != nil {
             VStack {
                 ScrollView(.vertical) {
                     Form {
-                        TextField("Type", text: drill.type)
-                        TextField("Diameter", value: drill.diameter, format: .number)
-                        TextField("Flutes", value: drill.flutes, format: .number)
-                        TextField("min Load", value: drill.minChipLoad, format: .number)
-                        TextField("max Load", value: drill.maxChipLoad, format: .number)
-                        TextField("Flutes", value: drill.flutes, format: .number)
-                        TextField("V Speed", value: drill.verticalSpeed, format: .number)
-                        TextField("Pass Depth", value: drill.depthPerPass, format: .number)
-                        Toggle(isOn: drill.conventional) {
+                        TextField("Type", text: detailItem.type)
+                        TextField("Diameter", value: detailItem.diameter, format: .number)
+                        TextField("Flutes", value: detailItem.flutes, format: .number)
+                        TextField("min Load", value: detailItem.minChipLoad, format: .number)
+                        TextField("max Load", value: detailItem.maxChipLoad, format: .number)
+                        TextField("Flutes", value: detailItem.flutes, format: .number)
+                        TextField("V Speed", value: detailItem.verticalSpeed, format: .number)
+                        TextField("Pass Depth", value: detailItem.depthPerPass, format: .number)
+                        Toggle(isOn: detailItem.conventional) {
                             Text("Conventional")
                         }
                     }
@@ -39,34 +40,31 @@ struct DrillDetail: View {
                 Button {
                     showModal = true
                 } label: {
-                    Image(systemName: "minus")
-                    Image(systemName: "hurricane")
+                    Image(systemName: SystemImageNames.deleteItem)
+                    Image(systemName: SystemImageNames.drills)
                 }
             }
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {
-                    materials.removeDrill(materialID: material!.id, drillID: drillSelection)
+                    items.removeDetail(id: selection)
                 }
-                
             } content: {
-                DeletePrompt(message: "Delete \(material!.drills[drillSelection]!.type)?", delete: $delete)
+                DeletePrompt(message: "Delete \(item!.detailItems[selection]!.type)?", delete: $delete)
             }
             
         }
     }
     
-    private var drill: Binding<Drill> {
-        Binding(get: { material!.drills[drillSelection!]! },
-                set: { material!.drills[drillSelection!]! = $0 })
+    private var detailItem: Binding<Items.Item.DetailItem> {
+        Binding(get: { item!.detailItems[selection!]! },
+                set: { item!.detailItems[selection!]! = $0 })
     }
-    
-
 }
 
 struct DrillDetail_Previews: PreviewProvider {
     static var previews: some View {
-        DrillDetail(material: .constant(Material()), drillSelection: nil)
-            .environmentObject(Materials())
+        DrillDetail(item: .constant(DrillDetail.Items.Item()), selection: nil)
+            .environmentObject(DrillDetail.Items())
     }
 }

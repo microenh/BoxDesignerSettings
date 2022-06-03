@@ -14,7 +14,7 @@ struct Opening: Identifiable, Codable {
     var name: String
     var detailItems: [String: DetailItem]
     
-    init(id: String = "M" + UUID().uuidString,
+    init(id: String = UUID().uuidString,
          name: String = "NEW OPENING",
          detailItems: [String: Hole] = [String: DetailItem]()) {
         self.id = id
@@ -40,7 +40,6 @@ struct Opening: Identifiable, Codable {
 
 class Openings: ObservableObject {
     typealias Item = Opening
-    typealias DetailItem = Hole
     
     @Published var items = [String: Item]()
     
@@ -117,7 +116,7 @@ class Openings: ObservableObject {
     }
     
     func addDetail(id: String?) -> String {
-        let item = DetailItem()
+        let item = Item.DetailItem()
         if let id = id,
            items[id] != nil {
             items[id]!.detailItems[item.id] = item
@@ -136,15 +135,15 @@ class Openings: ObservableObject {
     func getMasterId(id: String?) -> String? {
         var masterId: String? = nil
         if let id = id {
-            if id.starts(with: "M") {
-                return id
-            } else {
+            if items[id] == nil {
                 for item in items.values {
                     if item.detailItems[id] != nil {
                         masterId = item.id
                         break
                     }
                 }
+            } else {
+                return id
             }
         }
         return masterId
