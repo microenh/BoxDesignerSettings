@@ -14,7 +14,7 @@ struct PreferencesView: View {
                 .tabItem {
                     Label("Machine", systemImage: "gearshape")
                 }
-            DrillsDisclosureView()
+            DrillsView()
                 .tabItem {
                     Label("Drills", systemImage: "hurricane")
                 }

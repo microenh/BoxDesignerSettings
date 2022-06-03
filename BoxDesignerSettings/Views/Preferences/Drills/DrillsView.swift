@@ -1,45 +1,39 @@
 //
-//  DrillsView.swift
+//  DrillsDisclosureView.swift
 //  BoxDesignerSettings
 //
-//  Created by Mark Erbaugh on 5/31/22.
+//  Created by Mark Erbaugh on 6/2/22.
 //
 
 import SwiftUI
 
 struct DrillsView: View {
     @EnvironmentObject var materials: Materials
-    @AppStorage("selectedMaterial") private var selectedMaterialID: Material.ID?
-    @AppStorage("selectedDrill") private var selectedDrillID: Drill.ID?
+    @AppStorage("disclosureSelection") private var selection: String?
+    @State private var materialSelection: String?
 
     var body: some View {
         NavigationView {
-            DrillsSidebar(selection: materialSelection)
-            DrillList(materialSelection: selectedMaterialID,
-                      drillSelection: drillSelection)
-            DrillDetail(material: selectedMaterial, drillSelection: selectedDrillID)
+            DrillsSidebar(selection: $selection, materialSelection: $materialSelection)
+            if let selection = selection {
+                if selection.starts(with: "M") {
+                    MaterialDetail(material: selectedMaterial)
+                } else {
+                    DrillDetail(material: selectedMaterial, drillSelection: selection)
+                }
+            }
         }
-        .frame(minWidth: 100)
-        .listStyle(.sidebar)
-    }
-    
-    private var materialSelection: Binding<Material.ID?> {
-        Binding(get: { selectedMaterialID },
-                set: { selectedMaterialID = $0 })
-    }
-    
-    private var drillSelection: Binding<Drill.ID?> {
-        Binding(get: { selectedDrillID },
-                set: { selectedDrillID = $0 })
     }
     
     private var selectedMaterial: Binding<Material?> {
-        $materials[materialSelection.wrappedValue]
+        if materialSelection == nil {
+            return $materials[materials.getMaterialID(id: selection)]
+        }
+        return $materials[materialSelection]
     }
-
 }
 
-struct DrillsView_Previews: PreviewProvider {
+struct DrillsDisclosureView_Previews: PreviewProvider {
     static var previews: some View {
         DrillsView()
             .environmentObject(Materials())
