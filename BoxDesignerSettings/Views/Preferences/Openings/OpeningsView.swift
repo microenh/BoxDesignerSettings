@@ -18,7 +18,7 @@ struct OpeningsView: View {
             OpeningsSidebar(selection: $selection)
             if let selection = selection {
                 if items.items[selection] == nil {
-                    HoleDetail(item: selectedDetailItem)
+                    HoleDetail(item: selectedItem, selection: selection)
                 } else {
                     OpeningDetail(item: selectedItem)
                 }
@@ -28,15 +28,6 @@ struct OpeningsView: View {
     
     private var selectedItem: Binding<Items.Item?> {
         return $items[items.getMasterId(id: selection)]
-    }
-    
-    private var selectedDetailItem: Binding<Items.Item.DetailItem?> {
-        if let selection = selection,
-           let masterId = items.getMasterId(id: selection) {
-            return Binding(get: { items[masterId]![selection]},
-                           set: { items[masterId]![selection] = $0 })
-        }
-        return .constant(nil)
     }
 }
 
