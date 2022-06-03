@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct OpeningsSidebar: View {
+    typealias Items = Openings
     
-    @EnvironmentObject var openings: Openings
+    @EnvironmentObject var items: Items
     @Binding var selection: String?
-    @Binding var openingSelection: String?
+    @Binding var masterSelection: String?
     @AppStorage("openingExpanded") private var expanded = ExpansionState()
     
     private static let detailIndent = CGFloat(20)
     
     var body: some View {
         VStack {
-            List(items, selection: $selection) { master in
+            List(lineItems, selection: $selection) { master in
                 HStack {
                     if master.master {
                         Button {
@@ -35,17 +36,17 @@ struct OpeningsSidebar: View {
                 }
             }
             .onChange(of: selection) { newValue in
-                openingSelection = openings.getOpeningID(id: selection)
+                masterSelection = items.getMasterId(id: selection)
             }
             HStack {
                 Button {
-                    selection = openings.addNew()
+                    selection = items.addNew()
                 } label: {
                     Image(systemName: "plus")
                     Image(systemName: "square.grid.3x3")
                 }
                 Button {
-                    selection = openings.addNewHole(openingID: openingSelection)
+                    selection = items.addDetail(id: items.getMasterId(id: selection))
                 } label: {
                     Image(systemName: "plus")
                     Image(systemName: "square.grid.3x3.topleft.filled")
@@ -62,12 +63,12 @@ struct OpeningsSidebar: View {
         let name: String
     }
     
-    private var items: [Line] {
+    private var lineItems: [Line] {
         var result = [Line]()
-        for opening in openings.openings.values {
-            result.append(Line(id: opening.id, master: true, name: opening.name))
-            if expanded.contains(opening.id) {
-                for hole in opening.holes.values {
+        for item in items.items.values {
+            result.append(Line(id: item.id, master: true, name: item.name))
+            if expanded.contains(item.id) {
+                for hole in item.detailItems.values {
                     result.append(Line(id: hole.id, master: false, name: hole.type.description))
                 }
             }
@@ -78,8 +79,9 @@ struct OpeningsSidebar: View {
 }
 
 struct OpeningsSidebar_Previews: PreviewProvider {
+    typealias Items = Openings
     static var previews: some View {
-        OpeningsSidebar(selection: .constant(nil), openingSelection: .constant(nil))
+        OpeningsSidebar(selection: .constant(nil), masterSelection: .constant(nil))
             .environmentObject(Openings())
     }
 }

@@ -8,37 +8,41 @@
 import Foundation
 
 struct Opening: Identifiable, Codable {
+    typealias DetailItem = Hole
     
     let id: String
     var name: String
-    var holes: [String: Hole]
+    var detailItems: [String: DetailItem]
     
     init(id: String = "M" + UUID().uuidString,
-         name: String = "",
-         holes: [String: Hole] = [String: Hole]()) {
+         name: String = "NEW OPENING",
+         detailItems: [String: Hole] = [String: DetailItem]()) {
         self.id = id
         self.name = name
-        self.holes = holes
+        self.detailItems = detailItems
     }
 
-    subscript(holeID: Hole.ID?) -> Hole? {
+    subscript(id: String?) -> DetailItem? {
         get {
-            if let id = holeID {
-                return holes[id]
+            if let id = id {
+                return detailItems[id]
             }
             return nil
         }
 
         set(newValue) {
-            if let id = holeID {
-                holes[id] = newValue
+            if let id = id {
+                detailItems[id] = newValue
             }
         }
     }
 }
 
 class Openings: ObservableObject {
-    @Published var openings = [String: Opening]()
+    typealias Item = Opening
+    typealias DetailItem = Hole
+    
+    @Published var items = [String: Item]()
     
     static let fileName = "openings"
     static let fileExtension = "json"
@@ -50,24 +54,24 @@ class Openings: ObservableObject {
     }
 
     init() {
-        func loadData(from storeFileData: Data) -> [String: Opening] {
+        func loadData(from storeFileData: Data) -> [String: Item] {
             do {
                 let decoder = JSONDecoder()
-                return try decoder.decode([String: Opening].self, from: storeFileData)
+                return try decoder.decode([String: Item].self, from: storeFileData)
             } catch {
                 print(error)
-                return [String: Opening]()
+                return [String: Item]()
             }
         }
         
         if let data = FileManager.default.contents(atPath: Self.databaseFileUrl.path) {
-            openings = loadData(from: data)
+            items = loadData(from: data)
         } else {
             if let bundledDatabaseUrl = Bundle.main.url(forResource: Self.fileName, withExtension: Self.fileExtension) {
                 if let data = FileManager.default.contents(atPath: bundledDatabaseUrl.path) {
-                    openings = loadData(from: data)
+                    items = loadData(from: data)
                 } else {
-                    openings = [String: Opening]()
+                    items = [String: Item]()
                 }
             }
         }
@@ -77,7 +81,7 @@ class Openings: ObservableObject {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         do {
-            let data = try encoder.encode(openings)
+            let data = try encoder.encode(items)
             if FileManager.default.fileExists(atPath: Self.databaseFileUrl.path) {
                 try FileManager.default.removeItem(at: Self.databaseFileUrl)
             }
@@ -87,63 +91,63 @@ class Openings: ObservableObject {
         }
     }
 
-    subscript(openingID: Opening.ID?) -> Opening? {
+    subscript(id: String?) -> Item? {
         get {
-            if let id = openingID {
-                return openings[id]
+            if let id = id {
+                return items[id]
             }
             return nil
         }
 
         set(newValue) {
-            if let id = openingID {
-                openings[id] = newValue
+            if let id = id {
+                items[id] = newValue
             }
         }
     }
     
-    func addNew() -> Opening.ID {
-        let x = Opening(name: "NEW OPENING")
-        openings[x.id] = x
-        return x.id
+    func addNew() -> String {
+        let item = Item()
+        items[item.id] = item
+        return item.id
     }
     
-    func remove(opening: Opening) {
-        openings[opening.id] = nil
+    func remove(opening: Item) {
+        items[opening.id] = nil
     }
     
-    func addNewHole(openingID: Opening.ID?) -> Hole.ID {
-        let x = Hole()
-        if let openingID = openingID,
-           openings[openingID] != nil {
-            openings[openingID]!.holes[x.id] = x
+    func addDetail(id: String?) -> String {
+        let item = DetailItem()
+        if let id = id,
+           items[id] != nil {
+            items[id]!.detailItems[item.id] = item
         }
-        return x.id
+        return item.id
     }
     
-    func removeHole(openingID: Opening.ID?, holeID: Hole.ID?) {
-        if let openingID = openingID,
-           let holeID = holeID,
-           openings[openingID] != nil {
-            openings[openingID]!.holes[holeID] = nil
+    func removeDetail(id: String?, detailId: String?) {
+        if let id = id,
+           let detailId = detailId,
+           items[id] != nil {
+            items[id]!.detailItems[detailId] = nil
         }
     }
     
-    func getOpeningID(id: String?) -> String? {
-        var openingId: String? = nil
+    func getMasterId(id: String?) -> String? {
+        var masterId: String? = nil
         if let id = id {
             if id.starts(with: "M") {
                 return id
             } else {
-                for opening in openings.values {
-                    if opening.holes[id] != nil {
-                        openingId = opening.id
+                for item in items.values {
+                    if item.detailItems[id] != nil {
+                        masterId = item.id
                         break
                     }
                 }
             }
         }
-        return openingId
+        return masterId
     }
 
 }

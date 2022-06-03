@@ -8,34 +8,37 @@
 import SwiftUI
 
 struct OpeningsView: View {
-    @EnvironmentObject var openings: Openings
+    typealias Items = Openings
+    
+    @EnvironmentObject var items: Items
     @AppStorage("openingsSelection") private var selection: String?
-    @State private var openingSelection: String?
+    @State private var masterSelection: String?
     
     var body: some View {
         NavigationView {
-            OpeningsSidebar(selection: $selection, openingSelection: $openingSelection)
+            OpeningsSidebar(selection: $selection, masterSelection: $masterSelection)
             if let selection = selection {
                 if selection.starts(with: "M") {
-                    OpeningDetail(opening: selectedOpening)
+                    OpeningDetail(item: selectedItem)
                 } else {
-                    HoleDetail(opening: selectedOpening, holeSelection: selection)
+                    HoleDetail(opening: selectedItem, holeSelection: selection)
                 }
             }
         }
     }
     
-    private var selectedOpening: Binding<Opening?> {
-        if openingSelection == nil {
-            return $openings[openings.getOpeningID(id: selection)]
+    private var selectedItem: Binding<Items.Item?> {
+        if masterSelection == nil {
+            return $items[items.getMasterId(id: selection)]
         }
-        return $openings[openingSelection]
+        return $items[masterSelection]
     }
 }
 
 struct OpeningsView_Previews: PreviewProvider {
+    typealias Items = Openings
     static var previews: some View {
         OpeningsView()
-            .environmentObject(Openings())
+            .environmentObject(Items())
     }
 }

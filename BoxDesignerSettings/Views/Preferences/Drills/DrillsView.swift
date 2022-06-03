@@ -17,7 +17,7 @@ struct DrillsView: View {
             DrillsSidebar(selection: $selection, materialSelection: $materialSelection)
             if let selection = selection {
                 if selection.starts(with: "M") {
-                    MaterialDetail(material: selectedMaterial)
+                    MaterialDetail(item: selectedMaterial)
                 } else {
                     DrillDetail(material: selectedMaterial, drillSelection: selection)
                 }

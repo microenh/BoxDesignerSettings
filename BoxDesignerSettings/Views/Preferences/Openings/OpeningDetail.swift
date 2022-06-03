@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct OpeningDetail: View {
-    
-    @EnvironmentObject var openings: Openings
-    @Binding var opening: Opening?
+    typealias Items = Openings
+
+    @EnvironmentObject var items: Items
+    @Binding var item: Items.Item?
     @State private var showModal = false
     @State private var delete = false
 
     var body: some View {
-        if opening != nil {
+        if item != nil {
             VStack {
                 ScrollView(.vertical) {
                     Form {
                         TextField("Name",
-                                  text: Binding(get: {opening!.name}, set: {opening!.name = $0}))
+                                  text: Binding(get: {item!.name}, set: {item!.name = $0}))
                     }
                 }
                 Spacer()
@@ -32,21 +33,23 @@ struct OpeningDetail: View {
                 }
             }
             .padding()
-            .navigationTitle(opening!.name)
+            .navigationTitle(item!.name)
             .sheet(isPresented: $showModal) {
                 if delete {
-                    openings.remove(opening: opening!)
+                    items.remove(opening: item!)
                 }
             } content: {
-                DeletePrompt(message: "Delete \(opening!.name)?", delete: $delete)
+                DeletePrompt(message: "Delete \(item!.name)?", delete: $delete)
             }
         }
     }
 }
 
 struct OpeningsDetail_Previews: PreviewProvider {
+    typealias Items = Openings
+    
     static var previews: some View {
-        OpeningDetail(opening: .constant(Opening()))
-            .environmentObject(Openings())
+        OpeningDetail(item: .constant(Items.Item()))
+            .environmentObject(Items())
     }
 }

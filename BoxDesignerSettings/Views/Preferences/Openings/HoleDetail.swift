@@ -18,7 +18,7 @@ struct HoleDetail: View {
     var body: some View {
         if opening != nil,
            let holeSelection = holeSelection,
-           opening!.holes[holeSelection] != nil {
+           opening!.detailItems[holeSelection] != nil {
             VStack {
                 Picker("Hole Type", selection: hole.type.rawValue) {
                     HStack {
@@ -69,22 +69,22 @@ struct HoleDetail: View {
                 }
             }
             .padding()
-            .navigationTitle(opening!.holes[holeSelection]!.type.description)
+            .navigationTitle(opening!.detailItems[holeSelection]!.type.description)
             .sheet(isPresented: $showModal) {
                 if delete {
-                    openings.removeHole(openingID: opening!.id, holeID: holeSelection)
+                    openings.removeDetail(id: opening!.id, detailId: holeSelection)
                 }
                 
             } content: {
-                DeletePrompt(message: "Delete \(opening!.holes[holeSelection]!.type.description)?", delete: $delete)
+                DeletePrompt(message: "Delete \(opening!.detailItems[holeSelection]!.type.description)?", delete: $delete)
             }
             
         }
     }
     
     private var hole: Binding<Hole> {
-        Binding(get: { opening!.holes[holeSelection!]! },
-                set: { opening!.holes[holeSelection!]! = $0 })
+        Binding(get: { opening!.detailItems[holeSelection!]! },
+                set: { opening!.detailItems[holeSelection!]! = $0 })
     }
 }
 

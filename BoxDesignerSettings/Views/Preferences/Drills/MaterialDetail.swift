@@ -9,18 +9,18 @@ import SwiftUI
 
 struct MaterialDetail: View {
 
-    @EnvironmentObject var materials: Materials
-    @Binding var material: Material?
+    @EnvironmentObject var model: Materials
+    @Binding var item: Material?
     @State private var showModal = false
     @State private var delete = false
 
     var body: some View {
-        if material != nil {
+        if item != nil {
             VStack {
                 ScrollView(.vertical) {
                     Form {
                         TextField("Name",
-                                  text: Binding(get: {material!.name}, set: {material!.name = $0}))
+                                  text: Binding(get: {item!.name}, set: {item!.name = $0}))
                     }
                 }
                 Spacer()
@@ -34,10 +34,10 @@ struct MaterialDetail: View {
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {
-                    materials.remove(material: material!)
+                    model.remove(material: item!)
                 }
             } content: {
-                DeletePrompt(message: "Delete \(material!.name)?", delete: $delete)
+                DeletePrompt(message: "Delete \(item!.name)?", delete: $delete)
             }
         }
     }
@@ -46,7 +46,7 @@ struct MaterialDetail: View {
 
 struct MaterialDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MaterialDetail(material: .constant(Material()))
+        MaterialDetail(item: .constant(Material()))
             .environmentObject(Materials())
     }
 }
