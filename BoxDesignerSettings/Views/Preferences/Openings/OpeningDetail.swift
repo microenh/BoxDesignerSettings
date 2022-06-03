@@ -16,9 +16,13 @@ struct OpeningDetail: View {
 
     var body: some View {
         if opening != nil {
-            Form {
-                TextField("Name",
-                          text: Binding(get: {opening!.name}, set: {opening!.name = $0}))
+            VStack {
+                ScrollView(.vertical) {
+                    Form {
+                        TextField("Name",
+                                  text: Binding(get: {opening!.name}, set: {opening!.name = $0}))
+                    }
+                }
                 Spacer()
                 Button {
                     showModal = true
