@@ -33,21 +33,33 @@ struct DrillsDisclosureSidebar: View {
                         .padding(.leading, master.master ? 0.0 : Self.detailIndent)
                 }
             }
-            .onChange(of: selection){ newValue in
+            .onChange(of: selection) { newValue in
                 materialSelection = materials.getMaterialID(id: selection)
             }
-            if materialSelection != nil {
+            HStack {
+                Button {
+                    selection = materials.addNew()
+                } label: {
+                    Image(systemName: "plus")
+                    Image(systemName: "square.3.layers.3d.down.right")
+                }
                 Button {
                     selection = materials.addNewDrill(materialID: materialSelection)
                 } label: {
                     Image(systemName: "plus")
+                    Image(systemName: "hurricane")
                 }
-                .padding(.bottom)
             }
+            .padding(.bottom)
         }
         .frame(width: 200)
     }
-
+    
+//    init(selection: Binding<String?>, materialSelection: Binding<String?>) {
+//        self._selection = selection
+//        self._materialSelection = materialSelection
+//    }
+    
     struct Line: Identifiable {
         let id: String
         let master: Bool

@@ -40,6 +40,7 @@ struct DrillDetail: View {
                     showModal = true
                 } label: {
                     Image(systemName: "minus")
+                    Image(systemName: "hurricane")
                 }
             }
             .padding()

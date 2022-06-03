@@ -14,14 +14,18 @@ struct PreferencesView: View {
                 .tabItem {
                     Label("Machine", systemImage: "gearshape")
                 }
-            MaterialsView()
-                .tabItem {
-                    Label("Materials", systemImage: "square.3.layers.3d.down.right")
-                }
-            DrillsView()
+            DrillsDisclosureView()
                 .tabItem {
                     Label("Drills", systemImage: "hurricane")
                 }
+//            MaterialsView()
+//                .tabItem {
+//                    Label("Materials", systemImage: "square.3.layers.3d.down.right")
+//                }
+//            DrillsView()
+//                .tabItem {
+//                    Label("Drills", systemImage: "hurricane")
+//                }
             OpeningsView()
                 .tabItem {
                     Label("Openings", systemImage: "square.grid.3x3")
@@ -29,10 +33,6 @@ struct PreferencesView: View {
             HolesView()
                 .tabItem {
                     Label("Holes", systemImage: "square.grid.3x3.topleft.filled")
-                }
-            DrillsDisclosureView()
-                .tabItem {
-                    Label("Disclosure", systemImage: "hurricane")
                 }
         }
         .frame(width: 800, height: 400)

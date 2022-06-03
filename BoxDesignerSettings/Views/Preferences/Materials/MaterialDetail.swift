@@ -20,10 +20,15 @@ struct MaterialDetail: View {
                 TextField("Name",
                           text: Binding(get: {material!.name}, set: {material!.name = $0}))
                 Spacer()
-                Button {
-                    showModal = true
-                } label: {
-                    Image(systemName: "minus")
+                HStack {
+                    Spacer()
+                    Button {
+                        showModal = true
+                    } label: {
+                        Image(systemName: "minus")
+                        Image(systemName: "square.3.layers.3d.down.right")
+                    }
+                    Spacer()
                 }
             }
             .padding()
