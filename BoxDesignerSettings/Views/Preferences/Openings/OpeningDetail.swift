@@ -20,8 +20,7 @@ struct OpeningDetail: View {
             VStack {
                 ScrollView(.vertical) {
                     Form {
-                        TextField("Name",
-                                  text: Binding(get: {item!.name}, set: {item!.name = $0}))
+                        TextField("Name", text: binding.name)
                     }
                 }
                 Spacer()
@@ -43,6 +42,12 @@ struct OpeningDetail: View {
             }
         }
     }
+    
+    private var binding: Binding<Items.Item> {
+        Binding(get: { item! },
+                set: { item! = $0 })
+    }
+
 }
 
 struct OpeningDetail_Previews: PreviewProvider {

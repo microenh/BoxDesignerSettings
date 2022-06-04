@@ -15,14 +15,13 @@ struct HoleDetail: View {
     let selection: String?
     @State private var showModal = false
     @State private var delete = false
-
     
     var body: some View {
         if item != nil,
            let selection = selection,
            item!.detailItems[selection] != nil {
             VStack {
-                Picker("Hole Type", selection: detailItem.type.rawValue) {
+                Picker("Hole Type", selection: binding.type.rawValue) {
                     HStack {
                         Text("Circle")
                     }.tag(0)
@@ -41,25 +40,25 @@ struct HoleDetail: View {
                 }
                 ScrollView(.vertical) {
                     Form {
-                        switch detailItem.type.rawValue.wrappedValue {
+                        switch binding.type.rawValue.wrappedValue {
                         case 0:
-                            TextField("Diameter", value: detailItem.xCenter, format: .number)
+                            TextField("Diameter", value: binding.xCenter, format: .number)
                         case 1:
-                            TextField("Size (X)", value: detailItem.xCenter, format: .number)
-                            TextField("Size (Y)", value: detailItem.xCenter, format: .number)
+                            TextField("Size (X)", value: binding.xCenter, format: .number)
+                            TextField("Size (Y)", value: binding.xCenter, format: .number)
                         case 2:
-                            TextField("Side", value: detailItem.xCenter, format: .number)
+                            TextField("Side", value: binding.xCenter, format: .number)
                         case 3:
-                            TextField("Size (X)", value: detailItem.xCenter, format: .number)
-                            TextField("Size (Y)", value: detailItem.xCenter, format: .number)
+                            TextField("Size (X)", value: binding.xCenter, format: .number)
+                            TextField("Size (Y)", value: binding.xCenter, format: .number)
                         case 4:
-                            TextField("Size (X)", value: detailItem.xCenter, format: .number)
-                            TextField("Size (Y)", value: detailItem.xCenter, format: .number)
+                            TextField("Size (X)", value: binding.xCenter, format: .number)
+                            TextField("Size (Y)", value: binding.xCenter, format: .number)
                         default:
                             EmptyView()
                         }
-                        TextField("Center (X)", value: detailItem.xCenter, format: .number)
-                        TextField("Center (Y)", value: detailItem.yCenter, format: .number)
+                        TextField("Center (X)", value: binding.xCenter, format: .number)
+                        TextField("Center (Y)", value: binding.yCenter, format: .number)
                     }
                 }
                 Spacer()
@@ -71,20 +70,20 @@ struct HoleDetail: View {
                 }
             }
             .padding()
-            .navigationTitle(item!.detailItems[selection]!.type.description)
+            .navigationTitle(binding.wrappedValue.type.description)
             .sheet(isPresented: $showModal) {
                 if delete {
                     items.removeDetail(id: item!.id, detailId: selection)
                 }
                 
             } content: {
-                DeletePrompt(message: "Delete \(item!.detailItems[selection]!.type.description)?", delete: $delete)
+                DeletePrompt(message: "Delete \(binding.wrappedValue.type.description)?", delete: $delete)
             }
             
         }
     }
     
-    private var detailItem: Binding<Hole> {
+    private var binding: Binding<Hole> {
         Binding(get: { item!.detailItems[selection!]! },
                 set: { item!.detailItems[selection!]! = $0 })
     }
