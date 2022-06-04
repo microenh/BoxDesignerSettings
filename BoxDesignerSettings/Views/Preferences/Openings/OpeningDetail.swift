@@ -31,6 +31,7 @@ struct OpeningDetail: View {
                     Image(systemName: SystemImageNames.openings)
                 }
             }
+            .navigationTitle("Opening")
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {

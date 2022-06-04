@@ -44,6 +44,7 @@ struct DrillDetail: View {
                     Image(systemName: SystemImageNames.drills)
                 }
             }
+            .navigationTitle("Drill")
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {

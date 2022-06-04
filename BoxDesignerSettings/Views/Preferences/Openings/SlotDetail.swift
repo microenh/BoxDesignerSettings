@@ -56,6 +56,7 @@ struct SlotDetail: View {
                     Image(systemName: SystemImageNames.slots)
                 }
             }
+            .navigationTitle("Slot")
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {

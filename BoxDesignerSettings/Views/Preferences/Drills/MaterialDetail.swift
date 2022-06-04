@@ -32,6 +32,7 @@ struct MaterialDetail: View {
                 }
             }
             .padding()
+            .navigationTitle("Material")
             .sheet(isPresented: $showModal) {
                 if delete {
                     items.remove(item: item!)
