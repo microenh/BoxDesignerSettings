@@ -28,8 +28,9 @@ struct OpeningsSidebar: View {
                         }
                         .buttonStyle(BorderlessButtonStyle())
                     }
-                    Text(master.description)
+                    Image(systemName: master.master ? SystemImageNames.openings: SystemImageNames.slots)
                         .padding(.leading, master.master ? 0.0 : Misc.disclosureDetailIndent)
+                    Text(master.description)
                 }
             }
             HStack {

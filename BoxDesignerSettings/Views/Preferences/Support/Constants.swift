@@ -14,9 +14,9 @@ struct Misc {
 struct SystemImageNames {
     static let machine = "gearshape"
     static let drills = "hurricane"
-    static let openings = "square.grid.3x3"
+    static let openings = "die.face.5.fill"
     static let materials = "square.3.layers.3d.down.right"
-    static let slots = "square.grid.3x3.topleft.filled"
+    static let slots = "die.face.1.fill"
     
     static let addItem = "plus"
     static let deleteItem = "minus"
