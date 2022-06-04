@@ -18,7 +18,7 @@ struct OpeningsView: View {
             OpeningsSidebar(selection: $selection)
             if let selection = selection {
                 if items.items[selection] == nil {
-                    HoleDetail(item: selectedItem, selection: selection)
+                    SlotDetail(item: selectedItem, selection: selection)
                 } else {
                     OpeningDetail(item: selectedItem)
                 }

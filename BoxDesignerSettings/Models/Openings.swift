@@ -8,7 +8,7 @@
 import Foundation
 
 struct Opening: Identifiable, Codable {
-    typealias DetailItem = Hole
+    typealias DetailItem = Slot
     
     let id: String
     var name: String
@@ -16,7 +16,7 @@ struct Opening: Identifiable, Codable {
     
     init(id: String = UUID().uuidString,
          name: String = "NEW OPENING",
-         detailItems: [String: Hole] = [String: DetailItem]()) {
+         detailItems: [String: Slot] = [String: DetailItem]()) {
         self.id = id
         self.name = name
         self.detailItems = detailItems

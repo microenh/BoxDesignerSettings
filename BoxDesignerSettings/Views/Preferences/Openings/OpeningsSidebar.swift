@@ -43,7 +43,7 @@ struct OpeningsSidebar: View {
                     selection = items.addDetail(id: items.getMasterId(id: selection))
                 } label: {
                     Image(systemName: SystemImageNames.addItem)
-                    Image(systemName: SystemImageNames.holes)
+                    Image(systemName: SystemImageNames.slots)
                 }
             }
             .padding(.bottom)

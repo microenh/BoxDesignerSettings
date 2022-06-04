@@ -16,7 +16,7 @@ struct SystemImageNames {
     static let drills = "hurricane"
     static let openings = "square.grid.3x3"
     static let materials = "square.3.layers.3d.down.right"
-    static let holes = "square.grid.3x3.topleft.filled"
+    static let slots = "square.grid.3x3.topleft.filled"
     
     static let addItem = "plus"
     static let deleteItem = "minus"
