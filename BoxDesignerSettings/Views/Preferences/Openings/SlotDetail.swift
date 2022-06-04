@@ -41,9 +41,11 @@ struct SlotDetail: View {
                             TextField("Width", value: binding.dimension1, format: .number)
                             TextField("Height", value: binding.dimension2, format: .number)
                         }
-                        TextField("X Offset", value: binding.xCenter, format: .number)
-                        TextField("Y Offset", value: binding.yCenter, format: .number)
-                        TextField("Rotation", value: binding.rotation, format: .number)
+                        TextField("X Offset", value: binding.xOffset, format: .number)
+                        TextField("Y Offset", value: binding.yOffset, format: .number)
+                        if binding.type.wrappedValue != .circle {
+                            TextField("Rotation", value: binding.rotation, format: .number)
+                        }
                     }
                 }
                 Spacer()
