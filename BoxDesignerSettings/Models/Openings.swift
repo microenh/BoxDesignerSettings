@@ -36,6 +36,10 @@ struct Opening: Identifiable, Codable {
             }
         }
     }
+    
+    var description: String {
+        name
+    }
 }
 
 class Openings: ObservableObject {
@@ -111,8 +115,8 @@ class Openings: ObservableObject {
         return item.id
     }
     
-    func remove(opening: Item) {
-        items[opening.id] = nil
+    func remove(item: Item) {
+        items[item.id] = nil
     }
     
     func addDetail(id: String?) -> String {
@@ -124,11 +128,10 @@ class Openings: ObservableObject {
         return item.id
     }
     
-    func removeDetail(id: String?, detailId: String?) {
+    func removeDetail(id: String?) {
         if let id = id,
-           let detailId = detailId,
-           items[id] != nil {
-            items[id]!.detailItems[detailId] = nil
+           let masterId = getMasterId(id: id) {
+            items[masterId]!.detailItems[id] = nil
         }
     }
     
@@ -148,5 +151,4 @@ class Openings: ObservableObject {
         }
         return masterId
     }
-
 }

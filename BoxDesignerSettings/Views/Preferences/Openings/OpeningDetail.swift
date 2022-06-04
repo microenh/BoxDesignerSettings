@@ -32,13 +32,12 @@ struct OpeningDetail: View {
                 }
             }
             .padding()
-            .navigationTitle(item!.name)
             .sheet(isPresented: $showModal) {
                 if delete {
-                    items.remove(opening: item!)
+                    items.remove(item: item!)
                 }
             } content: {
-                DeletePrompt(message: "Delete \(item!.name)?", delete: $delete)
+                DeletePrompt(message: "Delete \(binding.wrappedValue.description)?", delete: $delete)
             }
         }
     }

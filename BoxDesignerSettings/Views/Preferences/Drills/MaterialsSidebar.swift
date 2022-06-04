@@ -28,7 +28,7 @@ struct MaterialsSidebar: View {
                         }
                         .buttonStyle(BorderlessButtonStyle())
                     }
-                    Text(master.name)
+                    Text(master.description)
                         .padding(.leading, master.master ? 0.0 : Misc.disclosureDetailIndent)
                 }
             }
@@ -54,16 +54,16 @@ struct MaterialsSidebar: View {
     struct Line: Identifiable {
         let id: String
         let master: Bool
-        let name: String
+        let description: String
     }
     
     private var lineItems: [Line] {
         var result = [Line]()
-        for item in items.items.values {
-            result.append(Line(id: item.id, master: true, name: item.name))
+        for item in items.items.values.sorted(by: { $0.description < $1.description }) {
+            result.append(Line(id: item.id, master: true, description: item.description))
             if expanded.contains(item.id) {
-                for drill in item.detailItems.values {
-                    result.append(Line(id: drill.id, master: false, name: drill.name))
+                for detailItem in item.detailItems.values.sorted(by: { $0.description < $1.description }) {
+                    result.append(Line(id: detailItem.id, master: false, description: detailItem.description))
                 }
             }
         }

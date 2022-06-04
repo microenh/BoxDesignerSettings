@@ -20,8 +20,7 @@ struct MaterialDetail: View {
             VStack {
                 ScrollView(.vertical) {
                     Form {
-                        TextField("Name",
-                                  text: Binding(get: {item!.name}, set: {item!.name = $0}))
+                        TextField("Name", text: binding.name)
                     }
                 }
                 Spacer()
@@ -38,16 +37,21 @@ struct MaterialDetail: View {
                     items.remove(item: item!)
                 }
             } content: {
-                DeletePrompt(message: "Delete \(item!.name)?", delete: $delete)
+                DeletePrompt(message: "Delete \(binding.wrappedValue.description)?", delete: $delete)
             }
         }
     }
-}
+    
+    private var binding: Binding<Items.Item> {
+        Binding(get: { item! },
+                set: { item! = $0 })
+    }
 
+}
 
 struct MaterialDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MaterialDetail(item: .constant(DrillDetail.Items.Item()))
-            .environmentObject(DrillDetail.Items())
+        MaterialDetail(item: .constant(MaterialDetail.Items.Item()))
+            .environmentObject(MaterialDetail.Items())
     }
 }

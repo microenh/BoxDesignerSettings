@@ -85,5 +85,7 @@ struct Hole: Identifiable, Codable {
         self.yCenter = yCenter
     }
     
-    
+    var description: String {
+        type.description
+    }
 }

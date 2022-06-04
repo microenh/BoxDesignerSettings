@@ -38,7 +38,7 @@ struct Drill: Codable, Identifiable, Hashable {
         self.conventional = conventional
     }
     
-    var name: String {
-        "\(diameter) mm \(type)"
+    var description: String {
+        "\(type) (\(diameter)mm)"
     }
 }

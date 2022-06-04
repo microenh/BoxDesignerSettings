@@ -21,7 +21,7 @@ struct HoleDetail: View {
            let selection = selection,
            item!.detailItems[selection] != nil {
             VStack {
-                Picker("Hole Type", selection: binding.type.rawValue) {
+                Picker("Shape", selection: binding.type.rawValue) {
                     HStack {
                         Text("Circle")
                     }.tag(0)
@@ -70,20 +70,17 @@ struct HoleDetail: View {
                 }
             }
             .padding()
-            .navigationTitle(binding.wrappedValue.type.description)
             .sheet(isPresented: $showModal) {
                 if delete {
-                    items.removeDetail(id: item!.id, detailId: selection)
+                    items.removeDetail(id: selection)
                 }
-                
             } content: {
-                DeletePrompt(message: "Delete \(binding.wrappedValue.type.description)?", delete: $delete)
+                DeletePrompt(message: "Delete \(binding.wrappedValue.description)?", delete: $delete)
             }
-            
         }
     }
     
-    private var binding: Binding<Hole> {
+    private var binding: Binding<Items.Item.DetailItem> {
         Binding(get: { item!.detailItems[selection!]! },
                 set: { item!.detailItems[selection!]! = $0 })
     }

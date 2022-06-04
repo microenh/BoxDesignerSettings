@@ -37,6 +37,10 @@ struct Material: Identifiable, Codable {
         }
     }
     
+    var description: String {
+        name
+    }
+    
 }
 
 class Materials: ObservableObject {

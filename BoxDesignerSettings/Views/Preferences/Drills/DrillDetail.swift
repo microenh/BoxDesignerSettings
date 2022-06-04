@@ -23,15 +23,15 @@ struct DrillDetail: View {
             VStack {
                 ScrollView(.vertical) {
                     Form {
-                        TextField("Type", text: detailItem.type)
-                        TextField("Diameter", value: detailItem.diameter, format: .number)
-                        TextField("Flutes", value: detailItem.flutes, format: .number)
-                        TextField("min Load", value: detailItem.minChipLoad, format: .number)
-                        TextField("max Load", value: detailItem.maxChipLoad, format: .number)
-                        TextField("Flutes", value: detailItem.flutes, format: .number)
-                        TextField("V Speed", value: detailItem.verticalSpeed, format: .number)
-                        TextField("Pass Depth", value: detailItem.depthPerPass, format: .number)
-                        Toggle(isOn: detailItem.conventional) {
+                        TextField("Type", text: binding.type)
+                        TextField("Diameter", value: binding.diameter, format: .number)
+                        TextField("Flutes", value: binding.flutes, format: .number)
+                        TextField("min Load", value: binding.minChipLoad, format: .number)
+                        TextField("max Load", value: binding.maxChipLoad, format: .number)
+                        TextField("Flutes", value: binding.flutes, format: .number)
+                        TextField("V Speed", value: binding.verticalSpeed, format: .number)
+                        TextField("Pass Depth", value: binding.depthPerPass, format: .number)
+                        Toggle(isOn: binding.conventional) {
                             Text("Conventional")
                         }
                     }
@@ -50,13 +50,13 @@ struct DrillDetail: View {
                     items.removeDetail(id: selection)
                 }
             } content: {
-                DeletePrompt(message: "Delete \(item!.detailItems[selection]!.type)?", delete: $delete)
+                DeletePrompt(message: "Delete \(binding.wrappedValue.description)?", delete: $delete)
             }
             
         }
     }
     
-    private var detailItem: Binding<Items.Item.DetailItem> {
+    private var binding: Binding<Items.Item.DetailItem> {
         Binding(get: { item!.detailItems[selection!]! },
                 set: { item!.detailItems[selection!]! = $0 })
     }

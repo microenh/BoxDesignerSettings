@@ -16,7 +16,7 @@ struct PreferencesView: View {
                 }
             MaterialsView()
                 .tabItem {
-                    Label("Drills", systemImage: SystemImageNames.drills)
+                    Label("Materials", systemImage: SystemImageNames.drills)
                 }
             OpeningsView()
                 .tabItem {
