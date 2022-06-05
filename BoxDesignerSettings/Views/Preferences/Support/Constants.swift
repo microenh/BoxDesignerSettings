@@ -9,6 +9,7 @@ import Foundation
 
 struct Misc {
     static let disclosureDetailIndent: CGFloat = 20
+    static let inputFormWidth: CGFloat = 300
 }
 
 struct SystemImageNames {

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4D0F6E97284A3A5F00CC7BE8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F6E96284A3A5F00CC7BE8 /* Constants.swift */; };
-		4D0F6E99284A880E00CC7BE8 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F6E98284A880E00CC7BE8 /* Preferences.swift */; };
 		4D2E074B2846BF900031D825 /* DeletePrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E074A2846BF900031D825 /* DeletePrompt.swift */; };
 		4D2E07542846D9A80031D825 /* DrillDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E07532846D9A80031D825 /* DrillDetail.swift */; };
 		4D5605312848048700F8EEAC /* OpeningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5605302848048700F8EEAC /* OpeningsView.swift */; };
@@ -53,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		4D0F6E96284A3A5F00CC7BE8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		4D0F6E98284A880E00CC7BE8 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		4D2E074A2846BF900031D825 /* DeletePrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePrompt.swift; sourceTree = "<group>"; };
 		4D2E07532846D9A80031D825 /* DrillDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillDetail.swift; sourceTree = "<group>"; };
 		4D5605302848048700F8EEAC /* OpeningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningsView.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 				4D7F56142842E24900B79127 /* Drill.swift */,
 				4D560537284805E900F8EEAC /* Openings.swift */,
 				4D560535284805D900F8EEAC /* Slot.swift */,
-				4D0F6E98284A880E00CC7BE8 /* Preferences.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,7 +382,6 @@
 				4D70AB822847D6A00026C6EE /* ExpansionState.swift in Sources */,
 				4D7F55E42842E01300B79127 /* BoxDesignerSettingsApp.swift in Sources */,
 				4D560538284805E900F8EEAC /* Openings.swift in Sources */,
-				4D0F6E99284A880E00CC7BE8 /* Preferences.swift in Sources */,
 				4D56053C2848106700F8EEAC /* OpeningDetail.swift in Sources */,
 				4DC04BEC28494BC900670C83 /* MaterialsSidebar.swift in Sources */,
 				4DC04BEA28494B8A00670C83 /* MaterialsView.swift in Sources */,

@@ -24,17 +24,15 @@ struct DrillDetail: View {
                 ScrollView(.vertical) {
                     Form {
                         TextField("Type", text: binding.type)
-                        TextField("Diameter", value: binding.diameter, format: .number)
+                        TextField("Diameter (mm)", value: binding.diameter, format: .number)
                         TextField("Flutes", value: binding.flutes, format: .number)
-                        TextField("min Load", value: binding.minChipLoad, format: .number)
-                        TextField("max Load", value: binding.maxChipLoad, format: .number)
-                        TextField("Flutes", value: binding.flutes, format: .number)
-                        TextField("V Speed", value: binding.verticalSpeed, format: .number)
-                        TextField("Pass Depth", value: binding.depthPerPass, format: .number)
+                        TextField("Vertical Speed (mm)", value: binding.verticalSpeed, format: .number)
+                        TextField("Pass Depth (mm)", value: binding.depthPerPass, format: .number)
                         Toggle(isOn: binding.conventional) {
                             Text("Conventional")
                         }
                     }
+                    .frame(width: Misc.inputFormWidth)
                 }
                 Spacer()
                 Button {

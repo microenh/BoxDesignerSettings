@@ -12,27 +12,30 @@ struct MachineView: View {
     @EnvironmentObject private var item: Item
 
     var body: some View {
-        Form {
-            TextField("Max RPM",
-                      value: $item.maxRPM,
-                      format: .number)
-            TextField("Safe Height",
-                      value: $item.safeHeight,
-                      format: .number)
-            TextField("Extra Cut",
-                      value: $item.extraCut,
-                      format: .number)
-            TextField("H Rapid Speed",
-                      value: $item.horizontalRapid,
-                      format: .number)
-            TextField("V Rapid Speed",
-                      value: $item.verticalRapid,
-                      format: .number)
-            TextField("Finger Variance",
-                      value: $item.fingerVariance,
-                      format: .number)
+        ScrollView(.vertical) {
+            Form {
+                TextField("Max RPM",
+                          value: $item.maxRPM,
+                          format: .number)
+                TextField("Safe Height (mm)",
+                          value: $item.safeHeight,
+                          format: .number)
+                TextField("Extra Cut (mm)",
+                          value: $item.extraCut,
+                          format: .number)
+                TextField("H Rapid Speed (mm/min)",
+                          value: $item.horizontalRapid,
+                          format: .number)
+                TextField("V Rapid Speed (mm/min)",
+                          value: $item.verticalRapid,
+                          format: .number)
+                TextField("Finger Variance (mm)",
+                          value: $item.fingerVariance,
+                          format: .number)
+            }
+            .frame(width: Misc.inputFormWidth)
+            .padding(.top)
         }
-        .frame(maxWidth: 200)
     }
 }
 

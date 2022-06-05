@@ -21,7 +21,24 @@ struct MaterialDetail: View {
                 ScrollView(.vertical) {
                     Form {
                         TextField("Name", text: binding.name)
+                        Text("Chip Load Range")
+                        
+                        HStack {
+                            TextField("1mm", value: binding.minChipLoad1mm, format: .number)
+                            TextField(" - ", value: binding.maxChipLoad1mm, format: .number)
+                        }
+                        .frame(maxWidth: .infinity)
+                        HStack {
+                            TextField("3mm", value: binding.minChipLoad3mm, format: .number)
+                            TextField(" - ", value: binding.maxChipLoad3mm, format: .number)
+                        }
+                        HStack {
+                            TextField("6mm", value: binding.minChipLoad6mm, format: .number)
+                            TextField(" - ", value: binding.maxChipLoad6mm, format: .number)
+                        }
+                        
                     }
+                    .frame(width: Misc.inputFormWidth)
                 }
                 Spacer()
                 Button {

@@ -34,17 +34,17 @@ struct SlotDetail: View {
                     Form {
                         switch binding.type.wrappedValue {
                         case .circle:
-                            TextField("Diameter", value: binding.dimension1, format: .number)
+                            TextField("Diameter (mm)", value: binding.dimension1, format: .number)
                         case .square:
-                            TextField("Side", value: binding.dimension1, format: .number)
+                            TextField("Side (mm)", value: binding.dimension1, format: .number)
                         case .ellipse, .rectangle, .capsule:
-                            TextField("Width", value: binding.dimension1, format: .number)
-                            TextField("Height", value: binding.dimension2, format: .number)
+                            TextField("Width (mm)", value: binding.dimension1, format: .number)
+                            TextField("Height (mm)", value: binding.dimension2, format: .number)
                         }
-                        TextField("X Offset", value: binding.xOffset, format: .number)
-                        TextField("Y Offset", value: binding.yOffset, format: .number)
+                        TextField("X Offset (mm)", value: binding.xOffset, format: .number)
+                        TextField("Y Offset (mm)", value: binding.yOffset, format: .number)
                         if binding.type.wrappedValue != .circle {
-                            TextField("Rotation", value: binding.rotation, format: .number)
+                            TextField("Rotation (°)", value: binding.rotation, format: .number)
                         }
                     }
                 }
@@ -56,6 +56,7 @@ struct SlotDetail: View {
                     Image(systemName: SystemImageNames.slots)
                 }
             }
+            .frame(width: Misc.inputFormWidth)
             .navigationTitle("Slot")
             .padding()
             .sheet(isPresented: $showModal) {

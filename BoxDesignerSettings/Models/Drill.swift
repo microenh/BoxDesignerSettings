@@ -12,8 +12,6 @@ struct Drill: Codable, Identifiable, Hashable {
     var type: String
     var diameter: Double
     var flutes: Int
-    var minChipLoad: Double
-    var maxChipLoad: Double
     var verticalSpeed: Double
     var depthPerPass: Double
     var conventional: Bool
@@ -22,8 +20,6 @@ struct Drill: Codable, Identifiable, Hashable {
          type: String = "",
          diameter: Double = 0.0,
          flutes: Int = 0,
-         minChipLoad: Double = 0.0,
-         maxChipLoad: Double = 0.0,
          verticalSpeed: Double = 0.0,
          depthPerPass: Double = 0.0,
          conventional: Bool = true) {
@@ -31,8 +27,6 @@ struct Drill: Codable, Identifiable, Hashable {
         self.type = type
         self.diameter = diameter
         self.flutes = flutes
-        self.minChipLoad = minChipLoad
-        self.maxChipLoad = maxChipLoad
         self.verticalSpeed = verticalSpeed
         self.depthPerPass = depthPerPass
         self.conventional = conventional

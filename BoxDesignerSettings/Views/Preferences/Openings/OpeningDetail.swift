@@ -22,6 +22,7 @@ struct OpeningDetail: View {
                     Form {
                         TextField("Name", text: binding.name)
                     }
+                    .frame(width: Misc.inputFormWidth)
                 }
                 Spacer()
                 Button {

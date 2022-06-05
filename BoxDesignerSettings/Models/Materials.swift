@@ -12,13 +12,31 @@ struct Material: Identifiable, Codable {
     
     let id: String
     var name: String
+    var minChipLoad1mm: Double
+    var maxChipLoad1mm: Double
+    var minChipLoad3mm: Double
+    var maxChipLoad3mm: Double
+    var minChipLoad6mm: Double
+    var maxChipLoad6mm: Double
     var detailItems: [String: DetailItem]
     
     init(id: String = UUID().uuidString,
          name: String = "",
+         minChipLoad1mm: Double = 0.0,
+         maxChipLoad1mm: Double = 0.0,
+         minChipLoad3mm: Double = 0.0,
+         maxChipLoad3mm: Double = 0.0,
+         minChipLoad6mm: Double = 0.0,
+         maxChipLoad6mm: Double = 0.0,
          detailItems: [String: DetailItem] = [String: DetailItem]()) {
         self.id = id
         self.name = name
+        self.minChipLoad1mm = minChipLoad1mm
+        self.maxChipLoad1mm = maxChipLoad1mm
+        self.minChipLoad3mm = minChipLoad3mm
+        self.maxChipLoad3mm = maxChipLoad3mm
+        self.minChipLoad6mm = minChipLoad6mm
+        self.maxChipLoad6mm = maxChipLoad6mm
         self.detailItems = detailItems
     }
     
