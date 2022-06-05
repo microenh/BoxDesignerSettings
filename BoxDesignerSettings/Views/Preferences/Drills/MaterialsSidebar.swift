@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct MaterialsSidebar: View {
-    typealias Items = MaterialsView.Items
-    
-    @EnvironmentObject var items: Items
+    @EnvironmentObject var preferences: Preferences
     @Binding var selection: String?
     @AppStorage("drillExpanded") private var expanded = ExpansionState()
     
@@ -35,13 +33,13 @@ struct MaterialsSidebar: View {
             }
             HStack {
                 Button {
-                    selection = items.addNew()
+                    selection = preferences.materials.addNew()
                 } label: {
                     Image(systemName: SystemImageNames.addItem)
                     Image(systemName: SystemImageNames.materials)
                 }
                 Button {
-                    selection = items.addNewDetail(id: items.getMasterId(id: selection))
+                    selection = preferences.materials.addNewDetail(id: preferences.materials.getMasterId(id: selection))
                 } label: {
                     Image(systemName: SystemImageNames.addItem)
                     Image(systemName: SystemImageNames.drills)
@@ -60,7 +58,7 @@ struct MaterialsSidebar: View {
     
     private var lineItems: [Line] {
         var result = [Line]()
-        for item in items.items.values.sorted(by: { $0.description < $1.description }) {
+        for item in preferences.materials.items.values.sorted(by: { $0.description < $1.description }) {
             result.append(Line(id: item.id, master: true, description: item.description))
             if expanded.contains(item.id) {
                 for detailItem in item.detailItems.values.sorted(by: { $0.description < $1.description }) {
@@ -75,6 +73,6 @@ struct MaterialsSidebar: View {
 struct DrillsDisclosureSidebar_Previews: PreviewProvider {
     static var previews: some View {
         MaterialsSidebar(selection: .constant(nil))
-            .environmentObject(MaterialsSidebar.Items())
+            .environmentObject(Preferences())
     }
 }

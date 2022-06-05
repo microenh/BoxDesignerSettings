@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct DrillDetail: View {
-    typealias Items = MaterialsView.Items
-    
-    @EnvironmentObject var items: Items
-    @Binding var item: Items.Item?
+    @EnvironmentObject var preferences: Preferences
+    @Binding var item: Material?
     let selection: String?
     @State private var showModal = false
     @State private var delete = false
@@ -48,16 +46,15 @@ struct DrillDetail: View {
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {
-                    items.removeDetail(id: selection)
+                    preferences.materials.removeDetail(id: selection)
                 }
             } content: {
                 DeletePrompt(message: "Delete \(binding.wrappedValue.description)?", delete: $delete)
             }
-            
         }
     }
     
-    private var binding: Binding<Items.Item.DetailItem> {
+    private var binding: Binding<Drill> {
         Binding(get: { item!.detailItems[selection!]! },
                 set: { item!.detailItems[selection!]! = $0 })
     }
@@ -65,7 +62,7 @@ struct DrillDetail: View {
 
 struct DrillDetail_Previews: PreviewProvider {
     static var previews: some View {
-        DrillDetail(item: .constant(DrillDetail.Items.Item()), selection: nil)
-            .environmentObject(DrillDetail.Items())
+        DrillDetail(item: .constant(Material()), selection: nil)
+            .environmentObject(Preferences())
     }
 }

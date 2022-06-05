@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct SlotDetail: View {
-    typealias Items = OpeningsView.Items
-    
-    @EnvironmentObject var items: Items
-    @Binding var item: Items.Item?
+    @EnvironmentObject var preferences: Preferences
+    @Binding var item: Opening?
     let selection: String?
     @State private var showModal = false
     @State private var delete = false
@@ -60,7 +58,7 @@ struct SlotDetail: View {
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {
-                    items.removeDetail(id: selection)
+                    preferences.openings.removeDetail(id: selection)
                 }
             } content: {
                 DeletePrompt(message: "Delete \(binding.wrappedValue.description)?", delete: $delete)
@@ -68,7 +66,7 @@ struct SlotDetail: View {
         }
     }
     
-    private var binding: Binding<Items.Item.DetailItem> {
+    private var binding: Binding<Slot> {
         Binding(get: { item!.detailItems[selection!]! },
                 set: { item!.detailItems[selection!]! = $0 })
     }
@@ -76,7 +74,7 @@ struct SlotDetail: View {
 
 struct HoleDetail_Previews: PreviewProvider {
     static var previews: some View {
-        SlotDetail(item: .constant(SlotDetail.Items.Item()), selection: nil)
-            .environmentObject(SlotDetail.Items())
+        SlotDetail(item: .constant(Opening()), selection: nil)
+            .environmentObject(Preferences())
     }
 }

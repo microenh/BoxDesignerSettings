@@ -55,6 +55,11 @@ class Openings: ObservableObject {
             .appendingPathComponent(Self.fileName)
             .appendingPathExtension(Self.fileExtension)
     }
+    
+    init(items: [String: Item]) {
+        self.items = items
+    }
+
 
     init() {
         func loadData(from storeFileData: Data) -> [String: Item] {

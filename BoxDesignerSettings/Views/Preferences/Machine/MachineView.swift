@@ -8,28 +8,27 @@
 import SwiftUI
 
 struct MachineView: View {
-    typealias Item = Machine
-    @EnvironmentObject private var item: Item
+    @EnvironmentObject private var preferences: Preferences
 
     var body: some View {
         Form {
             TextField("Max RPM",
-                      value: $item.maxRPM,
+                      value: $preferences.maxRPM,
                       format: .number)
             TextField("Safe Height",
-                      value: $item.safeHeight,
+                      value: $preferences.safeHeight,
                       format: .number)
             TextField("Extra Cut",
-                      value: $item.extraCut,
+                      value: $preferences.extraCut,
                       format: .number)
             TextField("H Rapid Speed",
-                      value: $item.horizontalRapid,
+                      value: $preferences.horizontalRapid,
                       format: .number)
             TextField("V Rapid Speed",
-                      value: $item.verticalRapid,
+                      value: $preferences.verticalRapid,
                       format: .number)
             TextField("Finger Variance",
-                      value: $item.fingerVariance,
+                      value: $preferences.fingerVariance,
                       format: .number)
         }
         .frame(maxWidth: 200)
@@ -39,7 +38,7 @@ struct MachineView: View {
 struct MachinePreferencesView_Previews: PreviewProvider {
     static var previews: some View {
         MachineView()
-            .environmentObject(MachineView.Item())
+            .environmentObject(Preferences())
 
     }
 }

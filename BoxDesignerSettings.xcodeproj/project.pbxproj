@@ -25,7 +25,6 @@
 		4D7F55F62842E01500B79127 /* BoxDesignerSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55F52842E01500B79127 /* BoxDesignerSettingsTests.swift */; };
 		4D7F56002842E01500B79127 /* BoxDesignerSettingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55FF2842E01500B79127 /* BoxDesignerSettingsUITests.swift */; };
 		4D7F56022842E01500B79127 /* BoxDesignerSettingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56012842E01500B79127 /* BoxDesignerSettingsUITestsLaunchTests.swift */; };
-		4D7F56112842E12100B79127 /* Machine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56102842E12100B79127 /* Machine.swift */; };
 		4D7F56132842E20800B79127 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56122842E20800B79127 /* Materials.swift */; };
 		4D7F56152842E24900B79127 /* Drill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56142842E24900B79127 /* Drill.swift */; };
 		4D7F56172842E75200B79127 /* MachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56162842E75200B79127 /* MachineView.swift */; };
@@ -128,6 +127,19 @@
 			path = Drills;
 			sourceTree = "<group>";
 		};
+		4D5B3BFC284C5BE100290A45 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				4D0F6E98284A880E00CC7BE8 /* Preferences.swift */,
+				4D7F56102842E12100B79127 /* Machine.swift */,
+				4D7F56122842E20800B79127 /* Materials.swift */,
+				4D7F56142842E24900B79127 /* Drill.swift */,
+				4D560537284805E900F8EEAC /* Openings.swift */,
+				4D560535284805D900F8EEAC /* Slot.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
 		4D70AB802847D6460026C6EE /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,12 +219,7 @@
 		4D7F560F2842E10600B79127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D7F56102842E12100B79127 /* Machine.swift */,
-				4D7F56122842E20800B79127 /* Materials.swift */,
-				4D7F56142842E24900B79127 /* Drill.swift */,
-				4D560537284805E900F8EEAC /* Openings.swift */,
-				4D560535284805D900F8EEAC /* Slot.swift */,
-				4D0F6E98284A880E00CC7BE8 /* Preferences.swift */,
+				4D5B3BFC284C5BE100290A45 /* Preferences */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -396,7 +403,6 @@
 				4D56053A2848105600F8EEAC /* OpeningsSidebar.swift in Sources */,
 				4D2E07542846D9A80031D825 /* DrillDetail.swift in Sources */,
 				4D5605422848135D00F8EEAC /* SlotDetail.swift in Sources */,
-				4D7F56112842E12100B79127 /* Machine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct OpeningsSidebar: View {
-    typealias Items = Openings
-    
-    @EnvironmentObject var items: Items
+    @EnvironmentObject var preferences: Preferences
     @Binding var selection: String?
     @AppStorage("openingExpanded") private var expanded = ExpansionState()
     
@@ -35,13 +33,13 @@ struct OpeningsSidebar: View {
             }
             HStack {
                 Button {
-                    selection = items.addNew()
+                    selection = preferences.openings.addNew()
                 } label: {
                     Image(systemName: SystemImageNames.addItem)
                     Image(systemName: SystemImageNames.openings)
                 }
                 Button {
-                    selection = items.addDetail(id: items.getMasterId(id: selection))
+                    selection = preferences.openings.addDetail(id: preferences.openings.getMasterId(id: selection))
                 } label: {
                     Image(systemName: SystemImageNames.addItem)
                     Image(systemName: SystemImageNames.slots)
@@ -60,7 +58,7 @@ struct OpeningsSidebar: View {
     
     private var lineItems: [Line] {
         var result = [Line]()
-        for item in items.items.values.sorted(by: { $0.description < $1.description }) {
+        for item in preferences.openings.items.values.sorted(by: { $0.description < $1.description }) {
             result.append(Line(id: item.id, master: true, description: item.description))
             if expanded.contains(item.id) {
                 for detailItem in item.detailItems.values.sorted(by: { $0.description < $1.description }) {
@@ -76,6 +74,6 @@ struct OpeningsSidebar: View {
 struct OpeningsSidebar_Previews: PreviewProvider {
     static var previews: some View {
         OpeningsSidebar(selection: .constant(nil))
-            .environmentObject(OpeningsSidebar.Items())
+            .environmentObject(Preferences())
     }
 }

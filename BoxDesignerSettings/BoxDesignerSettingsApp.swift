@@ -8,9 +8,10 @@
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
-    var machine: Machine?
-    var materials: Materials?
-    var openings: Openings?
+//    var machine: Machine?
+//    var materials: Materials?
+//    var openings: Openings?
+    var preferences: Preferences?
     
     // close app when last window closed
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -18,9 +19,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-        machine?.save()
-        materials?.save()
-        openings?.save()
+//        machine?.save()
+//        materials?.save()
+//        openings?.save()
+        preferences?.save()
     }
 }
 
@@ -29,9 +31,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 struct BoxDesignerSettingsApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @State private var machine = Machine()
-    @State private var materials = Materials()
-    @State private var openings = Openings()
+//    @State private var machine = Machine()
+//    @State private var materials = Materials()
+//    @State private var openings = Openings()
+    @State private var preferences = Preferences()
 
     var body: some Scene {
         WindowGroup {
@@ -39,15 +42,17 @@ struct BoxDesignerSettingsApp: App {
         }
         Settings {
             PreferencesView()
-                .environmentObject(machine)
-                .environmentObject(materials)
-                .environmentObject(openings)
+                .environmentObject(preferences)
+//                .environmentObject(machine)
+//                .environmentObject(materials)
+//                .environmentObject(openings)
          }
     }
     
     init() {
-        appDelegate.machine = machine
-        appDelegate.materials = materials
-        appDelegate.openings = openings
+        appDelegate.preferences = preferences
+//        appDelegate.machine = machine
+//        appDelegate.materials = materials
+//        appDelegate.openings = openings
     }
 }

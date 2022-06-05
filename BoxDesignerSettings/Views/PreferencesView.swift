@@ -30,8 +30,9 @@ struct PreferencesView: View {
 struct Preferences_Previews: PreviewProvider {
     static var previews: some View {
         PreferencesView()
-            .environmentObject(Machine())
-            .environmentObject(Materials())
-            .environmentObject(OpeningsView.Items())
+            .environmentObject(Preferences())
+//            .environmentObject(Machine())
+//            .environmentObject(Materials())
+//            .environmentObject(OpeningsView.Items())
     }
 }

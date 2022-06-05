@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct OpeningDetail: View {
-    typealias Items = OpeningsView.Items
-
-    @EnvironmentObject var items: Items
-    @Binding var item: Items.Item?
+    @EnvironmentObject var preferences: Preferences
+    @Binding var item: Opening?
     @State private var showModal = false
     @State private var delete = false
 
@@ -35,7 +33,7 @@ struct OpeningDetail: View {
             .padding()
             .sheet(isPresented: $showModal) {
                 if delete {
-                    items.remove(item: item!)
+                    preferences.openings.remove(item: item!)
                 }
             } content: {
                 DeletePrompt(message: "Delete \(binding.wrappedValue.description)?", delete: $delete)
@@ -43,7 +41,7 @@ struct OpeningDetail: View {
         }
     }
     
-    private var binding: Binding<Items.Item> {
+    private var binding: Binding<Opening> {
         Binding(get: { item! },
                 set: { item! = $0 })
     }
@@ -52,7 +50,7 @@ struct OpeningDetail: View {
 
 struct OpeningDetail_Previews: PreviewProvider {
     static var previews: some View {
-        OpeningDetail(item: .constant(OpeningDetail.Items.Item()))
-            .environmentObject(OpeningDetail.Items())
+        OpeningDetail(item: .constant(Opening()))
+            .environmentObject(Preferences())
     }
 }

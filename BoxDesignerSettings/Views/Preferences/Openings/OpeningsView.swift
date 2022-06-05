@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct OpeningsView: View {
-    typealias Items = Openings
-    
-    @EnvironmentObject var items: Items
+    @EnvironmentObject var preferences: Preferences
     @AppStorage("openingsSelection") private var selection: String?
     
     var body: some View {
         NavigationView {
             OpeningsSidebar(selection: $selection)
             if let selection = selection {
-                if items.items[selection] == nil {
+                if preferences.openings.items[selection] == nil {
                     SlotDetail(item: selectedItem, selection: selection)
                 } else {
                     OpeningDetail(item: selectedItem)
@@ -26,14 +24,14 @@ struct OpeningsView: View {
         }
     }
     
-    private var selectedItem: Binding<Items.Item?> {
-        return $items[items.getMasterId(id: selection)]
+    private var selectedItem: Binding<Openings.Item?> {
+        return $preferences.openings[preferences.openings.getMasterId(id: selection)]
     }
 }
 
 struct OpeningsView_Previews: PreviewProvider {
     static var previews: some View {
         OpeningsView()
-            .environmentObject(OpeningsView.Items())
+            .environmentObject(Preferences())
     }
 }
