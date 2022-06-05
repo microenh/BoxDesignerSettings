@@ -8,15 +8,15 @@
 import SwiftUI
 
 class Preferences: ObservableObject {
-    @Published var maxRPM = 0.0
-    @Published var safeHeight = 0.0
-    @Published var extraCut = 0.0  // cut into spoilboard
-    @Published var horizontalRapid = 0.0
-    @Published var verticalRapid = 0.0
-    @Published var fingerVariance = 0.0  // male fingers slightly smaller, female fingers slightly larger
+    @Published var maxRPM: Double
+    @Published var safeHeight: Double
+    @Published var extraCut: Double  // cut into spoilboard
+    @Published var horizontalRapid: Double
+    @Published var verticalRapid: Double
+    @Published var fingerVariance: Double // male fingers slightly smaller, female fingers slightly larger
     
-    @Published var materials = Materials()
-    @Published var openings = Openings()
+    @Published var materials: Materials
+    @Published var openings: Openings
 
     static let fileName = "preferences"
     static let fileExtension = "json"

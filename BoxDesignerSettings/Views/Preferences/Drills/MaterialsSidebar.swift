@@ -10,7 +10,7 @@ import SwiftUI
 struct MaterialsSidebar: View {
     @EnvironmentObject var preferences: Preferences
     @Binding var selection: String?
-    @AppStorage("drillExpanded") private var expanded = ExpansionState()
+    @AppStorage("materialExpanded") private var expanded = ExpansionState()
     
     var body: some View {
         VStack {
@@ -50,19 +50,19 @@ struct MaterialsSidebar: View {
         .frame(width: 200)
     }
     
-    struct Line: Identifiable {
+    private struct LineItem: Identifiable {
         let id: String
         let master: Bool
         let description: String
     }
     
-    private var lineItems: [Line] {
-        var result = [Line]()
+    private var lineItems: [LineItem] {
+        var result = [LineItem]()
         for item in preferences.materials.items.values.sorted(by: { $0.description < $1.description }) {
-            result.append(Line(id: item.id, master: true, description: item.description))
+            result.append(LineItem(id: item.id, master: true, description: item.description))
             if expanded.contains(item.id) {
                 for detailItem in item.detailItems.values.sorted(by: { $0.description < $1.description }) {
-                    result.append(Line(id: detailItem.id, master: false, description: detailItem.description))
+                    result.append(LineItem(id: detailItem.id, master: false, description: detailItem.description))
                 }
             }
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MaterialsView: View {
     @EnvironmentObject var preferences: Preferences
-    @AppStorage("drillsSelection") private var selection: String?
+    @AppStorage("materialsSelection") private var selection: String?
 
     var body: some View {
         NavigationView {

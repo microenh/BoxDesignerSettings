@@ -73,7 +73,6 @@
 		4D7F55FB2842E01500B79127 /* BoxDesignerSettingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxDesignerSettingsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7F55FF2842E01500B79127 /* BoxDesignerSettingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxDesignerSettingsUITests.swift; sourceTree = "<group>"; };
 		4D7F56012842E01500B79127 /* BoxDesignerSettingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxDesignerSettingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		4D7F56102842E12100B79127 /* Machine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Machine.swift; sourceTree = "<group>"; };
 		4D7F56122842E20800B79127 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
 		4D7F56142842E24900B79127 /* Drill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drill.swift; sourceTree = "<group>"; };
 		4D7F56162842E75200B79127 /* MachineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineView.swift; sourceTree = "<group>"; };
@@ -131,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				4D0F6E98284A880E00CC7BE8 /* Preferences.swift */,
-				4D7F56102842E12100B79127 /* Machine.swift */,
 				4D7F56122842E20800B79127 /* Materials.swift */,
 				4D7F56142842E24900B79127 /* Drill.swift */,
 				4D560537284805E900F8EEAC /* Openings.swift */,

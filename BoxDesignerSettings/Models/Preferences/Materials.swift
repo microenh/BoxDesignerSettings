@@ -60,44 +60,6 @@ class Materials: ObservableObject {
         self.items = items
     }
 
-    init() {
-        func loadData(from storeFileData: Data) -> [String: Material] {
-            do {
-                let decoder = JSONDecoder()
-                return try decoder.decode([String: Material].self, from: storeFileData)
-            } catch {
-                print(error)
-                return [String: Material]()
-            }
-        }
-        
-        if let data = FileManager.default.contents(atPath: Self.databaseFileUrl.path) {
-            items = loadData(from: data)
-        } else {
-            if let bundledDatabaseUrl = Bundle.main.url(forResource: Self.fileName, withExtension: Self.fileExtension) {
-                if let data = FileManager.default.contents(atPath: bundledDatabaseUrl.path) {
-                    items = loadData(from: data)
-                } else {
-                    items = [String: Material]()
-                }
-            }
-        }
-     }
-    
-    func save() {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        do {
-            let data = try encoder.encode(items)
-            if FileManager.default.fileExists(atPath: Self.databaseFileUrl.path) {
-                try FileManager.default.removeItem(at: Self.databaseFileUrl)
-            }
-            try data.write(to: Self.databaseFileUrl)
-        } catch {
-            //..
-        }
-    }
-
     subscript(id: String?) -> Item? {
         get {
             if let id = id {
