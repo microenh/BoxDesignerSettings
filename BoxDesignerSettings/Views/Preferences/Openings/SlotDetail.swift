@@ -43,9 +43,9 @@ struct SlotDetail: View {
                         }
                         TextField("X Offset (mm)", value: binding.xOffset, format: .number)
                         TextField("Y Offset (mm)", value: binding.yOffset, format: .number)
-                        if binding.type.wrappedValue != .circle {
-                            TextField("Rotation (°)", value: binding.rotation, format: .number)
-                        }
+//                        if binding.type.wrappedValue != .circle {
+//                            TextField("Rotation (°)", value: binding.rotation, format: .number)
+//                        }
                     }
                 }
                 Spacer()
