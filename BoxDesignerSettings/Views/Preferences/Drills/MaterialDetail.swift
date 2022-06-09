@@ -45,7 +45,7 @@ struct MaterialDetail: View {
                     showModal = true
                 } label: {
                     Image(systemName: SystemImageNames.deleteItem)
-                    Image(systemName: SystemImageNames.materials)
+                    // Image(systemName: SystemImageNames.materials)
                 }
             }
             .padding()

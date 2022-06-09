@@ -53,7 +53,7 @@ struct SlotDetail: View {
                     showModal = true
                 } label: {
                     Image(systemName: SystemImageNames.deleteItem)
-                    Image(systemName: SystemImageNames.slots)
+                    // Image(systemName: SystemImageNames.slots)
                 }
             }
             .frame(width: Misc.inputFormWidth)

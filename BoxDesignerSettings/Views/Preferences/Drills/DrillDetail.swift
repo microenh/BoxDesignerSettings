@@ -39,7 +39,7 @@ struct DrillDetail: View {
                     showModal = true
                 } label: {
                     Image(systemName: SystemImageNames.deleteItem)
-                    Image(systemName: SystemImageNames.drills)
+                    // Image(systemName: SystemImageNames.drills)
                 }
             }
             .navigationTitle("Drill")

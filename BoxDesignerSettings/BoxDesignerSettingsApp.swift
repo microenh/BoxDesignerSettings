@@ -12,10 +12,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var materials: Materials?
     var openings: Openings?
     
-    // close app when last window closed
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        return true
-    }
+// close app when last window closed - n/a for document app
+//    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+//        return true
+//    }
     
     func applicationWillTerminate(_ notification: Notification) {
         machine?.save()
@@ -32,17 +32,17 @@ struct BoxDesignerSettingsApp: App {
     @State private var machine = Machine()
     @State private var materials = Materials()
     @State private var openings = Openings()
-
+    
     var body: some Scene {
-        WindowGroup {
-            EmptyView()
+        DocumentGroup(newDocument: BoxDesignDocument()) { file in
+            ContentView(document: file.$document)
         }
         Settings {
             PreferencesView()
                 .environmentObject(machine)
                 .environmentObject(materials)
                 .environmentObject(openings)
-         }
+        }
     }
     
     init() {

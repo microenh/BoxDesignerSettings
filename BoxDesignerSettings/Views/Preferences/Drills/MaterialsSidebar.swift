@@ -43,8 +43,9 @@ struct MaterialsSidebar: View {
                 Button {
                     selection = items.addNewDetail(id: items.getMasterId(id: selection))
                 } label: {
-                    Image(systemName: SystemImageNames.addItem)
-                    Image(systemName: SystemImageNames.drills)
+//                    Image(systemName: SystemImageNames.addItem)
+//                    Image(systemName: SystemImageNames.drills)
+                    Image("drill.plus")
                 }
             }
             .padding(.bottom)

@@ -31,7 +31,7 @@ struct OpeningDetail: View {
                     showModal = true
                 } label: {
                     Image(systemName: SystemImageNames.deleteItem)
-                    Image(systemName: SystemImageNames.openings)
+                    // Image(systemName: SystemImageNames.openings)
                 }
             }
             .navigationTitle("Opening")
@@ -51,68 +51,6 @@ struct OpeningDetail: View {
                 set: { item! = $0 })
     }
     
-    private func calcScale(size: CGSize) -> CGFloat {
-        var xWidthPlus: CGFloat = 0.5
-        var yWidthPlus: CGFloat = 0.5
-        var xWidthMinus: CGFloat = -0.5
-        var yWidthMinus: CGFloat = -0.5
-        var holeXHalfWidth: CGFloat
-        var holeYHalfWidth: CGFloat
-        for hole in item!.detailItems.values {
-            switch hole.type {
-            case .circle, .square:
-                holeXHalfWidth = hole.dimension1 / 2
-                holeYHalfWidth = holeXHalfWidth
-            case .ellipse, .rectangle, .capsule:
-                holeXHalfWidth = hole.dimension1 / 2
-                holeYHalfWidth = hole.dimension2 / 2
-            }
-            if hole.xOffset < 0 {
-                xWidthMinus = min(xWidthMinus, hole.xOffset - holeXHalfWidth)
-            } else {
-                xWidthPlus = max(xWidthPlus, hole.xOffset + holeXHalfWidth)
-            }
-            if hole.yOffset < 0 {
-                yWidthMinus = min(yWidthMinus, hole.yOffset - holeYHalfWidth)
-            } else {
-                yWidthPlus = max(yWidthPlus, hole.yOffset + holeYHalfWidth)
-            }
-        }
-        return min((size.width - 10) / (xWidthPlus - xWidthMinus), (size.height - 10) / (yWidthPlus - yWidthMinus))
-     }
-    
-    private func drawOpening(context: GraphicsContext, size: CGSize) {
-        let centerX = size.width / 2
-        let centerY = size.height / 2
-        let scale = calcScale(size: size)
-        var width: CGFloat
-        var height: CGFloat
-        for hole in item!.detailItems.values {
-            switch hole.type {
-            case .circle, .square:
-                width = hole.dimension1
-                height = width
-            case .ellipse, .rectangle, .capsule:
-                width = hole.dimension1
-                height = hole.dimension2
-            }
-            let origin = CGPoint(x: centerX + (hole.xOffset - width / 2) * scale,
-                                 y: centerY + (hole.yOffset - height / 2) * scale)
-            let rect = CGRect(origin: origin, size: CGSize(width: width * scale, height: height * scale))
-            
-            var path: Path
-            switch hole.type {
-            case .circle, .ellipse:
-                path = Path(ellipseIn: rect)
-            case .square, .rectangle:
-                path = Path(rect)
-            case .capsule:
-                path = Path(roundedRect: rect, cornerRadius: min(width, height) * scale / 2)
-            }
-            context.stroke(path, with: .color(.primary))
-        }
-        
-    }
 
 }
 
