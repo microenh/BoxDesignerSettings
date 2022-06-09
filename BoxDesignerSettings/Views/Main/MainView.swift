@@ -9,18 +9,20 @@ import SwiftUI
 
 struct MainView: View {
     @Binding var document: BoxDesignDocument
-
+    
     var body: some View {
         TabView {
             LayoutView(document: $document)
                 .tabItem {
                     Label("Layout", systemImage: SystemImageNames.machine)
                 }
-            LayoutView(document: $document)
+            SideView()
                 .tabItem {
-                    Label("Sides", systemImage: SystemImageNames.machine)
+                    Label("Side", systemImage: SystemImageNames.machine)
                 }
         }
+        .padding()
+        .frame(minWidth: 400)
     }
 }
 

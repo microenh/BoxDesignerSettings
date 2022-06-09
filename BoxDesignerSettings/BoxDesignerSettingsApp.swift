@@ -36,6 +36,8 @@ struct BoxDesignerSettingsApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: BoxDesignDocument()) { file in
             MainView(document: file.$document)
+                .environmentObject(materials)
+                .environmentObject(openings)
         }
         Settings {
             PreferencesView()
