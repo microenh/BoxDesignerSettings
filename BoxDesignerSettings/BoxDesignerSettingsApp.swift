@@ -35,7 +35,7 @@ struct BoxDesignerSettingsApp: App {
     
     var body: some Scene {
         DocumentGroup(newDocument: BoxDesignDocument()) { file in
-            ContentView(document: file.$document)
+            MainView(document: file.$document)
         }
         Settings {
             PreferencesView()

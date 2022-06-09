@@ -19,6 +19,7 @@
 		4D56053C2848106700F8EEAC /* OpeningDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56053B2848106700F8EEAC /* OpeningDetail.swift */; };
 		4D5605422848135D00F8EEAC /* SlotDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5605412848135D00F8EEAC /* SlotDetail.swift */; };
 		4D70AB822847D6A00026C6EE /* ExpansionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70AB812847D6A00026C6EE /* ExpansionState.swift */; };
+		4D7B564D285216E10054CC3D /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7B564C285216E10054CC3D /* LayoutView.swift */; };
 		4D7F55E42842E01300B79127 /* BoxDesignerSettingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55E32842E01300B79127 /* BoxDesignerSettingsApp.swift */; };
 		4D7F55E62842E01300B79127 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F55E52842E01300B79127 /* PreferencesView.swift */; };
 		4D7F55E82842E01500B79127 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D7F55E72842E01500B79127 /* Assets.xcassets */; };
@@ -33,8 +34,13 @@
 		4D7F56212842EF8D00B79127 /* MaterialDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F56202842EF8D00B79127 /* MaterialDetail.swift */; };
 		4DC04BEA28494B8A00670C83 /* MaterialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC04BE928494B8A00670C83 /* MaterialsView.swift */; };
 		4DC04BEC28494BC900670C83 /* MaterialsSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC04BEB28494BC900670C83 /* MaterialsSidebar.swift */; };
+		4DC52174285220E000AF0405 /* CNC_Speeds_and_Feeds_Rev.01.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 4DC5216F285220E000AF0405 /* CNC_Speeds_and_Feeds_Rev.01.xlsx */; };
+		4DC52175285220E000AF0405 /* CNC-Tooling-Guide-by-GDP-Tools.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC52170285220E000AF0405 /* CNC-Tooling-Guide-by-GDP-Tools.pdf */; };
+		4DC52176285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC52171285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf */; };
+		4DC52177285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC52172285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf */; };
+		4DC52178285220E000AF0405 /* FeedsandSpeeds.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC52173285220E000AF0405 /* FeedsandSpeeds.pdf */; };
 		4DE8F21C2851709C0021C383 /* BoxDesignDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8F21B2851709C0021C383 /* BoxDesignDocument.swift */; };
-		4DE8F21E285170E50021C383 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8F21D285170E50021C383 /* ContentView.swift */; };
+		4DE8F21E285170E50021C383 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8F21D285170E50021C383 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +73,7 @@
 		4D56053B2848106700F8EEAC /* OpeningDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningDetail.swift; sourceTree = "<group>"; };
 		4D5605412848135D00F8EEAC /* SlotDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotDetail.swift; sourceTree = "<group>"; };
 		4D70AB812847D6A00026C6EE /* ExpansionState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpansionState.swift; sourceTree = "<group>"; };
+		4D7B564C285216E10054CC3D /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
 		4D7F55E02842E01300B79127 /* BoxDesignerSettings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxDesignerSettings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7F55E32842E01300B79127 /* BoxDesignerSettingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxDesignerSettingsApp.swift; sourceTree = "<group>"; };
 		4D7F55E52842E01300B79127 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
@@ -85,9 +92,14 @@
 		4D7F56202842EF8D00B79127 /* MaterialDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialDetail.swift; sourceTree = "<group>"; };
 		4DC04BE928494B8A00670C83 /* MaterialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsView.swift; sourceTree = "<group>"; };
 		4DC04BEB28494BC900670C83 /* MaterialsSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsSidebar.swift; sourceTree = "<group>"; };
+		4DC5216F285220E000AF0405 /* CNC_Speeds_and_Feeds_Rev.01.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = CNC_Speeds_and_Feeds_Rev.01.xlsx; sourceTree = "<group>"; };
+		4DC52170285220E000AF0405 /* CNC-Tooling-Guide-by-GDP-Tools.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "CNC-Tooling-Guide-by-GDP-Tools.pdf"; sourceTree = "<group>"; };
+		4DC52171285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Chipload Calculator | GDP Tooling.pdf"; sourceTree = "<group>"; };
+		4DC52172285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Chip Load Chart - CNC Tooling - Cutter Shop.pdf"; sourceTree = "<group>"; };
+		4DC52173285220E000AF0405 /* FeedsandSpeeds.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FeedsandSpeeds.pdf; sourceTree = "<group>"; };
 		4DE8F21A28516ECB0021C383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DE8F21B2851709C0021C383 /* BoxDesignDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxDesignDocument.swift; sourceTree = "<group>"; };
-		4DE8F21D285170E50021C383 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4DE8F21D285170E50021C383 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,9 +156,19 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		4D7B564B2852155E0054CC3D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4DE8F21D285170E50021C383 /* MainView.swift */,
+				4D7B564C285216E10054CC3D /* LayoutView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		4D7F55D72842E01300B79127 = {
 			isa = PBXGroup;
 			children = (
+				4DC5216D285220D200AF0405 /* Supporting Documentation */,
 				4D7F55E22842E01300B79127 /* BoxDesignerSettings */,
 				4D7F55F42842E01500B79127 /* BoxDesignerSettingsTests */,
 				4D7F55FE2842E01500B79127 /* BoxDesignerSettingsUITests */,
@@ -168,9 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				4DE8F21A28516ECB0021C383 /* Info.plist */,
-				4DE8F21B2851709C0021C383 /* BoxDesignDocument.swift */,
 				4D7F55E32842E01300B79127 /* BoxDesignerSettingsApp.swift */,
-				4DE8F21D285170E50021C383 /* ContentView.swift */,
 				4D7F560F2842E10600B79127 /* Models */,
 				4D7F560E2842E0EE00B79127 /* Views */,
 				4D70AB802847D6460026C6EE /* Support */,
@@ -209,8 +229,9 @@
 		4D7F560E2842E0EE00B79127 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4D7F55E52842E01300B79127 /* PreferencesView.swift */,
+				4D7B564B2852155E0054CC3D /* Main */,
 				4D7F56182842E86700B79127 /* Preferences */,
+				4D2E07472846BF620031D825 /* Support */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +239,7 @@
 		4D7F560F2842E10600B79127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4DE8F21B2851709C0021C383 /* BoxDesignDocument.swift */,
 				4D7F56102842E12100B79127 /* Machine.swift */,
 				4D7F56122842E20800B79127 /* Materials.swift */,
 				4D7F56142842E24900B79127 /* Drill.swift */,
@@ -231,10 +253,10 @@
 		4D7F56182842E86700B79127 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				4D7F55E52842E01300B79127 /* PreferencesView.swift */,
 				4D7F56192842E8C300B79127 /* Machine */,
 				4D2E074C2846D8310031D825 /* Drills */,
 				4D7F561B2842E8E300B79127 /* Openings */,
-				4D2E07472846BF620031D825 /* Support */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -256,6 +278,26 @@
 				4D5605412848135D00F8EEAC /* SlotDetail.swift */,
 			);
 			path = Openings;
+			sourceTree = "<group>";
+		};
+		4DC5216D285220D200AF0405 /* Supporting Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				4DC5216E285220E000AF0405 /* Chip Load Calculation */,
+			);
+			path = "Supporting Documentation";
+			sourceTree = "<group>";
+		};
+		4DC5216E285220E000AF0405 /* Chip Load Calculation */ = {
+			isa = PBXGroup;
+			children = (
+				4DC5216F285220E000AF0405 /* CNC_Speeds_and_Feeds_Rev.01.xlsx */,
+				4DC52170285220E000AF0405 /* CNC-Tooling-Guide-by-GDP-Tools.pdf */,
+				4DC52171285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf */,
+				4DC52172285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf */,
+				4DC52173285220E000AF0405 /* FeedsandSpeeds.pdf */,
+			);
+			path = "Chip Load Calculation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,7 +404,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DC52175285220E000AF0405 /* CNC-Tooling-Guide-by-GDP-Tools.pdf in Resources */,
+				4DC52176285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf in Resources */,
 				4D7F55EB2842E01500B79127 /* Preview Assets.xcassets in Resources */,
+				4DC52174285220E000AF0405 /* CNC_Speeds_and_Feeds_Rev.01.xlsx in Resources */,
+				4DC52178285220E000AF0405 /* FeedsandSpeeds.pdf in Resources */,
+				4DC52177285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf in Resources */,
 				4D7F55E82842E01500B79127 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,7 +447,7 @@
 				4D560538284805E900F8EEAC /* Openings.swift in Sources */,
 				4D56053C2848106700F8EEAC /* OpeningDetail.swift in Sources */,
 				4DC04BEC28494BC900670C83 /* MaterialsSidebar.swift in Sources */,
-				4DE8F21E285170E50021C383 /* ContentView.swift in Sources */,
+				4DE8F21E285170E50021C383 /* MainView.swift in Sources */,
 				4D4F98332851757300BD2F55 /* Box.swift in Sources */,
 				4DC04BEA28494B8A00670C83 /* MaterialsView.swift in Sources */,
 				4D560536284805D900F8EEAC /* Slot.swift in Sources */,
@@ -408,6 +455,7 @@
 				4D5605312848048700F8EEAC /* OpeningsView.swift in Sources */,
 				4D7F56152842E24900B79127 /* Drill.swift in Sources */,
 				4D56053A2848105600F8EEAC /* OpeningsSidebar.swift in Sources */,
+				4D7B564D285216E10054CC3D /* LayoutView.swift in Sources */,
 				4D2E07542846D9A80031D825 /* DrillDetail.swift in Sources */,
 				4D5605422848135D00F8EEAC /* SlotDetail.swift in Sources */,
 				4D7F56112842E12100B79127 /* Machine.swift in Sources */,
