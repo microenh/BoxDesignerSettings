@@ -26,7 +26,7 @@ struct BoxModel: Codable {
     var materialId: String
     var roughDrill: String
     var finishDrill: String
-    
+        
     init() {
         comment = ""
         front = true
