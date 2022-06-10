@@ -7,14 +7,20 @@
 
 import SwiftUI
 
-struct SideView: View {
+struct SideOpeningsView: View {
+    
+    @State private var selection: String?
+    
     var body: some View {
-        Text("Side")
+        NavigationView {
+            SideOpeningsSidebar(selection: $selection)
+            
+        }
     }
 }
 
 struct SideView_Previews: PreviewProvider {
     static var previews: some View {
-        SideView()
+        SideOpeningsView()
     }
 }

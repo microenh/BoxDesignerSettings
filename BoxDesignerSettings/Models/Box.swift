@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct OpeningWrapper: Identifiable, Codable {
+    let id: String
+    var xCenter: Double
+    var yCenter: Double
+}
 
 struct BoxModel: Codable {
     var comment: String
@@ -26,7 +31,21 @@ struct BoxModel: Codable {
     var materialId: String
     var roughDrill: String
     var finishDrill: String
-        
+    
+    var frontSlots: [Slot]
+    var rearSlots: [Slot]
+    var leftSlots: [Slot]
+    var rightSlots: [Slot]
+    var topSlots: [Slot]
+    var bottomSlots: [Slot]
+    
+    var frontOpenings: [OpeningWrapper]
+    var rearOpenings: [OpeningWrapper]
+    var leftOpenings: [OpeningWrapper]
+    var rightOpenings: [OpeningWrapper]
+    var topOpenings: [OpeningWrapper]
+    var bottomOpenings: [OpeningWrapper]
+    
     init() {
         comment = ""
         front = true
@@ -45,5 +64,17 @@ struct BoxModel: Codable {
         materialId = ""
         roughDrill = ""
         finishDrill = ""
+        frontSlots = [Slot]()
+        rearSlots = [Slot]()
+        leftSlots = [Slot]()
+        rightSlots = [Slot]()
+        topSlots = [Slot]()
+        bottomSlots = [Slot]()
+        frontOpenings = [OpeningWrapper]()
+        rearOpenings = [OpeningWrapper]()
+        leftOpenings = [OpeningWrapper]()
+        rightOpenings = [OpeningWrapper]()
+        topOpenings = [OpeningWrapper]()
+        bottomOpenings = [OpeningWrapper]()
     }
 }

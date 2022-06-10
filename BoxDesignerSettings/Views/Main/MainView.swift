@@ -16,9 +16,9 @@ struct MainView: View {
                 .tabItem {
                     Label("Layout", systemImage: SystemImageNames.machine)
                 }
-            SideView()
+            SideOpeningsView()
                 .tabItem {
-                    Label("Side", systemImage: SystemImageNames.machine)
+                    Label("Openings", systemImage: SystemImageNames.machine)
                 }
         }
         .padding()

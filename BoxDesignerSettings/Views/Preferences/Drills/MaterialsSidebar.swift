@@ -53,7 +53,7 @@ struct MaterialsSidebar: View {
         .frame(width: 200)
     }
     
-    struct Line: Identifiable {
+    private struct Line: Identifiable {
         let id: String
         let master: Bool
         let description: String
