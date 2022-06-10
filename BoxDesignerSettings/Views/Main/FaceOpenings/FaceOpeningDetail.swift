@@ -8,15 +8,37 @@
 import SwiftUI
 
 struct FaceOpeningDetail: View {
-    @Binding var selection: String?
+    @EnvironmentObject var openings: Openings
+    
+    @Binding var document: BoxDesignDocument
+    let selection: String?
     let face: Face
     var body: some View {
-        Text("\(face.rawValue) detail")
+        VStack {
+            Text("\(face.rawValue) detail")
+                .layoutPriority(1)
+            if let selection = selection {
+                if document.data.openings[face]![selection] != nil {
+                    Divider()
+                    FaceOpeningsOpeningDetail(document: $document,
+                                              selection: selection,
+                                              face: face)
+                } else if document.data.slots[face]![selection] != nil {
+                    Divider()
+                    FaceOpeningsSlotDetail(document: $document,
+                                           selection: selection,
+                                           face: face)
+                }
+            }
+        }
     }
 }
 
 struct FaceOpeningDetail_Previews: PreviewProvider {
     static var previews: some View {
-        FaceOpeningDetail(selection: .constant(nil), face: .front)
+        FaceOpeningDetail(document: .constant(BoxDesignDocument()),
+                          selection: nil,
+                          face: .front)
+            .environmentObject(Openings())
     }
 }

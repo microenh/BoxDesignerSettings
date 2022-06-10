@@ -16,7 +16,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Layout", systemImage: SystemImageNames.machine)
                 }
-            FaceOpeningsView()
+            FaceOpeningsView(document: $document)
                 .tabItem {
                     Label("Openings", systemImage: SystemImageNames.machine)
                 }
@@ -27,7 +27,6 @@ struct MainView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    let boxDesignDocument = BoxDesignDocument()
     static var previews: some View {
         MainView(document: .constant(BoxDesignDocument()))
     }

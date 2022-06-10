@@ -9,14 +9,15 @@ import SwiftUI
 
 struct FaceOpeningsView: View {
     
+    @Binding var document: BoxDesignDocument
     @State private var selection: String?
     
     var body: some View {
         TabView {
             ForEach(Face.allCases, id: \.self) { face in
                 NavigationView {
-                    FaceOpeningsSidebar(selection: $selection, face: face)
-                    FaceOpeningDetail(selection: $selection, face: face)
+                    FaceOpeningsSidebar(document: $document, selection: $selection, face: face)
+                    FaceOpeningDetail(document: $document, selection: selection, face: face)
                 }
                 .tabItem {
                     Text(face.rawValue)
@@ -28,6 +29,6 @@ struct FaceOpeningsView: View {
 
 struct FaceView_Previews: PreviewProvider {
     static var previews: some View {
-        FaceOpeningsView()
+        FaceOpeningsView(document: .constant(BoxDesignDocument()))
     }
 }

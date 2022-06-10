@@ -9,8 +9,19 @@ import Foundation
 
 struct OpeningWrapper: Identifiable, Codable {
     let id: String
+    var openingId: String?
     var xCenter: Double
     var yCenter: Double
+    
+    init(id: String = UUID().uuidString,
+         openingId: String? = nil,
+         xCenter: Double = 0.0,
+         yCenter: Double = 0.0) {
+        self.id = id
+        self.openingId = openingId
+        self.xCenter = xCenter
+        self.yCenter = yCenter
+    }
 }
 
 struct BoxModel: Codable {
@@ -32,19 +43,8 @@ struct BoxModel: Codable {
     var roughDrill: String
     var finishDrill: String
     
-    var frontSlots: [Slot]
-    var rearSlots: [Slot]
-    var leftSlots: [Slot]
-    var rightSlots: [Slot]
-    var topSlots: [Slot]
-    var bottomSlots: [Slot]
-    
-    var frontOpenings: [OpeningWrapper]
-    var rearOpenings: [OpeningWrapper]
-    var leftOpenings: [OpeningWrapper]
-    var rightOpenings: [OpeningWrapper]
-    var topOpenings: [OpeningWrapper]
-    var bottomOpenings: [OpeningWrapper]
+    var slots: [Face: [String: Slot]]
+    var openings: [Face: [String: OpeningWrapper]]
     
     init() {
         comment = ""
@@ -64,17 +64,37 @@ struct BoxModel: Codable {
         materialId = ""
         roughDrill = ""
         finishDrill = ""
-        frontSlots = [Slot]()
-        rearSlots = [Slot]()
-        leftSlots = [Slot]()
-        rightSlots = [Slot]()
-        topSlots = [Slot]()
-        bottomSlots = [Slot]()
-        frontOpenings = [OpeningWrapper]()
-        rearOpenings = [OpeningWrapper]()
-        leftOpenings = [OpeningWrapper]()
-        rightOpenings = [OpeningWrapper]()
-        topOpenings = [OpeningWrapper]()
-        bottomOpenings = [OpeningWrapper]()
+        slots = [.front: [String: Slot](),
+                 .rear: [String: Slot](),
+                 .left: [String: Slot](),
+                 .right: [String: Slot](),
+                 .top: [String: Slot](),
+                 .bottom: [String: Slot]()]
+        openings = [.front: [String: OpeningWrapper](),
+                    .rear: [String: OpeningWrapper](),
+                    .left: [String: OpeningWrapper](),
+                    .right: [String: OpeningWrapper](),
+                    .top: [String: OpeningWrapper](),
+                    .bottom: [String: OpeningWrapper]()]
+    }
+    
+    mutating func addOpening(face: Face) -> String {
+        let item = OpeningWrapper()
+        openings[face]![item.id] = item
+        return item.id
+    }
+    
+    mutating func deleteOpening(face: Face, selection: String) {
+        openings[face]![selection] = nil
+     }
+    
+    mutating func addSlot(face: Face) -> String {
+        let item = Slot()
+        slots[face]![item.id] = item
+        return item.id
+    }
+    
+    mutating func deleteSlot(face: Face, selection: String) {
+        slots[face]![selection] = nil
     }
 }
