@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4D0F6E97284A3A5F00CC7BE8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F6E96284A3A5F00CC7BE8 /* Constants.swift */; };
-		4D1BC85D28527220006500CE /* SideOpeningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC85C28527220006500CE /* SideOpeningsView.swift */; };
-		4D1BC8612852BE7F006500CE /* SideOpeningsSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC8602852BE7F006500CE /* SideOpeningsSidebar.swift */; };
-		4D1BC8632852BE98006500CE /* SideOpeningsOpeningDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC8622852BE98006500CE /* SideOpeningsOpeningDetail.swift */; };
-		4D1BC8652852BEA7006500CE /* SideOpeningsSlotDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC8642852BEA7006500CE /* SideOpeningsSlotDetail.swift */; };
+		4D1BC85D28527220006500CE /* FaceOpeningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC85C28527220006500CE /* FaceOpeningsView.swift */; };
+		4D1BC8612852BE7F006500CE /* FaceOpeningsSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC8602852BE7F006500CE /* FaceOpeningsSidebar.swift */; };
+		4D1BC8632852BE98006500CE /* FaceOpeningsOpeningDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC8622852BE98006500CE /* FaceOpeningsOpeningDetail.swift */; };
+		4D1BC8652852BEA7006500CE /* FaceOpeningsSlotDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC8642852BEA7006500CE /* FaceOpeningsSlotDetail.swift */; };
 		4D2E074B2846BF900031D825 /* DeletePrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E074A2846BF900031D825 /* DeletePrompt.swift */; };
 		4D2E07542846D9A80031D825 /* DrillDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E07532846D9A80031D825 /* DrillDetail.swift */; };
 		4D335D29284E8E4800E0A510 /* OpeningDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D335D28284E8E4800E0A510 /* OpeningDrawing.swift */; };
@@ -43,6 +43,9 @@
 		4DC52176285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC52171285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf */; };
 		4DC52177285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC52172285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf */; };
 		4DC52178285220E000AF0405 /* FeedsandSpeeds.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC52173285220E000AF0405 /* FeedsandSpeeds.pdf */; };
+		4DE1EF622853703B00980428 /* Face.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1EF612853703B00980428 /* Face.swift */; };
+		4DE1EF64285371FB00980428 /* FaceOpeningDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1EF63285371FB00980428 /* FaceOpeningDetail.swift */; };
+		4DE1EF662853733800980428 /* OpeningType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1EF652853733800980428 /* OpeningType.swift */; };
 		4DE8F21C2851709C0021C383 /* BoxDesignDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8F21B2851709C0021C383 /* BoxDesignDocument.swift */; };
 		4DE8F21E285170E50021C383 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8F21D285170E50021C383 /* MainView.swift */; };
 /* End PBXBuildFile section */
@@ -66,10 +69,10 @@
 
 /* Begin PBXFileReference section */
 		4D0F6E96284A3A5F00CC7BE8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		4D1BC85C28527220006500CE /* SideOpeningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOpeningsView.swift; sourceTree = "<group>"; };
-		4D1BC8602852BE7F006500CE /* SideOpeningsSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOpeningsSidebar.swift; sourceTree = "<group>"; };
-		4D1BC8622852BE98006500CE /* SideOpeningsOpeningDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOpeningsOpeningDetail.swift; sourceTree = "<group>"; };
-		4D1BC8642852BEA7006500CE /* SideOpeningsSlotDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOpeningsSlotDetail.swift; sourceTree = "<group>"; };
+		4D1BC85C28527220006500CE /* FaceOpeningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceOpeningsView.swift; sourceTree = "<group>"; };
+		4D1BC8602852BE7F006500CE /* FaceOpeningsSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceOpeningsSidebar.swift; sourceTree = "<group>"; };
+		4D1BC8622852BE98006500CE /* FaceOpeningsOpeningDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceOpeningsOpeningDetail.swift; sourceTree = "<group>"; };
+		4D1BC8642852BEA7006500CE /* FaceOpeningsSlotDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceOpeningsSlotDetail.swift; sourceTree = "<group>"; };
 		4D2E074A2846BF900031D825 /* DeletePrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePrompt.swift; sourceTree = "<group>"; };
 		4D2E07532846D9A80031D825 /* DrillDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillDetail.swift; sourceTree = "<group>"; };
 		4D335D28284E8E4800E0A510 /* OpeningDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningDrawing.swift; sourceTree = "<group>"; };
@@ -105,6 +108,9 @@
 		4DC52171285220E000AF0405 /* Chipload Calculator | GDP Tooling.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Chipload Calculator | GDP Tooling.pdf"; sourceTree = "<group>"; };
 		4DC52172285220E000AF0405 /* Chip Load Chart - CNC Tooling - Cutter Shop.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Chip Load Chart - CNC Tooling - Cutter Shop.pdf"; sourceTree = "<group>"; };
 		4DC52173285220E000AF0405 /* FeedsandSpeeds.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FeedsandSpeeds.pdf; sourceTree = "<group>"; };
+		4DE1EF612853703B00980428 /* Face.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Face.swift; sourceTree = "<group>"; };
+		4DE1EF63285371FB00980428 /* FaceOpeningDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceOpeningDetail.swift; sourceTree = "<group>"; };
+		4DE1EF652853733800980428 /* OpeningType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningType.swift; sourceTree = "<group>"; };
 		4DE8F21A28516ECB0021C383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DE8F21B2851709C0021C383 /* BoxDesignDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxDesignDocument.swift; sourceTree = "<group>"; };
 		4DE8F21D285170E50021C383 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -143,15 +149,16 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		4D1BC85F2852BE4D006500CE /* SideOpenings */ = {
+		4D1BC85F2852BE4D006500CE /* FaceOpenings */ = {
 			isa = PBXGroup;
 			children = (
-				4D1BC85C28527220006500CE /* SideOpeningsView.swift */,
-				4D1BC8602852BE7F006500CE /* SideOpeningsSidebar.swift */,
-				4D1BC8622852BE98006500CE /* SideOpeningsOpeningDetail.swift */,
-				4D1BC8642852BEA7006500CE /* SideOpeningsSlotDetail.swift */,
+				4D1BC85C28527220006500CE /* FaceOpeningsView.swift */,
+				4D1BC8602852BE7F006500CE /* FaceOpeningsSidebar.swift */,
+				4DE1EF63285371FB00980428 /* FaceOpeningDetail.swift */,
+				4D1BC8622852BE98006500CE /* FaceOpeningsOpeningDetail.swift */,
+				4D1BC8642852BEA7006500CE /* FaceOpeningsSlotDetail.swift */,
 			);
-			path = SideOpenings;
+			path = FaceOpenings;
 			sourceTree = "<group>";
 		};
 		4D2E07472846BF620031D825 /* Support */ = {
@@ -160,6 +167,8 @@
 				4D2E074A2846BF900031D825 /* DeletePrompt.swift */,
 				4D0F6E96284A3A5F00CC7BE8 /* Constants.swift */,
 				4D335D28284E8E4800E0A510 /* OpeningDrawing.swift */,
+				4DE1EF612853703B00980428 /* Face.swift */,
+				4DE1EF652853733800980428 /* OpeningType.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -188,7 +197,7 @@
 			children = (
 				4DE8F21D285170E50021C383 /* MainView.swift */,
 				4D1BC85E2852BE40006500CE /* Layout */,
-				4D1BC85F2852BE4D006500CE /* SideOpenings */,
+				4D1BC85F2852BE4D006500CE /* FaceOpenings */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -467,7 +476,7 @@
 				4D7F56132842E20800B79127 /* Materials.swift in Sources */,
 				4D0F6E97284A3A5F00CC7BE8 /* Constants.swift in Sources */,
 				4DE8F21C2851709C0021C383 /* BoxDesignDocument.swift in Sources */,
-				4D1BC8652852BEA7006500CE /* SideOpeningsSlotDetail.swift in Sources */,
+				4D1BC8652852BEA7006500CE /* FaceOpeningsSlotDetail.swift in Sources */,
 				4D7F56172842E75200B79127 /* MachineView.swift in Sources */,
 				4D7F55E62842E01300B79127 /* PreferencesView.swift in Sources */,
 				4D70AB822847D6A00026C6EE /* ExpansionState.swift in Sources */,
@@ -476,20 +485,23 @@
 				4D560538284805E900F8EEAC /* Openings.swift in Sources */,
 				4D56053C2848106700F8EEAC /* OpeningDetail.swift in Sources */,
 				4DC04BEC28494BC900670C83 /* MaterialsSidebar.swift in Sources */,
-				4D1BC8612852BE7F006500CE /* SideOpeningsSidebar.swift in Sources */,
+				4D1BC8612852BE7F006500CE /* FaceOpeningsSidebar.swift in Sources */,
 				4DE8F21E285170E50021C383 /* MainView.swift in Sources */,
 				4D4F98332851757300BD2F55 /* Box.swift in Sources */,
 				4DC04BEA28494B8A00670C83 /* MaterialsView.swift in Sources */,
-				4D1BC85D28527220006500CE /* SideOpeningsView.swift in Sources */,
+				4D1BC85D28527220006500CE /* FaceOpeningsView.swift in Sources */,
 				4D560536284805D900F8EEAC /* Slot.swift in Sources */,
 				4D2E074B2846BF900031D825 /* DeletePrompt.swift in Sources */,
 				4D5605312848048700F8EEAC /* OpeningsView.swift in Sources */,
+				4DE1EF622853703B00980428 /* Face.swift in Sources */,
+				4DE1EF662853733800980428 /* OpeningType.swift in Sources */,
 				4D7F56152842E24900B79127 /* Drill.swift in Sources */,
 				4D56053A2848105600F8EEAC /* OpeningsSidebar.swift in Sources */,
-				4D1BC8632852BE98006500CE /* SideOpeningsOpeningDetail.swift in Sources */,
+				4D1BC8632852BE98006500CE /* FaceOpeningsOpeningDetail.swift in Sources */,
 				4D7B564D285216E10054CC3D /* LayoutView.swift in Sources */,
 				4D2E07542846D9A80031D825 /* DrillDetail.swift in Sources */,
 				4D5605422848135D00F8EEAC /* SlotDetail.swift in Sources */,
+				4DE1EF64285371FB00980428 /* FaceOpeningDetail.swift in Sources */,
 				4D7F56112842E12100B79127 /* Machine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Layout", systemImage: SystemImageNames.machine)
                 }
-            SideOpeningsView()
+            FaceOpeningsView()
                 .tabItem {
                     Label("Openings", systemImage: SystemImageNames.machine)
                 }

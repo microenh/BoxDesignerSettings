@@ -8,11 +8,11 @@
 import Foundation
 
 enum SlotType: String, CaseIterable, Codable {
-case circle = "Circle"
-case ellipse = "Ellipse"
-case square = "Square"
-case rectangle = "Rectangle"
-case capsule = "Capsule"
+    case circle = "Circle"
+    case ellipse = "Ellipse"
+    case square = "Square"
+    case rectangle = "Rectangle"
+    case capsule = "Capsule"
 }
 
 struct Slot: Identifiable, Codable {
