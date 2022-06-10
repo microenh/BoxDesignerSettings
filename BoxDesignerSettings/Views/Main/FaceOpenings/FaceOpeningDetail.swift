@@ -15,8 +15,10 @@ struct FaceOpeningDetail: View {
     let face: Face
     var body: some View {
         VStack {
-            Text("\(face.rawValue) detail")
-                .layoutPriority(1)
+            Canvas { context, size in
+                // drawOpening(context: context, size: size)
+            }
+
             if let selection = selection {
                 if document.data.openings[face]![selection] != nil {
                     Divider()

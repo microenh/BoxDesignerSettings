@@ -9,12 +9,12 @@ import Foundation
 
 struct OpeningWrapper: Identifiable, Codable {
     let id: String
-    var openingId: String?
+    var openingId: String
     var xCenter: Double
     var yCenter: Double
     
     init(id: String = UUID().uuidString,
-         openingId: String? = nil,
+         openingId: String = "",
          xCenter: Double = 0.0,
          yCenter: Double = 0.0) {
         self.id = id

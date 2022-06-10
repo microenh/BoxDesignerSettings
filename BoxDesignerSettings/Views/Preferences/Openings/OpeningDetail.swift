@@ -18,20 +18,19 @@ struct OpeningDetail: View {
     var body: some View {
         if item != nil {
             VStack {
-                // ScrollView(.vertical) {
-                    Form {
-                        TextField("Name", text: binding.name)
-                    }
-                    .frame(width: Misc.inputFormWidth)
-                // }
+                Form {
+                    TextField("Name", text: binding.name)
+                }
+                .frame(width: Misc.inputFormWidth)
                 Canvas { context, size in
-                    drawOpening(context: context, size: size)
+                    Drawing.drawOpening(context: context, size: size, item: item!,
+                                        scale: Drawing.openingScale(size: size, item: item!),
+                                        center: CGPoint(x: size.width / 2, y: size.height / 2))
                 }
                 Button {
                     showModal = true
                 } label: {
                     Image(systemName: SystemImageNames.deleteItem)
-                    // Image(systemName: SystemImageNames.openings)
                 }
             }
             .navigationTitle("Opening")
