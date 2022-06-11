@@ -14,11 +14,10 @@ struct FaceOpeningDetail: View {
     let selection: String?
     let face: Face
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Canvas { context, size in
-                // drawOpening(context: context, size: size)
+                Drawing.drawSide(context: context, size: size, face: face, box: document.data, openings: openings, selection: selection)
             }
-
             if let selection = selection {
                 if document.data.openings[face]![selection] != nil {
                     Divider()

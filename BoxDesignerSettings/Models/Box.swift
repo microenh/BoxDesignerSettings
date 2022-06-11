@@ -26,12 +26,6 @@ struct OpeningWrapper: Identifiable, Codable {
 
 struct BoxModel: Codable {
     var comment: String
-    var front: Bool
-    var rear: Bool
-    var left: Bool
-    var right: Bool
-    var top: Bool
-    var bottom: Bool
     var width: Double
     var height: Double
     var depth: Double
@@ -43,17 +37,12 @@ struct BoxModel: Codable {
     var roughDrill: String
     var finishDrill: String
     
+    var sides: [Face: Bool]
     var slots: [Face: [String: Slot]]
     var openings: [Face: [String: OpeningWrapper]]
     
     init() {
         comment = ""
-        front = true
-        rear = true
-        left = true
-        right = true
-        top = true
-        bottom = true
         width = 0.0
         height = 0.0
         depth = 0.0
@@ -76,6 +65,42 @@ struct BoxModel: Codable {
                     .right: [String: OpeningWrapper](),
                     .top: [String: OpeningWrapper](),
                     .bottom: [String: OpeningWrapper]()]
+        sides = [.front: true,
+                 .rear: true,
+                 .left: true,
+                 .right: true,
+                 .top: true,
+                 .bottom: true]
+    }
+    
+    var front: Bool {
+        get { sides[.front]! }
+        set { sides[.front] = newValue }
+    }
+    
+    var rear: Bool {
+        get { sides[.rear]! }
+        set { sides[.rear] = newValue }
+    }
+    
+    var left: Bool {
+        get { sides[.left]! }
+        set { sides[.left] = newValue }
+    }
+    
+    var right: Bool {
+        get { sides[.right]! }
+        set { sides[.right] = newValue }
+    }
+    
+    var top: Bool {
+        get { sides[.top]! }
+        set { sides[.top] = newValue }
+    }
+    
+    var bottom: Bool {
+        get { sides[.bottom]! }
+        set { sides[.bottom] = newValue }
     }
     
     mutating func addOpening(face: Face) -> String {

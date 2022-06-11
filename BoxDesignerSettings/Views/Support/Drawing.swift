@@ -9,6 +9,13 @@ import Foundation
 import SwiftUI
 
 struct Drawing {
+    static func boxScale(size: CGSize, width: CGFloat, height: CGFloat) -> CGFloat {
+        guard size.width > 0, size.height > 0, width > 0, height > 0 else {
+            return 1.0
+        }
+        return min(size.width / width, size.height / height)
+    }
+    
     static func openingScale(size: CGSize, item: Opening) -> CGFloat {
         var xWidthPlus: CGFloat = 0.5
         var yWidthPlus: CGFloat = 0.5
@@ -44,8 +51,6 @@ struct Drawing {
     static let lineWidth = CGFloat(0.25)
     
     static func drawOpening(context: GraphicsContext, size: CGSize, item: Opening, scale: CGFloat, center: CGPoint) {
-//        let centerX = size.width / 2
-//        let centerY = size.height / 2
         var width: CGFloat
         var height: CGFloat
         for hole in item.detailItems.values {
@@ -73,7 +78,36 @@ struct Drawing {
             }
             context.stroke(path, with: .color(.primary), lineWidth: Self.lineWidth)
         }
-        
     }
-
+    
+    static func drawSide(context: GraphicsContext, size: CGSize, face: Face, box: BoxModel, openings: Openings, selection: String?) {
+        guard box.sides[face]! else {
+            return
+        }
+        var width: CGFloat
+        var height: CGFloat
+        switch face {
+        case .front, .rear:
+            width = box.width
+            height = box.height
+        case .left, .right:
+            width = box.depth
+            height = box.height
+        case .top, .bottom:
+            width = box.width
+            height = box.depth
+         }
+        let scale = Self.boxScale(size: size, width: width, height: height)
+        let center = CGPoint(x: size.width / 2, y: -size.height / 2)
+        let origin = CGPoint(x: center.x - width / 2 * scale, y: center.y + height / 2 * scale)
+        var path: Path
+        path = Path(CGRect(origin: origin, size: CGSize(width: width * scale, height: height * scale)))
+        context.stroke(path, with: .color(.primary), lineWidth: Self.lineWidth)
+        for openingWrapper in box.openings[face]!.values {
+            if let opening = openings[openingWrapper.openingId] {
+                let center = CGPoint(x: origin.x + openingWrapper.xCenter * scale, y: origin.y - openingWrapper.yCenter * scale)
+                Self.drawOpening(context: context, size: size, item: opening, scale: scale, center: center)
+            }
+        }
+    }
 }

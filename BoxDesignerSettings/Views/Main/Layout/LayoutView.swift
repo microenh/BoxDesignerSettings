@@ -38,29 +38,31 @@ struct LayoutView: View {
     
     private var facesView: some View {
         GroupBox {
-            Text("Faces")
-            Form {
-                HStack {
-                    Toggle(isOn: $document.data.front) { Text("Front") }
-                        .frame(width: 80, alignment: .leading)
-                    Toggle(isOn: $document.data.rear) { Text("Rear") }
-                        .frame(width: 80, alignment: .leading)
-                }
-                HStack {
-                    Toggle(isOn: $document.data.top) { Text("Top") }
-                        .frame(width: 80, alignment: .leading)
-                    Toggle(isOn: $document.data.bottom) { Text("Bottom") }
-                        .frame(width: 80, alignment: .leading)
-                }
-                HStack {
-                    Toggle(isOn: $document.data.left) { Text("Left") }
-                        .frame(width: 80, alignment: .leading)
-                    Toggle(isOn: $document.data.right) { Text("Right") }
-                        .frame(width: 80, alignment: .leading)
+            Group {
+                Text("Faces")
+                Form {
+                    HStack {
+                        Toggle(isOn: $document.data.front) { Text("Front") }
+                            .frame(width: 80, alignment: .leading)
+                        Toggle(isOn: $document.data.rear) { Text("Rear") }
+                            .frame(width: 80, alignment: .leading)
+                    }
+                    HStack {
+                        Toggle(isOn: $document.data.top) { Text("Top") }
+                            .frame(width: 80, alignment: .leading)
+                        Toggle(isOn: $document.data.bottom) { Text("Bottom") }
+                            .frame(width: 80, alignment: .leading)
+                    }
+                    HStack {
+                        Toggle(isOn: $document.data.left) { Text("Left") }
+                            .frame(width: 80, alignment: .leading)
+                        Toggle(isOn: $document.data.right) { Text("Right") }
+                            .frame(width: 80, alignment: .leading)
+                    }
                 }
             }
         }
-
+        
     }
     
     private var boxSizeView: some View {
