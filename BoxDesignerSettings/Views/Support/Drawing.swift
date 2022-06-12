@@ -13,60 +13,30 @@ struct Drawing {
         guard size.width > 0, size.height > 0, width > 0, height > 0 else {
             return 1.0
         }
-        return min(size.width / width, size.height / height)
+        return min((size.width - 2) / width, (size.height - 2) / height)
     }
     
     static func openingScale(size: CGSize, item: Opening) -> CGFloat {
-        var xWidthPlus: CGFloat = 0.5
-        var yWidthPlus: CGFloat = 0.5
-        var xWidthMinus: CGFloat = -0.5
-        var yWidthMinus: CGFloat = -0.5
-        var width: CGFloat
-        var height: CGFloat
-        for hole in item.detailItems.values {
-            switch hole.type {
-            case .circle, .square:
-                width = hole.dimension1
-                height = width
-            case .ellipse, .rectangle, .capsule:
-                width = hole.dimension1
-                height = hole.dimension2
-            }
-            width /= 2
-            height /= 2
-            if hole.xOffset < 0 {
-                xWidthMinus = min(xWidthMinus, hole.xOffset - width)
-            } else {
-                xWidthPlus = max(xWidthPlus, hole.xOffset + width)
-            }
-            if hole.yOffset < 0 {
-                yWidthMinus = min(yWidthMinus, hole.yOffset - height)
-            } else {
-                yWidthPlus = max(yWidthPlus, hole.yOffset + height)
-            }
+        guard item.detailItems.count > 0 else {
+            return 1
         }
-        return min(size.width / (xWidthPlus - xWidthMinus), size.height / (yWidthPlus - yWidthMinus))
+        var maxX: CGFloat = 1
+        var maxY: CGFloat = 1
+        
+        for hole in item.detailItems.values {
+            maxX = max(maxX, hole.xOffset + hole.width)
+            maxY = max(maxY, hole.yOffset + hole.height)
+        }
+        return min(size.width / maxX, size.height / maxY)
      }
     
     static let lineWidth = CGFloat(0.25)
+    static let inset: CGFloat = 10
     
-    static func drawOpening(context: GraphicsContext, size: CGSize, item: Opening, scale: CGFloat, center: CGPoint) {
-        var width: CGFloat
-        var height: CGFloat
+    static func drawOpening(context: GraphicsContext, item: Opening, scale: CGFloat, offset: CGPoint) {
         for hole in item.detailItems.values {
-            switch hole.type {
-            case .circle, .square:
-                width = hole.dimension1
-                height = width
-            case .ellipse, .rectangle, .capsule:
-                width = hole.dimension1
-                height = hole.dimension2
-            }
-            let origin = CGPoint(x: center.x + (hole.xOffset - width / 2) * scale,
-                                 y: center.y + (hole.yOffset - height / 2) * scale)
-            let rect = CGRect(origin: origin, size: CGSize(width: width * scale, height: height * scale))
-                .insetBy(dx: Self.lineWidth / 2, dy: Self.lineWidth / 2)
-            
+            let rect = CGRect(x: (offset.x + hole.xOffset) * scale, y: (offset.y + hole.yOffset) * scale, width: hole.width * scale, height: hole.height * scale)
+//            print ("rect \(rect)")
             var path: Path
             switch hole.type {
             case .circle, .ellipse:
@@ -74,7 +44,7 @@ struct Drawing {
             case .square, .rectangle:
                 path = Path(rect)
             case .capsule:
-                path = Path(roundedRect: rect, cornerRadius: min(width, height) * scale / 2)
+                path = Path(roundedRect: rect, cornerRadius: min(hole.width, hole.height) * scale / 2)
             }
             context.stroke(path, with: .color(.primary), lineWidth: Self.lineWidth)
         }
@@ -98,15 +68,15 @@ struct Drawing {
             height = box.depth
          }
         let scale = Self.boxScale(size: size, width: width, height: height)
-        let center = CGPoint(x: size.width / 2, y: -size.height / 2)
-        let origin = CGPoint(x: center.x - width / 2 * scale, y: center.y + height / 2 * scale)
+        let center = CGPoint(x: size.width / 2 + 1, y: -size.height / 2  + 1)
+        let origin = CGPoint(x: center.x - width / 2 * scale + 1, y: center.y + height / 2 * scale + 1)
         var path: Path
         path = Path(CGRect(origin: origin, size: CGSize(width: width * scale, height: height * scale)))
         context.stroke(path, with: .color(.primary), lineWidth: Self.lineWidth)
         for openingWrapper in box.openings[face]!.values {
             if let opening = openings[openingWrapper.openingId] {
                 let center = CGPoint(x: origin.x + openingWrapper.xCenter * scale, y: origin.y - openingWrapper.yCenter * scale)
-                Self.drawOpening(context: context, size: size, item: opening, scale: scale, center: center)
+                Self.drawOpening(context: context, item: opening, scale: scale, offset: center)
             }
         }
     }

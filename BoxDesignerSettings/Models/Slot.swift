@@ -40,4 +40,17 @@ struct Slot: Identifiable, Codable {
     var description: String {
         "\(type.rawValue) (\(xOffset), \(yOffset))"
     }
+    
+    var width: Double {
+        dimension1
+    }
+    
+    var height: Double {
+        switch type {
+        case .circle, .square:
+            return dimension1
+        default:
+            return dimension2
+        }
+    }
 }

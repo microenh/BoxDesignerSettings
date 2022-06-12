@@ -23,9 +23,10 @@ struct OpeningDetail: View {
                 }
                 .frame(width: Misc.inputFormWidth)
                 Canvas { context, size in
-                    Drawing.drawOpening(context: context, size: size, item: item!,
+//                    print ("size \(size)")
+                    Drawing.drawOpening(context: context, item: item!,
                                         scale: Drawing.openingScale(size: size, item: item!),
-                                        center: CGPoint(x: size.width / 2, y: size.height / 2))
+                                        offset: CGPoint(x: 0, y: 0))
                 }
                 Button {
                     showModal = true
