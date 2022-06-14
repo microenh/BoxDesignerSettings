@@ -23,6 +23,15 @@ struct SlotDetail: View {
            let selection = selection,
            item!.detailItems[selection] != nil {
             VStack {
+                Canvas { context, size in
+                    Drawing.drawOpening(context: context, size: size, item: item!, selection: selection)
+                }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: Misc.cornerRadius)
+                        .stroke(Misc.highlightColor, lineWidth: Misc.lineWidth))
+                .padding()
+                Divider()
                 Picker("Shape", selection: binding.type) {
                     ForEach(SlotType.allCases, id: \.self) { value in
                         HStack {

@@ -37,6 +37,20 @@ struct Opening: Identifiable, Codable {
         }
     }
     
+    var size: CGSize {
+        guard detailItems.count > 0 else {
+            return CGSize(width: 1, height: 1)
+        }
+        var maxX = CGFloat(0)
+        var maxY = CGFloat(0)
+        
+        for hole in detailItems.values {
+            maxX = max(maxX, hole.xOffset + hole.width)
+            maxY = max(maxY, hole.yOffset + hole.height)
+        }
+        return CGSize(width: max(maxX, 1), height: max(maxY, 1))
+    }
+    
     var description: String {
         name
     }

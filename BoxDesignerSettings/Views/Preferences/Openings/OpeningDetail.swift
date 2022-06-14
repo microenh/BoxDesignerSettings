@@ -23,11 +23,13 @@ struct OpeningDetail: View {
                 }
                 .frame(width: Misc.inputFormWidth)
                 Canvas { context, size in
-//                    print ("size \(size)")
-                    Drawing.drawOpening(context: context, item: item!,
-                                        scale: Drawing.openingScale(size: size, item: item!),
-                                        offset: CGPoint(x: 0, y: 0))
+                    Drawing.drawOpening(context: context, size: size, item: item!, selection: nil)
                 }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: Misc.cornerRadius)
+                        .stroke(Misc.highlightColor, lineWidth: Misc.lineWidth))
+                .padding()
                 Button {
                     showModal = true
                 } label: {

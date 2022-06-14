@@ -16,8 +16,15 @@ struct FaceOpeningDetail: View {
     var body: some View {
         VStack(alignment: .center) {
             Canvas { context, size in
-                Drawing.drawSide(context: context, size: size, face: face, box: document.data, openings: openings, selection: selection)
+                print (selection ?? "nil")
+                return Drawing.drawSide(context: context, size: size, face: face, box: document.data, openings: openings, selection: selection)
             }
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: Misc.cornerRadius)
+                    .stroke(Misc.highlightColor, lineWidth: Misc.lineWidth))
+            .padding()
+
             if let selection = selection {
                 if document.data.openings[face]![selection] != nil {
                     Divider()

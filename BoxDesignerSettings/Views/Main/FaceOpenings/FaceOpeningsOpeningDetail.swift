@@ -34,8 +34,8 @@ struct FaceOpeningsOpeningDetail: View {
                 
                 ScrollView(.vertical) {
                     Form {
-                        TextField("X Center (mm)", value: binding.xCenter, format: .number)
-                        TextField("Y Center (mm)", value: binding.yCenter, format: .number)
+                        TextField("X offest (mm)", value: binding.xCenter, format: .number)
+                        TextField("Y offset(mm)", value: binding.yCenter, format: .number)
                     }
                 }
 

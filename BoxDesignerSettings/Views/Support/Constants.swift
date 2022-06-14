@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Misc {
-    static let disclosureDetailIndent: CGFloat = 20
-    static let inputFormWidth: CGFloat = 300
+    static let disclosureDetailIndent = CGFloat(20)
+    static let inputFormWidth = CGFloat(300)
+    static let lineWidth = CGFloat(1)
+    static let normalColor = Color.primary
+    static let highlightColor = Color.yellow
+    static let cornerRadius = CGFloat(8)
 }
 
 struct SystemImageNames {
