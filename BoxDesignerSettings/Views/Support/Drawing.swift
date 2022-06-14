@@ -9,13 +9,6 @@ import Foundation
 import SwiftUI
 
 struct Drawing {
-    static func boxScale(size: CGSize, width: CGFloat, height: CGFloat) -> CGFloat {
-        guard width > 0, height > 0 else {
-            return 1.0
-        }
-        return min(size.width / width, size.height / height)
-    }
-
     static private func drawSlot(context: GraphicsContext, scale: CGFloat, offset: CGPoint, item: Slot, selection: String?) {
         var path: Path
         let rect = CGRect(x: item.xOffset * scale + offset.x,
