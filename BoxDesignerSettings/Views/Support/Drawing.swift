@@ -43,7 +43,7 @@ struct Drawing {
         drawOpening(context: context, scale: scale, offset: offset, item: item, selection: selection)
     }
     
-    static func drawSide(context: GraphicsContext, size: CGSize, face: Face, box: BoxModel, openings: Openings, selection: String?) {
+    static func drawSide1(context: GraphicsContext, size: CGSize, face: Face, box: BoxModel, openings: Openings, selection: String?) {
         guard box.sides[face]! else {
             return
         }
@@ -73,7 +73,7 @@ struct Drawing {
             if let opening = openings[openingWrapper.openingId] {
                 drawOpening(context: context,
                             scale: scale,
-                            offset: CGPoint(x: offset.x + scale * openingWrapper.xCenter, y: offset.y + scale * openingWrapper.yCenter),
+                            offset: CGPoint(x: offset.x + scale * openingWrapper.xOffset, y: offset.y + scale * openingWrapper.yOffset),
                             item: opening,
                             selection: selection == openingWrapper.id ? "O" : "")
             }
@@ -87,4 +87,86 @@ struct Drawing {
 
         }
     }
+    
+    static func addSlot(path: inout Path, slot: Slot) {
+        let rect = CGRect(x: slot.xOffset,
+                          y: slot.yOffset,
+                          width: slot.width,
+                          height: slot.height)
+            // .insetBy(dx: Misc.lineWidth / 2, dy: Misc.lineWidth / 2)
+        switch slot.type {
+        case .circle, .ellipse:
+            path.addEllipse(in: rect)
+        case .square, .rectangle:
+            path.addRect(rect)
+        case .capsule:
+            let cornerSize = min(slot.width, slot.height) / 2
+            path.addRoundedRect(in: rect, cornerSize: CGSize(width: cornerSize, height: cornerSize))
+        }
+    }
+    
+    static func addOpening(path: inout Path, opening: Opening, xOffset: CGFloat, yOffset: CGFloat) {
+        var lPath = Path()
+        
+        for slot in opening.detailItems.values {
+            addSlot(path: &lPath, slot: slot)
+        }
+        lPath = lPath.applying(CGAffineTransform(translationX: xOffset, y: yOffset))
+        path.addPath(lPath)
+    }
+    
+    static func drawSide(context: GraphicsContext, size: CGSize, face: Face, box: BoxModel, openings: Openings, selection: String?) {
+        guard box.sides[face]! else {
+            return
+        }
+        let faceSize = box.size(face: face)
+        guard faceSize.width > 0, faceSize.height > 0 else {
+            return
+        }
+        
+        var path = Path()
+        for openingWrapper in box.openings[face]!.values {
+            if let opening = openings[openingWrapper.openingId] {
+                addOpening(path: &path, opening: opening, xOffset: openingWrapper.xOffset, yOffset: openingWrapper.yOffset)
+            }
+        }
+        
+        for slot in box.slots[face]!.values {
+            addSlot(path: &path, slot: slot)
+        }
+ 
+        // face outline
+        path.addRect(CGRect(x: 0, y: 0, width: faceSize.width, height: faceSize.height))
+        
+        let scale = min(size.width / faceSize.width, size.height / faceSize.height)
+        let offsetX = (size.width - faceSize.width * scale) / 2
+        let offsetY = (size.height - faceSize.height * scale) / 2
+        let translation = CGAffineTransform(translationX: offsetX, y: offsetY)
+            .scaledBy(x: scale, y: scale)
+        
+        context.stroke(path.applying(translation),
+                       with: .color(Misc.normalColor),
+                       lineWidth: Misc.lineWidth)
+        
+        // highlight selection opening or slot
+        path = Path()
+        for openingWrapper in box.openings[face]!.values {
+            if openingWrapper.id == selection,
+               let opening = openings[openingWrapper.openingId] {
+                addOpening(path: &path, opening: opening, xOffset: openingWrapper.xOffset, yOffset: openingWrapper.yOffset)
+            }
+        }
+        
+        for slot in box.slots[face]!.values {
+            if slot.id == selection {
+                addSlot(path: &path, slot: slot)
+            }
+        }
+
+        context.stroke(path.applying(translation),
+                       with: .color(Misc.highlightColor),
+                       lineWidth: Misc.lineWidth)
+
+    }
+
 }

@@ -10,17 +10,17 @@ import Foundation
 struct OpeningWrapper: Identifiable, Codable {
     let id: String
     var openingId: String
-    var xCenter: Double
-    var yCenter: Double
+    var xOffset: Double
+    var yOffset: Double
     
     init(id: String = UUID().uuidString,
          openingId: String = "",
-         xCenter: Double = 0.0,
-         yCenter: Double = 0.0) {
+         xOffset: Double = 0.0,
+         yOffset: Double = 0.0) {
         self.id = id
         self.openingId = openingId
-        self.xCenter = xCenter
-        self.yCenter = yCenter
+        self.xOffset = xOffset
+        self.yOffset = yOffset
     }
 }
 
@@ -101,6 +101,23 @@ struct BoxModel: Codable {
     var bottom: Bool {
         get { sides[.bottom]! }
         set { sides[.bottom] = newValue }
+    }
+    
+    func size(face: Face) -> CGSize {
+        var width: CGFloat
+        var height: CGFloat
+        switch face {
+        case .front, .rear:
+            width = self.width
+            height = self.height
+        case .left, .right:
+            width = self.depth
+            height = self.height
+        case .top, .bottom:
+            width = self.width
+            height = self.depth
+        }
+        return CGSize(width: width, height: height)
     }
     
     mutating func addOpening(face: Face) -> String {
