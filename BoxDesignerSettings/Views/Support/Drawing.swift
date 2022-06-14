@@ -15,28 +15,31 @@ struct Drawing {
         }
         return min(size.width / width, size.height / height)
     }
-    
+
+    static private func drawSlot(context: GraphicsContext, scale: CGFloat, offset: CGPoint, item: Slot, selection: String?) {
+        var path: Path
+        let rect = CGRect(x: item.xOffset * scale + offset.x,
+                          y: item.yOffset * scale + offset.y,
+                          width: item.width * scale,
+                          height: item.height * scale)
+            .insetBy(dx: Misc.lineWidth / 2, dy: Misc.lineWidth / 2)
+        switch item.type {
+        case .circle, .ellipse:
+            path = Path(ellipseIn: rect)
+        case .square, .rectangle:
+            path = Path(rect)
+        case .capsule:
+            path = Path(roundedRect: rect, cornerRadius: min(item.width, item.height) * scale / 2)
+        }
+        context.stroke(path,
+                       with: .color([item.id, "O"].contains(selection) ? Misc.highlightColor : Misc.normalColor),
+                       lineWidth: Misc.lineWidth)
+    }
+
     static private func drawOpening(context: GraphicsContext, scale: CGFloat, offset: CGPoint, item: Opening, selection: String?) {
         for slot in item.detailItems.values {
-            var path: Path
-            let rect = CGRect(x: slot.xOffset * scale + offset.x,
-                              y: slot.yOffset * scale + offset.y,
-                              width: slot.width * scale,
-                              height: slot.height * scale)
-                .insetBy(dx: Misc.lineWidth / 2, dy: Misc.lineWidth / 2)
-            switch slot.type {
-            case .circle, .ellipse:
-                path = Path(ellipseIn: rect)
-            case .square, .rectangle:
-                path = Path(rect)
-            case .capsule:
-                path = Path(roundedRect: rect, cornerRadius: min(slot.width, slot.height) * scale / 2)
-            }
-            context.stroke(path,
-                           with: .color([slot.id, "O"].contains(selection) ? Misc.highlightColor : Misc.normalColor),
-                           lineWidth: Misc.lineWidth)
+            drawSlot(context: context, scale: scale, offset: offset, item: slot, selection: selection)
         }
-
     }
     
     static func drawOpening(context: GraphicsContext, size: CGSize, item: Opening, selection: String?) {
@@ -63,7 +66,7 @@ struct Drawing {
         case .top, .bottom:
             width = box.width
             height = box.depth
-         }
+        }
         guard width > 0, height > 0 else {
             return
         }
@@ -81,6 +84,14 @@ struct Drawing {
                             item: opening,
                             selection: selection == openingWrapper.id ? "O" : "")
             }
+        }
+        for slot in box.slots[face]!.values {
+            drawSlot(context: context,
+                     scale: scale,
+                     offset: CGPoint(x: offset.x + scale * slot.xOffset, y: offset.y + scale * slot.yOffset),
+                     item: slot,
+                     selection: selection)
+
         }
     }
 }
