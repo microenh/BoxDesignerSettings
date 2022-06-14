@@ -32,9 +32,8 @@ struct Drawing {
             case .capsule:
                 path = Path(roundedRect: rect, cornerRadius: min(slot.width, slot.height) * scale / 2)
             }
-            // print ("\(slot.id), \(item.id)")
             context.stroke(path,
-                           with: .color([slot.id, item.id].contains(selection) ? Misc.highlightColor : Misc.normalColor),
+                           with: .color([slot.id, "O"].contains(selection) ? Misc.highlightColor : Misc.normalColor),
                            lineWidth: Misc.lineWidth)
         }
 
@@ -76,12 +75,11 @@ struct Drawing {
         context.stroke(path, with: .color(.primary), lineWidth: Misc.lineWidth)
         for openingWrapper in box.openings[face]!.values {
             if let opening = openings[openingWrapper.openingId] {
-                print(openingWrapper.openingId)
                 drawOpening(context: context,
                             scale: scale,
                             offset: CGPoint(x: offset.x + scale * openingWrapper.xCenter, y: offset.y + scale * openingWrapper.yCenter),
                             item: opening,
-                            selection: selection)
+                            selection: selection == openingWrapper.id ? "O" : "")
             }
         }
     }

@@ -16,8 +16,7 @@ struct FaceOpeningDetail: View {
     var body: some View {
         VStack(alignment: .center) {
             Canvas { context, size in
-                print (selection ?? "nil")
-                return Drawing.drawSide(context: context, size: size, face: face, box: document.data, openings: openings, selection: selection)
+                 Drawing.drawSide(context: context, size: size, face: face, box: document.data, openings: openings, selection: selection)
             }
             .padding()
             .overlay(
