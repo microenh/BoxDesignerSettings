@@ -42,53 +42,8 @@ struct Drawing {
                              y: (size.height - itemSize.height * scale) / 2)
         drawOpening(context: context, scale: scale, offset: offset, item: item, selection: selection)
     }
-    
-    static func drawSide1(context: GraphicsContext, size: CGSize, face: Face, box: BoxModel, openings: Openings, selection: String?) {
-        guard box.sides[face]! else {
-            return
-        }
-        var width: CGFloat
-        var height: CGFloat
-        switch face {
-        case .front, .rear:
-            width = box.width
-            height = box.height
-        case .left, .right:
-            width = box.depth
-            height = box.height
-        case .top, .bottom:
-            width = box.width
-            height = box.depth
-        }
-        guard width > 0, height > 0 else {
-            return
-        }
-        let scale = min(size.width / width, size.height / height)
-        let offset = CGPoint(x: (size.width - width * scale) / 2,
-                             y: (size.height - height * scale) / 2)
-
-        let path = Path(CGRect(origin: offset, size: CGSize(width: width * scale, height: height * scale)).insetBy(dx: Misc.lineWidth / 2, dy: Misc.lineWidth / 2))
-        context.stroke(path, with: .color(.primary), lineWidth: Misc.lineWidth)
-        for openingWrapper in box.openings[face]!.values {
-            if let opening = openings[openingWrapper.openingId] {
-                drawOpening(context: context,
-                            scale: scale,
-                            offset: CGPoint(x: offset.x + scale * openingWrapper.xOffset, y: offset.y + scale * openingWrapper.yOffset),
-                            item: opening,
-                            selection: selection == openingWrapper.id ? "O" : "")
-            }
-        }
-        for slot in box.slots[face]!.values {
-            drawSlot(context: context,
-                     scale: scale,
-                     offset: CGPoint(x: offset.x + scale * slot.xOffset, y: offset.y + scale * slot.yOffset),
-                     item: slot,
-                     selection: selection)
-
-        }
-    }
-    
-    static func addSlot(path: inout Path, slot: Slot) {
+        
+    static private func addSlot(path: inout Path, slot: Slot) {
         let rect = CGRect(x: slot.xOffset,
                           y: slot.yOffset,
                           width: slot.width,
@@ -105,7 +60,7 @@ struct Drawing {
         }
     }
     
-    static func addOpening(path: inout Path, opening: Opening, xOffset: CGFloat, yOffset: CGFloat) {
+    static private func addOpening(path: inout Path, opening: Opening, xOffset: CGFloat, yOffset: CGFloat) {
         var lPath = Path()
         
         for slot in opening.detailItems.values {
