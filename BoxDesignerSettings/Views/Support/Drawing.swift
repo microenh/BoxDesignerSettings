@@ -9,38 +9,38 @@ import Foundation
 import SwiftUI
 
 struct Drawing {
-    static private func drawSlot(context: GraphicsContext, scale: CGFloat, offset: CGPoint, item: Slot, selection: String?) {
-        var path: Path
-        let rect = CGRect(x: item.xOffset * scale + offset.x,
-                          y: item.yOffset * scale + offset.y,
-                          width: item.width * scale,
-                          height: item.height * scale)
-            .insetBy(dx: Misc.lineWidth / 2, dy: Misc.lineWidth / 2)
-        switch item.type {
-        case .circle, .ellipse:
-            path = Path(ellipseIn: rect)
-        case .square, .rectangle:
-            path = Path(rect)
-        case .capsule:
-            path = Path(roundedRect: rect, cornerRadius: min(item.width, item.height) * scale / 2)
-        }
-        context.stroke(path,
-                       with: .color([item.id, "O"].contains(selection) ? Misc.highlightColor : Misc.normalColor),
-                       lineWidth: Misc.lineWidth)
-    }
-
-    static private func drawOpening(context: GraphicsContext, scale: CGFloat, offset: CGPoint, item: Opening, selection: String?) {
-        for slot in item.detailItems.values {
-            drawSlot(context: context, scale: scale, offset: offset, item: slot, selection: selection)
-        }
-    }
     
     static func drawOpening(context: GraphicsContext, size: CGSize, item: Opening, selection: String?) {
-        let itemSize = item.size
-        let scale = min(size.width / itemSize.width, size.height / itemSize.height)
-        let offset = CGPoint(x: (size.width - itemSize.width * scale) / 2,
-                             y: (size.height - itemSize.height * scale) / 2)
-        drawOpening(context: context, scale: scale, offset: offset, item: item, selection: selection)
+        let openingSize = item.size
+        guard openingSize.width > 0, openingSize.height > 0 else {
+            return
+        }
+        let scale = min(size.width / openingSize.width, size.height / openingSize.height)
+        let offsetX = (size.width - openingSize.width * scale) / 2
+        let offsetY = (size.height - openingSize.height * scale) / 2
+        let translation = CGAffineTransform(translationX: offsetX, y: offsetY)
+            .scaledBy(x: scale, y: scale)
+
+        var path = Path()
+        
+        for slot in item.detailItems.values {
+            if slot.id != selection {
+                addSlot(path: &path, slot: slot)
+            }
+        }
+        context.stroke(path.applying(translation),
+                       with: .color(Misc.normalColor),
+                       lineWidth: Misc.lineWidth)
+        
+        path = Path()
+        for slot in item.detailItems.values {
+            if slot.id == selection {
+                addSlot(path: &path, slot: slot)
+            }
+        }
+        context.stroke(path.applying(translation),
+                       with: .color(Misc.highlightColor),
+                       lineWidth: Misc.lineWidth)
     }
         
     static private func addSlot(path: inout Path, slot: Slot) {
@@ -103,7 +103,7 @@ struct Drawing {
                        with: .color(Misc.normalColor),
                        lineWidth: Misc.lineWidth)
         
-        // highlight selection opening or slot
+        // highlight selected opening or slot
         path = Path()
         for openingWrapper in box.openings[face]!.values {
             if openingWrapper.id == selection,
@@ -111,17 +111,13 @@ struct Drawing {
                 addOpening(path: &path, opening: opening, xOffset: openingWrapper.xOffset, yOffset: openingWrapper.yOffset)
             }
         }
-        
         for slot in box.slots[face]!.values {
             if slot.id == selection {
                 addSlot(path: &path, slot: slot)
             }
         }
-
         context.stroke(path.applying(translation),
                        with: .color(Misc.highlightColor),
                        lineWidth: Misc.lineWidth)
-
     }
-
 }
