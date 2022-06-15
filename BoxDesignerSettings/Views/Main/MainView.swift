@@ -20,6 +20,10 @@ struct MainView: View {
                 .tabItem {
                     Label("Openings", systemImage: SystemImageNames.machine)
                 }
+            StockView(document: $document)
+                .tabItem {
+                    Label("Stock", systemImage: SystemImageNames.machine)
+                }
         }
         .padding()
         .frame(minWidth: 400)

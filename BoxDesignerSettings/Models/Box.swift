@@ -40,6 +40,7 @@ struct BoxModel: Codable {
     var sides: [Face: Bool]
     var slots: [Face: [String: Slot]]
     var openings: [Face: [String: OpeningWrapper]]
+    var stockLayouts: [String: StockLayout]
     
     init() {
         comment = ""
@@ -71,6 +72,7 @@ struct BoxModel: Codable {
                  .right: true,
                  .top: true,
                  .bottom: true]
+        stockLayouts = [String: StockLayout]()
     }
     
     var front: Bool {

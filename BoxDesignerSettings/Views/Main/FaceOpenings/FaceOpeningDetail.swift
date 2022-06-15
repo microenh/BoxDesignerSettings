@@ -14,7 +14,7 @@ struct FaceOpeningDetail: View {
     let selection: String?
     let face: Face
     var body: some View {
-        VStack(alignment: .center) {
+        VStack {
             Canvas { context, size in
                  Drawing.drawSide(context: context, size: size, face: face, box: document.data, openings: openings, selection: selection)
             }

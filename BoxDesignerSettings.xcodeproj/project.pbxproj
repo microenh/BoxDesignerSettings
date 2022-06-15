@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D08D4FB285A75F000B12261 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D08D4FA285A75F000B12261 /* Stock.swift */; };
+		4D08D4FE285A77A600B12261 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D08D4FD285A77A600B12261 /* StockView.swift */; };
+		4D08D500285A77E700B12261 /* StockSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D08D4FF285A77E700B12261 /* StockSidebar.swift */; };
+		4D08D504285A788B00B12261 /* StockLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D08D503285A788B00B12261 /* StockLayoutView.swift */; };
+		4D08D506285A789700B12261 /* StockDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D08D505285A789700B12261 /* StockDetailView.swift */; };
+		4D08D508285A7B1E00B12261 /* StockLayoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D08D507285A7B1E00B12261 /* StockLayoutDetailView.swift */; };
 		4D0F6E97284A3A5F00CC7BE8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F6E96284A3A5F00CC7BE8 /* Constants.swift */; };
 		4D1BC85D28527220006500CE /* FaceOpeningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC85C28527220006500CE /* FaceOpeningsView.swift */; };
 		4D1BC8612852BE7F006500CE /* FaceOpeningsSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BC8602852BE7F006500CE /* FaceOpeningsSidebar.swift */; };
@@ -67,6 +73,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D08D4FA285A75F000B12261 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		4D08D4FD285A77A600B12261 /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
+		4D08D4FF285A77E700B12261 /* StockSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSidebar.swift; sourceTree = "<group>"; };
+		4D08D503285A788B00B12261 /* StockLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLayoutView.swift; sourceTree = "<group>"; };
+		4D08D505285A789700B12261 /* StockDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailView.swift; sourceTree = "<group>"; };
+		4D08D507285A7B1E00B12261 /* StockLayoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLayoutDetailView.swift; sourceTree = "<group>"; };
 		4D0F6E96284A3A5F00CC7BE8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4D1BC85C28527220006500CE /* FaceOpeningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceOpeningsView.swift; sourceTree = "<group>"; };
 		4D1BC8602852BE7F006500CE /* FaceOpeningsSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceOpeningsSidebar.swift; sourceTree = "<group>"; };
@@ -139,6 +151,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D08D4FC285A778800B12261 /* Stock */ = {
+			isa = PBXGroup;
+			children = (
+				4D08D4FD285A77A600B12261 /* StockView.swift */,
+				4D08D4FF285A77E700B12261 /* StockSidebar.swift */,
+				4D08D505285A789700B12261 /* StockDetailView.swift */,
+				4D08D503285A788B00B12261 /* StockLayoutView.swift */,
+				4D08D507285A7B1E00B12261 /* StockLayoutDetailView.swift */,
+			);
+			path = Stock;
+			sourceTree = "<group>";
+		};
 		4D1BC85E2852BE40006500CE /* Layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +219,7 @@
 				4DE8F21D285170E50021C383 /* MainView.swift */,
 				4D1BC85E2852BE40006500CE /* Layout */,
 				4D1BC85F2852BE4D006500CE /* FaceOpenings */,
+				4D08D4FC285A778800B12261 /* Stock */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -280,6 +305,7 @@
 				4D560537284805E900F8EEAC /* Openings.swift */,
 				4D560535284805D900F8EEAC /* Slot.swift */,
 				4D4F98322851757300BD2F55 /* Box.swift */,
+				4D08D4FA285A75F000B12261 /* Stock.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -471,15 +497,19 @@
 			files = (
 				4D7F56212842EF8D00B79127 /* MaterialDetail.swift in Sources */,
 				4D7F56132842E20800B79127 /* Materials.swift in Sources */,
+				4D08D508285A7B1E00B12261 /* StockLayoutDetailView.swift in Sources */,
 				4D0F6E97284A3A5F00CC7BE8 /* Constants.swift in Sources */,
 				4DE8F21C2851709C0021C383 /* BoxDesignDocument.swift in Sources */,
 				4D1BC8652852BEA7006500CE /* FaceOpeningsSlotDetail.swift in Sources */,
 				4D7F56172842E75200B79127 /* MachineView.swift in Sources */,
 				4D7F55E62842E01300B79127 /* PreferencesView.swift in Sources */,
 				4D70AB822847D6A00026C6EE /* ExpansionState.swift in Sources */,
+				4D08D500285A77E700B12261 /* StockSidebar.swift in Sources */,
 				4D7F55E42842E01300B79127 /* BoxDesignerSettingsApp.swift in Sources */,
+				4D08D4FE285A77A600B12261 /* StockView.swift in Sources */,
 				4D335D29284E8E4800E0A510 /* Drawing.swift in Sources */,
 				4D560538284805E900F8EEAC /* Openings.swift in Sources */,
+				4D08D504285A788B00B12261 /* StockLayoutView.swift in Sources */,
 				4D56053C2848106700F8EEAC /* OpeningDetail.swift in Sources */,
 				4DC04BEC28494BC900670C83 /* MaterialsSidebar.swift in Sources */,
 				4D1BC8612852BE7F006500CE /* FaceOpeningsSidebar.swift in Sources */,
@@ -487,6 +517,7 @@
 				4D4F98332851757300BD2F55 /* Box.swift in Sources */,
 				4DC04BEA28494B8A00670C83 /* MaterialsView.swift in Sources */,
 				4D1BC85D28527220006500CE /* FaceOpeningsView.swift in Sources */,
+				4D08D506285A789700B12261 /* StockDetailView.swift in Sources */,
 				4D560536284805D900F8EEAC /* Slot.swift in Sources */,
 				4D2E074B2846BF900031D825 /* DeletePrompt.swift in Sources */,
 				4D5605312848048700F8EEAC /* OpeningsView.swift in Sources */,
@@ -498,6 +529,7 @@
 				4D2E07542846D9A80031D825 /* DrillDetail.swift in Sources */,
 				4D5605422848135D00F8EEAC /* SlotDetail.swift in Sources */,
 				4DE1EF64285371FB00980428 /* FaceOpeningDetail.swift in Sources */,
+				4D08D4FB285A75F000B12261 /* Stock.swift in Sources */,
 				4D7F56112842E12100B79127 /* Machine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
