@@ -141,4 +141,50 @@ struct BoxModel: Codable {
     mutating func deleteSlot(face: Face, selection: String) {
         slots[face]![selection] = nil
     }
+    
+    mutating func addStockLayout() -> String {
+        let item = StockLayout()
+        stockLayouts[item.id] = item
+        return item.id
+    }
+    
+    mutating func deleteStockLayout(selection: String?) {
+        if let selection = selection {
+            stockLayouts[selection] = nil
+        }
+    }
+    
+    mutating func addStockFace(id: String?) -> String {
+        let stockFace = StockFace()
+        if let id = id,
+           stockLayouts[id] != nil {
+            stockLayouts[id]!.stockFaces[stockFace.id] = stockFace
+        }
+        return stockFace.id
+    }
+    
+    mutating func deleteStockFace(id: String?) {
+        if let id = id,
+           let stockLayoutId = getStockLayoutId(id: id) {
+            stockLayouts[stockLayoutId]!.stockFaces[id] = nil
+        }
+    }
+    
+    func getStockLayoutId(id: String?) -> String? {
+        var stockLayoutId: String? = nil
+        if let id = id {
+            if stockLayouts[id] == nil {
+                for stockLayout in stockLayouts.values {
+                    if stockLayout.stockFaces[id] != nil {
+                        stockLayoutId = stockLayout.id
+                        break
+                    }
+                }
+            } else {
+                return id
+            }
+        }
+        return stockLayoutId
+    }
+
 }

@@ -15,7 +15,7 @@ struct StockView: View {
     var body: some View {
         NavigationView {
             StockSidebar(document: $document, selection: $selection)
-            
+            StockDetailView(document: $document, selection: $selection)
         }
     }
 }

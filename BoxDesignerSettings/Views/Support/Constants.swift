@@ -29,4 +29,7 @@ struct SystemImageNames {
     
     static let disclosureClosed = "arrowtriangle.forward"
     static let disclosureOpen = "arrowtriangle.down"
+    
+    static let stockLayout = "rectangle"
+    static let stockFace = "rectangle.split.3x3"
 }

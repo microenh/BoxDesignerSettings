@@ -11,9 +11,28 @@ struct StockLayoutView: View {
     
     @Binding var document: BoxDesignDocument
     let selection: String?
+    @State private var showModal = false
+    @State private var delete = false
+
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            // Spacer()
+            Button {
+                showModal = true
+            } label: {
+                Image(systemName: SystemImageNames.deleteItem)
+            }
+        }
+        .padding()
+        .navigationTitle("Stock Layout")
+        .sheet(isPresented: $showModal) {
+            if delete {
+                document.data.deleteStockLayout(selection: selection)
+            }
+        } content: {
+            DeletePrompt(message: "Delete Stock?", delete: $delete)
+        }
     }
 }
 

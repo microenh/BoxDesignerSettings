@@ -24,17 +24,11 @@ struct StockDetailView: View {
             .padding()
 
             if let selection = selection {
-//                if document.data.stockLayouts[selection] != nil {
-//                    Divider()
-//                    FaceOpeningsOpeningDetail(document: $document,
-//                                              selection: selection,
-//                                              face: face)
-//                } else if document.data.slots[face]![selection] != nil {
-//                    Divider()
-//                    FaceOpeningsSlotDetail(document: $document,
-//                                           selection: selection,
-//                                           face: face)
-//                }
+                if document.data.stockLayouts[selection] != nil {
+                    StockLayoutView(document: $document, selection: selection)
+                } else if let stockLayoutId = document.data.getStockLayoutId(id: selection) {
+                    StockFaceView(document: $document, stockLayoutId: stockLayoutId, stockFaceId: selection)
+                }
             }
         }
     }
