@@ -70,36 +70,37 @@ struct Drawing {
         path.addPath(lPath)
     }
     
-    static func sidePaths(face: Face, box: BoxModel, openings: Openings, selection: String?) -> (normal: Path, highlight: Path) {
+    static private func sidePath(face: Face, box: BoxModel, openings: Openings) -> Path{
         let faceSize = box.size(face: face)
-        var normalPath = Path()
-        normalPath.addRect(CGRect(x: 0, y: 0, width: faceSize.width, height: faceSize.height))
+        var path = Path()
+        path.addRect(CGRect(x: 0, y: 0, width: faceSize.width, height: faceSize.height))
         for openingWrapper in box.openings[face]!.values {
-            if let opening = openings[openingWrapper.openingId],
-               openingWrapper.id != selection {
-                addOpening(path: &normalPath, opening: opening, xOffset: openingWrapper.xOffset, yOffset: openingWrapper.yOffset)
+            if let opening = openings[openingWrapper.openingId] {
+                addOpening(path: &path, opening: opening, xOffset: openingWrapper.xOffset, yOffset: openingWrapper.yOffset)
             }
         }
         
         for slot in box.slots[face]!.values {
-            if slot.id != selection {
-                addSlot(path: &normalPath, slot: slot)
-            }
+            addSlot(path: &path, slot: slot)
         }
- 
-        var highlightPath = Path()
+        return path
+    }
+
+    
+    static private func highlightPath(face: Face, box: BoxModel, openings: Openings, selection: String?) -> Path {
+        var path = Path()
         for openingWrapper in box.openings[face]!.values {
-            if openingWrapper.id == selection,
-               let opening = openings[openingWrapper.openingId] {
-                addOpening(path: &highlightPath, opening: opening, xOffset: openingWrapper.xOffset, yOffset: openingWrapper.yOffset)
+            if let opening = openings[openingWrapper.openingId],
+               openingWrapper.id == selection {
+                addOpening(path: &path, opening: opening, xOffset: openingWrapper.xOffset, yOffset: openingWrapper.yOffset)
             }
         }
         for slot in box.slots[face]!.values {
             if slot.id == selection {
-                addSlot(path: &highlightPath, slot: slot)
+                addSlot(path: &path, slot: slot)
             }
         }
-        return (normalPath, highlightPath)
+        return path
     }
     
     static func drawSide(context: GraphicsContext, size: CGSize, face: Face, box: BoxModel, openings: Openings, selection: String?) {
@@ -116,13 +117,50 @@ struct Drawing {
         let translation = CGAffineTransform(translationX: offsetX, y: offsetY)
             .scaledBy(x: scale, y: scale)
         
-        let (normal, highlight) = sidePaths(face: face, box: box, openings: openings, selection: selection)
+        let normal = sidePath(face: face, box: box, openings: openings)
         context.stroke(normal.applying(translation),
                        with: .color(Misc.normalColor),
                        lineWidth: Misc.lineWidth)
         
+        let highlight = highlightPath(face: face, box: box, openings: openings, selection: selection)
         context.stroke(highlight.applying(translation),
                        with: .color(Misc.highlightColor),
+                       lineWidth: Misc.lineWidth)
+    }
+    
+    static func drawStock(context: GraphicsContext, size: CGSize, box: BoxModel, openings: Openings, selection: String?) {
+        guard box.stockLength > 0, box.stockWidth > 0 else {
+            return
+        }
+        let scale = min(size.width / box.stockWidth, size.height / box.stockLength)
+        let offsetX = (size.width - box.stockWidth * scale) / 2
+        let offsetY = (size.height - box.stockLength * scale) / 2
+        let translation = CGAffineTransform(translationX: offsetX, y: offsetY)
+            .scaledBy(x: scale, y: scale)
+
+        var path = Path()
+        path.addRect(CGRect(x: 0, y: 0, width: box.stockWidth, height: box.stockLength))
+        if let selection = selection {
+            if let stockLayoutId = box.getStockLayoutId(id: selection) {
+                for stockFace in box.stockLayouts[stockLayoutId]!.stockFaces.values {
+                    let faceSize = box.size(face: stockFace.face)
+
+                    var faceTranslation = CGAffineTransform(translationX: stockFace.offsetX, y: stockFace.offsetY)
+                    if stockFace.rotated {
+                        faceTranslation = faceTranslation
+                            .rotated(by: Double.pi / 2)
+                            .translatedBy(x: 0, y: -faceSize.height)
+                    }
+                    let facePath = sidePath(face: stockFace.face, box: box, openings: openings).applying(faceTranslation)
+                    path.addPath(facePath)
+                }
+                
+            } else if box.stockLayouts[selection] != nil {
+                
+            }
+        }
+        context.stroke(path.applying(translation),
+                       with: .color(Misc.normalColor),
                        lineWidth: Misc.lineWidth)
     }
 }

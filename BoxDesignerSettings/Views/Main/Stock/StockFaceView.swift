@@ -26,8 +26,8 @@ struct StockFaceView: View {
              }
             ScrollView(.vertical) {
                 Form {
-                    TextField("X Offset (mm)", value: binding.xOffset, format: .number)
-                    TextField("Y Offset (mm)", value: binding.yOffset, format: .number)
+                    TextField("X Offset (mm)", value: binding.offsetX, format: .number)
+                    TextField("Y Offset (mm)", value: binding.offsetY, format: .number)
                     Toggle(isOn: binding.rotated) {
                         Text("Rotate 90°")
                     }

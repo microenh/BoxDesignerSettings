@@ -10,19 +10,19 @@ import Foundation
 struct StockFace: Identifiable, Codable {
     let id: String
     var face: Face
-    var xOffset: Double
-    var yOffset: Double
+    var offsetX: Double
+    var offsetY: Double
     var rotated: Bool
     
     init(id: String = UUID().uuidString,
          face: Face = .front,
-         xOffset: CGFloat = 0,
-         yOffset: CGFloat = 0,
+         offsetX: CGFloat = 0,
+         offsetY: CGFloat = 0,
          rotated: Bool = false) {
         self.id = id
         self.face = face
-        self.xOffset = xOffset
-        self.yOffset = yOffset
+        self.offsetX = offsetX
+        self.offsetY = offsetY
         self.rotated = rotated
     }
 }
