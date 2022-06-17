@@ -138,13 +138,13 @@ struct Drawing {
         let translation = CGAffineTransform(translationX: offsetX, y: offsetY)
             .scaledBy(x: scale, y: scale)
 
-        var path = Path()
-        path.addRect(CGRect(x: 0, y: 0, width: box.stockWidth, height: box.stockLength))
+        var normalPath = Path()
+        normalPath.addRect(CGRect(x: 0, y: 0, width: box.stockWidth, height: box.stockLength))
         if let selection = selection {
-            if let stockLayoutId = box.getStockLayoutId(id: selection) {
-                for stockFace in box.stockLayouts[stockLayoutId]!.stockFaces.values {
+            if box.stockLayouts[selection] != nil {
+                for stockFace in box.stockLayouts[selection]!.stockFaces.values {
                     let faceSize = box.size(face: stockFace.face)
-
+                    
                     var faceTranslation = CGAffineTransform(translationX: stockFace.offsetX, y: stockFace.offsetY)
                     if stockFace.rotated {
                         faceTranslation = faceTranslation
@@ -152,15 +152,38 @@ struct Drawing {
                             .translatedBy(x: 0, y: -faceSize.height)
                     }
                     let facePath = sidePath(face: stockFace.face, box: box, openings: openings).applying(faceTranslation)
-                    path.addPath(facePath)
+                    normalPath.addPath(facePath)
                 }
-                
-            } else if box.stockLayouts[selection] != nil {
-                
+                context.stroke(normalPath.applying(translation),
+                               with: .color(Misc.normalColor),
+                               lineWidth: Misc.lineWidth)
+                    
+            } else if let stockLayoutId = box.getStockLayoutId(id: selection) {
+                var highlightPath = Path()
+                for stockFace in box.stockLayouts[stockLayoutId]!.stockFaces.values {
+                    let faceSize = box.size(face: stockFace.face)
+                    
+                    var faceTranslation = CGAffineTransform(translationX: stockFace.offsetX, y: stockFace.offsetY)
+                    if stockFace.rotated {
+                        faceTranslation = faceTranslation
+                            .rotated(by: Double.pi / 2)
+                            .translatedBy(x: 0, y: -faceSize.height)
+                    }
+                    let facePath = sidePath(face: stockFace.face, box: box, openings: openings).applying(faceTranslation)
+                    if stockFace.id == selection {
+                        highlightPath.addPath(facePath)
+                    } else {
+                        normalPath.addPath(facePath)
+                    }
+                }
+                context.stroke(normalPath.applying(translation),
+                               with: .color(Misc.normalColor),
+                               lineWidth: Misc.lineWidth)
+                context.stroke(highlightPath.applying(translation),
+                               with: .color(Misc.highlightColor),
+                               lineWidth: Misc.lineWidth)
             }
+                
         }
-        context.stroke(path.applying(translation),
-                       with: .color(Misc.normalColor),
-                       lineWidth: Misc.lineWidth)
     }
 }
